@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    Dashboard Top Bar-->
+    <string name="dashboard_top_bar_header_text">Good Morning</string>
+
+<!--    Dashboard MusicPlayer Bar-->
+    <string name="dashboard_playing_song_album_cover_description_text">Playing Song Album Cover</string>
+    <string name="dashboard_play_pause_icon_description_text">Play Pause Icon</string>
+    <string name="dashboard_play_favourite_icon_description_text">Favourite Icon</string>
+    <string name="dashboard_play_mute_icon_description_text">Mute Icon</string>
+
+<!--    Music PLayer-->
+    <string name="music_player_cover_image_description">Song Cover</string>
+    <string name="music_player_device_icon_description">Device icon</string>
+    <string name="music_player_current_device_playing_header_text">Current Device</string>
+    <string name="music_player_current_device_playing_text">This Phone</string>
+    <string name="music_player_share_icon_description">Share icon</string>
+    <string name="music_player_more_device_icon_description">More devices icon</string>
+
+</resources>

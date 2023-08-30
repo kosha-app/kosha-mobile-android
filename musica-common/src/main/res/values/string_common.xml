@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    Music Nav Bar-->
+    <string name="music_nav_bar_home_text">Home</string>
+    <string name="music_nav_bar_search_text">Search</string>
+    <string name="music_nav_bar_your_library_text">You Library</string>
+    <string name="music_nav_bar_premium_text">Premium</string>
+    <string name="music_nav_bar_navigation_icon_description_text">Navigation Icon</string>
+</resources>

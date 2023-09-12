@@ -24,6 +24,14 @@ android {
                 "proguard-rules.pro"
             )
         }
+
+        debug {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
     }
 
     buildFeatures {
@@ -62,7 +70,7 @@ dependencies {
 
 //    Shared dependencies -- Start
 
-    api("androidx.compose.ui:ui")
+    api("androidx.compose.ui:ui:1.4.3")
     api("androidx.compose.ui:ui-graphics")
     api("androidx.compose.ui:ui-tooling-preview")
     api("androidx.compose.material3:material3")
@@ -74,6 +82,8 @@ dependencies {
     api("com.google.code.gson:gson:2.10.1")
     api("androidx.compose.ui:ui:1.6.0-alpha02")
     api("androidx.navigation:navigation-compose:2.7.0-rc01")
+
+    api("com.github.commandiron:WheelPickerCompose:1.1.11")
 
 //    Shared dependencies -- End
 

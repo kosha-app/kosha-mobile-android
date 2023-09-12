@@ -7,9 +7,12 @@ import android.provider.Settings.*
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.musica.common.device.DeviceInfo
 import com.musica.common.device.repository.DeviceRepository
 import com.musica.common.service.models.response.ResponseType
+import com.musica.dashboard.home.DashboardActivity
 import com.musica.phone.getstarted.ErrorActivity
+import com.musica.phone.getstarted.LandingActivity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -31,35 +34,37 @@ class GetStartedViewModel @Inject constructor(
 ): AndroidViewModel(application) {
 
     private val _isLoading = MutableStateFlow(false)
-    private val _isLoggedIn = MutableStateFlow(false)
-    private val _isConnectionError = MutableSharedFlow<Intent>()
+    private val _returnIntent = MutableSharedFlow<Intent>()
     private val _errorMessage = MutableSharedFlow<String>()
 
     val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
-    val isLoggedIn: StateFlow<Boolean> = _isLoggedIn.asStateFlow()
-    val isConnectionError: SharedFlow<Intent> = _isConnectionError.asSharedFlow()
+    val returnIntent: SharedFlow<Intent> = _returnIntent.asSharedFlow()
     val errorMessage: SharedFlow<String> = _errorMessage.asSharedFlow()
 
     init {
+        _isLoading.value = true
         viewModelScope.launch {
-            _isLoading.value = true
-            val androidId = Secure.getString(application.contentResolver, Secure.ANDROID_ID) // to be passed to sign in screen
-            val response = withContext(Dispatchers.IO){
-                deviceRepository.checkDevice(androidId)
+            val response = deviceRepository.checkDevice(DeviceInfo.deviceId(application))
+
+            when (response.serviceResponse.responseType){
+                ResponseType.SUCCESS -> {
+                    _returnIntent.emit(Intent(application.applicationContext, DashboardActivity::class.java))
+                }
+
+                ResponseType.CONNECTION_ERROR -> {
+                    _returnIntent.emit(Intent(application.applicationContext, ErrorActivity::class.java))
+                }
+
+                else -> {
+                    if (response.data?.loggedIn != null){
+                        _returnIntent.emit(Intent(application.applicationContext, LandingActivity::class.java))
+                    } else {
+                        _errorMessage.emit(response.data?.message.toString())
+                    }
+                }
             }
 
-//
-
-            if (response.serviceResponse.responseType == ResponseType.SUCCESS){
-                _isLoading.value = false
-                _isLoggedIn.value = response.data?.loggedIn ?: false
-                Log.e("Logged In", "Check : ${response.data?.loggedIn}")
-            }else if (response.serviceResponse.responseType == ResponseType.CONNECTION_ERROR){
-                _isConnectionError.emit(Intent(application.applicationContext, ErrorActivity::class.java))
-            } else{
-                _isLoading.value = false
-                _errorMessage.emit(response.serviceResponse.code.toString())
-            }
+            _isLoading.value = false
         }
     }
 

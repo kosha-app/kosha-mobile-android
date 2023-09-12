@@ -28,7 +28,7 @@ import com.musica.common.compose.theme.Tertiary
 
 @Composable
 fun ProgressDialog(
-    title: String = "Please wait..",
+    title: String? = null,
     description: String? = null,
 ) {
     Dialog(
@@ -49,13 +49,15 @@ fun ProgressDialog(
                     color = MusicaBlueColor,
                     modifier = Modifier.testTag("progressIndicator")
                 )
-                Text(
-                    text = title,
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Center,
-                    color = Secondary
-                )
+                title?.let {
+                    Text(
+                        text = it,
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        color = Secondary
+                    )
+                }
                 description?.let {
                     androidx.compose.material.Text(
                         text = it,

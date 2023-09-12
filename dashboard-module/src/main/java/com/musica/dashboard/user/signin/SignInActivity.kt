@@ -7,7 +7,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.musica.common.compose.MusicaComposeActivity
-import com.musica.dashboard.user.viewmodel.SignInViewModel
+import com.musica.dashboard.user.signin.viewmodel.SignInViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -24,8 +24,8 @@ class SignInActivity: MusicaComposeActivity() {
         SignInScreen(
             scaffoldState = scaffoldState,
             isLoading = isLoading,
-        ){ username, password ->
-            viewModel.userSignIn(username, password)
+        ){ email, password ->
+            viewModel.userSignIn(email, password)
         }
 
         LaunchedEffect(viewModel){

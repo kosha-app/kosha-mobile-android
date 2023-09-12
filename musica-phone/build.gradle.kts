@@ -9,6 +9,10 @@ android {
     namespace = "com.musica.phone"
     compileSdk = 34
 
+    buildFeatures {
+        buildConfig = true // Enable the buildConfig feature
+    }
+
     defaultConfig {
         applicationId = "com.musica.phone"
         minSdk = 24
@@ -25,12 +29,23 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
+            buildConfigField("String", "BASE_MCA_URL", "\"https://kosha-microservices-app.azurewebsites.net/%s\"")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+
+        debug {
+            isMinifyEnabled = false
+            buildConfigField("String", "BASE_MCA_URL", "\"http://10.0.2.2:8080/%s\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17

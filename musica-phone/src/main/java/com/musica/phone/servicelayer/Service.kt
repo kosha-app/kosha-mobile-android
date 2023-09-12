@@ -8,11 +8,13 @@ import com.android.volley.Response
 import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.JsonObjectRequest
 import com.google.gson.Gson
+import com.musica.common.service.models.response.DefaultResponse
 import com.musica.common.service.models.response.ResponseType
 import com.musica.common.service.models.response.ServiceResponse
 import com.musica.common.service.volley.IService
 import com.musica.common.service.volley.ServiceException
 import com.musica.common.service.volley.ServiceResult
+import com.musica.phone.BuildConfig
 import com.musica.phone.StarterApplication
 import kotlinx.coroutines.suspendCancellableCoroutine
 import org.json.JSONObject
@@ -26,8 +28,26 @@ class Service : IService {
 
 
     @kotlin.jvm.Throws(ServiceException::class)
-    override suspend fun <T : Any> GET(url: String, responseType: Class<T>): ServiceResult<T> {
+    override suspend fun <T : Any> GET(
+        url: String, responseType: Class<T>
+    ): ServiceResult<T> {
         return request(url = url, method = Method.GET, responseType = responseType)
+    }
+
+    @kotlin.jvm.Throws(ServiceException::class)
+    override suspend fun <T : Any> GET(
+        url: String, request: Any, responseType: Class<T>
+    ): ServiceResult<T> {
+        return requestWithBody(
+            url = url, method = Method.GET, responseType = responseType, request = request
+        )
+    }
+
+    @kotlin.jvm.Throws(ServiceException::class)
+    override suspend fun <T : Any> POST(
+        url: String, responseType: Class<T>
+    ): ServiceResult<T> {
+        return request(url = url, method = Method.POST, responseType = responseType)
     }
 
     @kotlin.jvm.Throws(ServiceException::class)
@@ -49,8 +69,24 @@ class Service : IService {
     }
 
     @kotlin.jvm.Throws(ServiceException::class)
+    override suspend fun <T : Any> PUT(
+        url: String, responseType: Class<T>
+    ): ServiceResult<T> {
+        return request(url = url, method = Method.PUT, responseType = responseType)
+    }
+
+    @kotlin.jvm.Throws(ServiceException::class)
     override suspend fun <T : Any> DELETE(url: String, responseType: Class<T>): ServiceResult<T> {
         return request(url = url, method = Method.DELETE, responseType = responseType)
+    }
+
+    @kotlin.jvm.Throws(ServiceException::class)
+    override suspend fun <T : Any> DELETE(
+        url: String, request: Any, responseType: Class<T>
+    ): ServiceResult<T> {
+        return requestWithBody(
+            url = url, method = Method.DELETE, responseType = responseType, request = request
+        )
     }
 
     @kotlin.jvm.Throws(ServiceException::class)
@@ -62,7 +98,8 @@ class Service : IService {
         val headers: Map<String, String>? = null
         return suspendCancellableCoroutine { continuation ->
             val jsonObjectRequest =
-                object : JsonObjectRequest(method, "https://sage.redocean-171801c3.centralus.azurecontainerapps.io/$url", null, Response.Listener { response ->
+                object : JsonObjectRequest(method,  BASE_URL.format(url), null, Response.Listener { response ->
+
                     val data = parseJsonToDataModel(response, responseType)
                     val apiResponse =
                         ServiceResponse(responseType = ResponseType.SUCCESS, code = "Success: 200")
@@ -106,7 +143,7 @@ class Service : IService {
                     }
                     Log.e(
                         "Response",
-                        "url:$url \nmessage: $byteBody \ntrace: ${error.stackTraceToString()}"
+                        "url:$url  \nmessage: $byteBody \ntrace: ${error.stackTraceToString()}"
                     )
                     continuation.resume(apiResult)
                 }) {
@@ -145,7 +182,7 @@ class Service : IService {
         return suspendCancellableCoroutine { continuation ->
 
             val jsonObjectRequest = object : JsonObjectRequest(method,
-                "https://sage.redocean-171801c3.centralus.azurecontainerapps.io/$url",
+                BASE_URL.format(url),
                 parseDataModelToJson(request),
                 Response.Listener { response ->
                     val data = parseJsonToDataModel(response, responseType)
@@ -194,7 +231,7 @@ class Service : IService {
                     }
                     Log.e(
                         "Response",
-                        "url:$url \nmessage: $byteBody \ntrace: ${error.stackTraceToString()}"
+                        "url:$url \ncode: ${error.networkResponse.statusCode} \nmessage: $byteBody \ntrace: ${error.stackTraceToString()}"
                     )
                     continuation.resume(apiResult)
                 }) {
@@ -230,5 +267,7 @@ class Service : IService {
         return JSONObject(request)
     }
 
-    // You can implement similar methods for POST, PUT, DELETE requests if needed.
+    companion object {
+        private const val BASE_URL = BuildConfig.BASE_MCA_URL
+    }
 }

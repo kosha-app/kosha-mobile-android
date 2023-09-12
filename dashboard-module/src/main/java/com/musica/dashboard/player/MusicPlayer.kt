@@ -306,7 +306,7 @@ fun MusicPlayControls(
                     ambientColor = Secondary,
                     shape = RoundedCornerShape(32.dp)
                 ),
-            painter = if (isPlaying) painterResource(id = R.drawable.play_icon) else painterResource(
+            painter = if (!isPlaying) painterResource(id = R.drawable.play_icon) else painterResource(
                 id = R.drawable.pause_icon
             ),
             circleSize = 62.dp,

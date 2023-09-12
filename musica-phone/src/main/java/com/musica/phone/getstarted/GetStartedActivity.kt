@@ -45,23 +45,12 @@ class GetStartedActivity : MusicaComposeActivity() {
         val scaffoldState = rememberScaffoldState()
 
         val isLoading by viewModel.isLoading.collectAsState()
-        val isLoggedIn by viewModel.isLoggedIn.collectAsState()
 
 
         GetStartedScreen(
             scaffoldState,
             isLoading
         )
-
-        if (!isLoading){
-            if (isLoggedIn){
-                println("Dashboard Called")
-                startActivity(Intent(this, DashboardActivity::class.java))
-            }else{
-                startActivity(Intent(this, SignInActivity::class.java))
-                println("SignInActivity Called")
-            }
-        }
 
         LaunchedEffect(viewModel ){
             launch{
@@ -71,7 +60,7 @@ class GetStartedActivity : MusicaComposeActivity() {
             }
 
             launch {
-                viewModel.isConnectionError.collectLatest {
+                viewModel.returnIntent.collectLatest {
                     startActivity(it)
                 }
             }

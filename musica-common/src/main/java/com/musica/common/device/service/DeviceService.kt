@@ -12,7 +12,7 @@ interface DeviceService{
     suspend fun checkDevice(deviceId: String): ServiceResult<CheckDeviceResponse>
 }
 
-const val CHECK_DEVICE_URL = "device/checkdeviceV2/%s"
+const val CHECK_DEVICE_URL = "device/checkdevice/%s"
 
 class DeviceServiceImpl @Inject constructor(
     private val service: IService

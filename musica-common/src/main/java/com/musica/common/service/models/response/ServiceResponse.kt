@@ -14,3 +14,5 @@ enum class ResponseType{
     CONNECTION_ERROR,
     NONE
 }
+
+class DefaultResponse(val message: String)

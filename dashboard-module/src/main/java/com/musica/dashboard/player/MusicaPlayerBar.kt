@@ -129,7 +129,7 @@ fun PlayerControls(
                 .clickable(onClick = {
                     pausePlayOnClick.invoke()
                 }),
-            painter  = if (isPlaying) painterResource(id = R.drawable.play_icon) else painterResource(
+            painter  = if (!isPlaying) painterResource(id = R.drawable.play_icon) else painterResource(
                 id = R.drawable.pause_icon
             ),
             contentDescription = stringResource(id = string.dashboard_play_pause_icon_description_text),

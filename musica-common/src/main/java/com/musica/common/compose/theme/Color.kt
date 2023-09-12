@@ -7,9 +7,8 @@ val Secondary = Color(0xFF7F8489)
 val Tertiary = Color(0xFF2F353A)
 
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+val Negative = Color(0xFFA30000)
+val Positive = Color(0xFF00FA9A)
 
 val OptionsSheetBackgroundGradientColors = listOf(Color(0xFF3B4047),Color(0xFF202326))
 

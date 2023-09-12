@@ -42,7 +42,15 @@
             android:exported="false"/>
 
         <activity
+            android:name="com.musica.dashboard.user.register.RegisterUserActivity"
+            android:exported="false"/>
+
+        <activity
             android:name=".getstarted.ErrorActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".getstarted.LandingActivity"
             android:exported="false"/>
     </application>
 

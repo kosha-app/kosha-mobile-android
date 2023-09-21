@@ -5,12 +5,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Scaffold
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Snackbar
 import androidx.compose.material.SnackbarHost
 import androidx.compose.material.Text
 import androidx.compose.material.rememberScaffoldState
-import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -23,9 +23,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.musica.common.compose.input.InputText
 import com.musica.common.compose.TopBar
-import com.musica.common.compose.button.MusicButton
+import com.musica.common.compose.button.PrimaryButton
+import com.musica.common.compose.input.InputText
 import com.musica.common.compose.theme.BackgroundGradientColors
 import com.musica.common.compose.theme.MusicaBlueColor
 import com.musica.common.compose.theme.MusicaphoneTheme
@@ -95,7 +95,7 @@ fun NameAnsTsAndCsCaptureScreen(
             }
 
 
-            MusicButton(
+            PrimaryButton(
                 modifier = Modifier.padding(bottom = 40.dp),
                 buttonText = "Create Account",
                 buttonColor = MusicaBlueColor,

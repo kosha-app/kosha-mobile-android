@@ -6,10 +6,10 @@ import com.musica.dashboard.player.repository.TrackRepository;
 import com.musica.dashboard.player.repository.TrackRepositoryImpl;
 import com.musica.dashboard.player.service.TrackService;
 import com.musica.dashboard.player.service.TrackServiceImpl;
-import com.musica.dashboard.user.repository.UserRepository;
-import com.musica.dashboard.user.repository.UserRepositoryImpl;
-import com.musica.dashboard.user.service.UserService;
-import com.musica.dashboard.user.service.UserServiceImpl;
+import com.musica.common.user.repository.UserRepository;
+import com.musica.common.user.repository.UserRepositoryImpl;
+import com.musica.common.user.service.UserService;
+import com.musica.common.user.service.UserServiceImpl;
 
 import dagger.Binds;
 import dagger.Module;

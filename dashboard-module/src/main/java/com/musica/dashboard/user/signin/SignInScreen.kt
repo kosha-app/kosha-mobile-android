@@ -27,9 +27,9 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.musica.common.compose.input.InputText
-import com.musica.common.compose.button.MusicButton
+import com.musica.common.compose.button.PrimaryButton
 import com.musica.common.compose.dialog.ProgressDialog
+import com.musica.common.compose.input.InputText
 import com.musica.common.compose.theme.BackgroundGradientColors
 import com.musica.common.compose.theme.MusicaBlueColor
 import com.musica.common.compose.theme.Negative
@@ -113,7 +113,7 @@ fun SignInScreen(
                 }
             )
 
-            MusicButton(modifier = Modifier.padding(),
+            PrimaryButton(modifier = Modifier.padding(),
                 buttonText = "SIGN IN",
                 buttonColor = MusicaBlueColor,
                 width = 180.dp,

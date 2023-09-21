@@ -1,7 +1,6 @@
 package com.musica.dashboard.user.register
 
 import android.os.Build
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
@@ -11,7 +10,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -20,7 +18,6 @@ import com.musica.common.compose.MusicaComposeActivity
 import com.musica.common.compose.dialog.ProgressDialog
 import com.musica.dashboard.user.register.viewmodel.RegisterUserViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -40,7 +37,7 @@ class RegisterUserActivity : MusicaComposeActivity() {
         var dateOfBirthString by remember { mutableStateOf("") }
         var gender by remember { mutableStateOf("") }
         var name by remember { mutableStateOf("") }
-        var otp by remember { mutableStateOf("")}
+        var otp by remember { mutableStateOf("") }
         var otpFilled by remember { mutableStateOf(false) }
 
         val navHostController = rememberNavController()
@@ -70,7 +67,9 @@ class RegisterUserActivity : MusicaComposeActivity() {
                     onBackClick = { navHostController.navigate(EMAIL_CAPTURE_SCREEN) },
                     onOTPInputChanged = { otpInput, otpFilledInput ->
                         otp = otpInput
-                        otpFilled = otpFilledInput
+                        if (otpFilledInput) {
+                            viewModel.verifyOtp(otp)
+                        }
                     }
                 )
             }
@@ -136,10 +135,6 @@ class RegisterUserActivity : MusicaComposeActivity() {
             ProgressDialog()
         }
 
-        if (otpFilled){
-            navHostController.navigate(PASSWORD_CAPTURE_SCREEN)
-        }
-
         LaunchedEffect(viewModel) {
             launch {
                 viewModel.errorMessage.collectLatest {
@@ -156,6 +151,12 @@ class RegisterUserActivity : MusicaComposeActivity() {
             launch {
                 viewModel.resultRegisterSuccessIntent.collectLatest {
                     startActivity(it)
+                }
+            }
+
+            launch {
+                viewModel.verifyOtpSuccessNav.collectLatest {
+                    navHostController.navigate(it)
                 }
             }
 

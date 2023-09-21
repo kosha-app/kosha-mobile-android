@@ -18,11 +18,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.musica.common.compose.button.MusicButton
+import com.musica.common.R
+import com.musica.common.compose.button.PrimaryButton
 import com.musica.common.compose.theme.BackgroundGradientColors
 import com.musica.common.compose.theme.MusicaBlueColor
 import com.musica.common.compose.theme.MusicaphoneTheme
-import com.musica.common.R
 import com.musica.common.compose.theme.Secondary
 
 @Composable
@@ -56,14 +56,14 @@ fun LandingScreen(
                 fontSize = 24.sp
             )
 
-            MusicButton(
+            PrimaryButton(
                 buttonText = "Sign up free",
                 buttonColor = MusicaBlueColor,
                 width = 288.dp,
                 onClick = onRegisterClick
             )
 
-            MusicButton(
+            PrimaryButton(
                 buttonText = "Log in",
                 buttonColor = MusicaBlueColor,
                 width = 288.dp,

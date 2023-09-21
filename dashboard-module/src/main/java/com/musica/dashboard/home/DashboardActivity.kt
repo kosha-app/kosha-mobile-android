@@ -1,6 +1,7 @@
 package com.musica.dashboard.home
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Build
 import android.util.Log
 import androidx.activity.compose.BackHandler
@@ -19,9 +20,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.musica.common.compose.MusicaComposeActivity
+import com.musica.common.settings.SettingsActivity
 import com.musica.dashboard.player.viewmodel.MusicPlayerViewModel.DashboardViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -40,6 +43,7 @@ class DashboardActivity : MusicaComposeActivity() {
     @SuppressLint("SuspiciousIndentation")
     @Composable
     override fun ActivityContent() {
+        val context = LocalContext.current
         val viewModel: DashboardViewModel = viewModel()
         val bottomSheetHeight = remember { mutableStateOf(Dp.Unspecified) }
         val sheetState = rememberBottomSheetState(
@@ -75,7 +79,7 @@ class DashboardActivity : MusicaComposeActivity() {
             recentlyPlayedCardImageUrl = "",
             recentlyPlayedText = "",
             isPlaying = isPlaying,
-            omSettingsClick = { /*TODO*/ },
+            omSettingsClick = { startActivity(Intent(context, SettingsActivity::class.java)) },
             onShuffleOnClick = { /*TODO*/ },
             onPreviousOnClick = { /*TODO*/ },
             onPlayPauseOnClick = { viewModel.playPauseTrack() },

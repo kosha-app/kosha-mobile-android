@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.musica.common.compose.input.InputText
 import com.musica.common.compose.TopBar
-import com.musica.common.compose.button.MusicButton
+import com.musica.common.compose.button.PrimaryButton
 import com.musica.common.compose.theme.BackgroundGradientColors
 import com.musica.common.compose.theme.MusicaBlueColor
 import com.musica.common.compose.theme.MusicaphoneTheme
@@ -80,7 +80,7 @@ fun EmailCaptureScreen(
                 color = Secondary
             )
 
-            MusicButton(
+            PrimaryButton(
                 buttonText = "Next",
                 buttonColor = MusicaBlueColor,
                 width = 100.dp,

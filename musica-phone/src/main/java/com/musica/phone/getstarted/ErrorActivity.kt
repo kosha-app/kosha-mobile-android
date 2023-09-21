@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.unit.dp
 import com.musica.common.compose.MusicaComposeActivity
-import com.musica.common.compose.button.MusicButton
+import com.musica.common.compose.button.PrimaryButton
 import com.musica.common.compose.theme.BackgroundGradientColors
 import com.musica.common.compose.theme.MusicaBlueColor
 
@@ -34,6 +34,12 @@ fun ErrorScreen(
         verticalArrangement = Arrangement.Center
     ) {
 
-        MusicButton(modifier = Modifier, buttonText = "Try Again", buttonColor = MusicaBlueColor, width = 188.dp, onClick = onRetryClick)
+        PrimaryButton(
+            modifier = Modifier,
+            buttonText = "Try Again",
+            buttonColor = MusicaBlueColor,
+            width = 188.dp,
+            onClick = onRetryClick
+        )
     }
 }

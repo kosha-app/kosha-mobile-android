@@ -1,4 +1,4 @@
-package com.musica.dashboard.user.service
+package com.musica.common.user
 
 class SignInResponse(val username: String, val message: String)
 
@@ -16,4 +16,19 @@ class UserRegistrationRequest(
 class DeviceRequest(
     val deviceId: String,
     val isLoggedIn: Boolean
+)
+
+class CheckEmailResponse(val id: String?, val message: String)
+
+class UserVerificationRequest(
+    val otp: String
+)
+
+class GetUserInfoResponse(
+    val name: String? = null,
+    val email: String? = null,
+    val dateOfBirth: String? = null,
+    val gender: String? = null,
+    val cellNumber: String? = null,
+    val message: String? = null
 )

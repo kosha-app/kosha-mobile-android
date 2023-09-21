@@ -17,8 +17,12 @@ import com.musica.common.compose.theme.Primary
 import com.musica.common.compose.theme.Secondary
 
 @Composable
-fun MusicButton(
-    modifier: Modifier = Modifier, buttonText: String, buttonColor: Color, width: Dp, onClick: () -> Unit
+fun PrimaryButton(
+    modifier: Modifier = Modifier,
+    buttonText: String,
+    buttonColor: Color,
+    width: Dp,
+    onClick: () -> Unit
 ) {
     Column(modifier = modifier) {
         Button(

@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.musica.common"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 24
@@ -61,6 +61,7 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.7.2")
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.mockito:mockito-core:5.5.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
@@ -84,6 +85,9 @@ dependencies {
     api("androidx.navigation:navigation-compose:2.7.0-rc01")
 
     api("com.github.commandiron:WheelPickerCompose:1.1.11")
+
+    // https://mvnrepository.com/artifact/org.mockito/mockito-core
+
 
 //    Shared dependencies -- End
 

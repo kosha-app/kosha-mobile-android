@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -22,7 +21,6 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,13 +30,12 @@ import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.musica.common.R
 import com.musica.common.compose.RoundImage
+import com.musica.common.compose.theme.DarkGrey
+import com.musica.common.compose.theme.GreysColorMix_2
 import com.musica.common.compose.theme.MusicaBlueColor
 import com.musica.common.compose.theme.MusicaphoneTheme
-import com.musica.common.compose.theme.OptionsSheetBackgroundGradientColors
 import com.musica.common.compose.theme.Primary
 import com.musica.common.compose.theme.Secondary
-import com.musica.common.compose.theme.Tertiary
-import com.musica.dashboard.player.RecentlyPlayedCard
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
@@ -48,7 +45,7 @@ fun OptionsSheet(
     Column(
         modifier = Modifier
             .background(
-                brush = Brush.linearGradient(OptionsSheetBackgroundGradientColors),
+                brush = Brush.linearGradient(GreysColorMix_2),
                 shape = RoundedCornerShape(topEnd = 26.dp, topStart = 26.dp)
             )
             .height(714.dp)
@@ -125,7 +122,7 @@ fun OptionsItem(
         Row(
             modifier = Modifier
                 .shadow(elevation = 24.dp, shape = RoundedCornerShape(26.dp))
-                .background(color = Color(0xFF1C1F22), shape = RoundedCornerShape(26.dp))
+                .background(color = DarkGrey, shape = RoundedCornerShape(26.dp))
                 .padding(14.dp), verticalAlignment = Alignment.CenterVertically
         ) {
             Text(

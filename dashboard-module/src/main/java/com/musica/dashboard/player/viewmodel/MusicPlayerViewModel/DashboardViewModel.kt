@@ -40,7 +40,7 @@ class DashboardViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-           val response = trackRepository.getAlbum("3e092582-1d84-4025-8ec8-d55fcac42f90")
+           val response = trackRepository.getAlbum("3bd144af-3b0d-4152-83ab-dbdbdb8c6ed0")
 
             if (response.serviceResponse.responseType == ResponseType.SUCCESS){
                 _albumName.value = response.data?.albumName ?: ""

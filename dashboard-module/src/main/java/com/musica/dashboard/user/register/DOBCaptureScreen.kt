@@ -1,6 +1,5 @@
 package com.musica.dashboard.user.register
 
-import android.icu.util.Calendar
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
@@ -25,14 +24,12 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.commandiron.wheel_picker_compose.WheelDatePicker
-import com.commandiron.wheel_picker_compose.core.SelectorProperties
 import com.commandiron.wheel_picker_compose.core.WheelPickerDefaults
 import com.musica.common.compose.TopBar
-import com.musica.common.compose.button.MusicButton
+import com.musica.common.compose.button.PrimaryButton
 import com.musica.common.compose.theme.BackgroundGradientColors
 import com.musica.common.compose.theme.MusicaBlueColor
 import com.musica.common.compose.theme.MusicaphoneTheme
@@ -92,7 +89,7 @@ fun DOBCaptureScreen(
                 chosenDate = snappedDate
             }
 
-            MusicButton(
+            PrimaryButton(
                 modifier = Modifier.padding(top = 32.dp),
                 buttonText = "Next",
                 buttonColor = MusicaBlueColor,

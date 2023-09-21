@@ -8,23 +8,22 @@ import com.android.volley.Response
 import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.JsonObjectRequest
 import com.google.gson.Gson
-import com.musica.common.service.models.response.DefaultResponse
 import com.musica.common.service.models.response.ResponseType
 import com.musica.common.service.models.response.ServiceResponse
 import com.musica.common.service.volley.IService
 import com.musica.common.service.volley.ServiceException
 import com.musica.common.service.volley.ServiceResult
 import com.musica.phone.BuildConfig
-import com.musica.phone.StarterApplication
 import kotlinx.coroutines.suspendCancellableCoroutine
 import org.json.JSONObject
 import java.nio.charset.Charset
+import javax.inject.Inject
 import kotlin.coroutines.resume
 
 
-class Service : IService {
-
-    private var requestQueue: RequestQueue = StarterApplication.getRequestQueue()
+class Service @Inject constructor(
+    private val requestQueue: RequestQueue
+) : IService {
 
 
     @kotlin.jvm.Throws(ServiceException::class)
@@ -155,7 +154,7 @@ class Service : IService {
 
             // Sets timeout
             jsonObjectRequest.retryPolicy = DefaultRetryPolicy(
-                10000,
+                5000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
             )

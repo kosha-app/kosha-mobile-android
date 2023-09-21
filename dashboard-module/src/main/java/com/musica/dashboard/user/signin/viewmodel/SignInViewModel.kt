@@ -1,17 +1,14 @@
 package com.musica.dashboard.user.signin.viewmodel
 
-import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Intent
-import android.provider.Settings
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.musica.common.device.DeviceInfo
+import com.musica.common.installs.DeviceInfo
 import com.musica.common.service.models.response.ResponseType
+import com.musica.common.user.repository.UserRepository
 import com.musica.dashboard.home.DashboardActivity
-import com.musica.dashboard.user.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -19,13 +16,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
     private val application: Application,
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val deviceInfo: DeviceInfo
 ): AndroidViewModel(application) {
 
     private val _isLoading = MutableStateFlow(false)
@@ -39,12 +36,13 @@ class SignInViewModel @Inject constructor(
     fun userSignIn(username: String, password: String){
         _isLoading.value = true
         viewModelScope.launch {
-            val response = userRepository.userSignIn(username = username, password, DeviceInfo.deviceId(application))
+            val response = deviceInfo.deviceId()
+                ?.let { userRepository.userSignIn(username = username, password, it) }
 
-            if (response.serviceResponse.responseType == ResponseType.SUCCESS){
+            if (response?.serviceResponse?.responseType == ResponseType.SUCCESS) {
                 _isSuccessful.emit(Intent(application, DashboardActivity::class.java))
-            }else {
-                _errorMessage.emit(response.data?.message.toString())
+            } else {
+                _errorMessage.emit(response?.data?.message.toString())
             }
             _isLoading.value = false
         }

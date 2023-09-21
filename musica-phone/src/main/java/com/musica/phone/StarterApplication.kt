@@ -13,6 +13,7 @@ import dagger.hilt.android.internal.Contexts.getApplication
 class StarterApplication : Application() {
 
     override fun onCreate() {
+
         super.onCreate()
         AppCenter.start(
             getApplication(applicationContext), "33972015-3d6b-4401-b7d0-3c0bb92bfe88",

@@ -5,6 +5,8 @@ plugins {
     id("com.google.dagger.hilt.android")
 }
 
+val appCenterSdkVersion = "4.4.5"
+
 android {
     namespace = "com.musica.phone"
     compileSdk = 34
@@ -97,6 +99,12 @@ dependencies {
 
     implementation(project(":musica-common"))
     implementation(project(":dashboard-module"))
+
+    // App Centre
+
+    implementation("com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}")
+    implementation("com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}")
+    implementation("com.microsoft.appcenter:appcenter-distribute:${appCenterSdkVersion}")
 }
 
 kapt {

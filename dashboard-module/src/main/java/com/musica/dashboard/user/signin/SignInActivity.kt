@@ -6,14 +6,14 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.musica.common.compose.MusicaComposeActivity
+import com.musica.common.compose.KoshaComposeActivity
 import com.musica.dashboard.user.signin.viewmodel.SignInViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SignInActivity: MusicaComposeActivity() {
+class SignInActivity : KoshaComposeActivity() {
     @Composable
     override fun ActivityContent() {
         val viewModel: SignInViewModel = viewModel()

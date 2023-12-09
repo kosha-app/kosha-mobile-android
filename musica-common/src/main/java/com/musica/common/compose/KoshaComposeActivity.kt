@@ -1,22 +1,17 @@
 package com.musica.common.compose
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.CallSuper
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import com.musica.common.compose.theme.MusicaphoneTheme
 
 
 /**
  * An activity whose content view is defined by a composable.
  * ```
- * class MyActivity : MusicaComposeActivity() {
+ * class MyActivity : KoshaComposeActivity() {
  *
  *     @Composable
  *     override fun ActivityContent() {
@@ -26,7 +21,7 @@ import com.musica.common.compose.theme.MusicaphoneTheme
  * ```
  */
 
-abstract class MusicaComposeActivity: ComponentActivity() {
+abstract class KoshaComposeActivity : ComponentActivity() {
 
     @Composable
     abstract fun ActivityContent()

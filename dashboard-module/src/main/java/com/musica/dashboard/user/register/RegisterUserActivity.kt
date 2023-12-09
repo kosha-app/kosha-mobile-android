@@ -14,7 +14,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.musica.common.compose.MusicaComposeActivity
+import com.musica.common.compose.KoshaComposeActivity
 import com.musica.common.compose.dialog.ProgressDialog
 import com.musica.dashboard.user.register.viewmodel.RegisterUserViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 import java.time.LocalDate
 
 @AndroidEntryPoint
-class RegisterUserActivity : MusicaComposeActivity() {
+class RegisterUserActivity : KoshaComposeActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     @Composable
     override fun ActivityContent() {

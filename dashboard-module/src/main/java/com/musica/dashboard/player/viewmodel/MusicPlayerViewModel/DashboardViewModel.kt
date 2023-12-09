@@ -2,20 +2,16 @@ package com.musica.dashboard.player.viewmodel.MusicPlayerViewModel
 
 import android.app.Application
 import android.media.MediaPlayer
-import android.provider.Settings.Secure
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.musica.common.service.models.response.ResponseType
 import com.musica.dashboard.player.repository.TrackRepository
 import com.musica.dashboard.player.service.TrackResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
@@ -40,7 +36,7 @@ class DashboardViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-           val response = trackRepository.getAlbum("3bd144af-3b0d-4152-83ab-dbdbdb8c6ed0")
+           val response = trackRepository.getAlbum("d8184e4d-c08c-48df-a898-23a1699c490a")
 
             if (response.serviceResponse.responseType == ResponseType.SUCCESS){
                 _albumName.value = response.data?.albumName ?: ""

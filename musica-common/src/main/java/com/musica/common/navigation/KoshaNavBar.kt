@@ -1,57 +1,50 @@
 package com.musica.common.navigation
 
-import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.scaleIn
-import androidx.compose.animation.slideIn
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.musica.common.R
-import com.musica.common.animations.SlideInAnimationVisibility
 import com.musica.common.compose.theme.MusicaphoneTheme
 import com.musica.common.compose.theme.Secondary
 import com.musica.common.compose.theme.Tertiary
+import com.musica.common.compose.theme.White
 
 @Composable
-fun MusicaNavBar() {
-    Box(modifier = Modifier
-        .background(color = Tertiary)
+fun KoshaNavBar(
+    homeOnClick: () -> Unit,
+    isHome: Boolean
+) {
+    Box(
+        modifier = Modifier
+            .background(color = Tertiary)
 
-    ){
+    ) {
 
         Row(
             Modifier
@@ -77,6 +70,8 @@ fun MusicaNavBar() {
                 modifier = Modifier
                     .padding(vertical = 12.dp)
                     .weight(1f)
+                    .clickable(onClick = homeOnClick),
+                itemsColor = if (isHome) White else Secondary
             )
             NavBarItem(
                 icon = painterResource(id = R.drawable.search_nav_icon),
@@ -107,7 +102,8 @@ fun MusicaNavBar() {
 fun NavBarItem(
     icon: Painter,
     text: String,
-    modifier: Modifier
+    modifier: Modifier,
+    itemsColor: Color = Secondary
 ) {
     Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
         Image(
@@ -116,12 +112,12 @@ fun NavBarItem(
             Modifier
                 .width(20.dp)
                 .height(20.dp),
-            colorFilter = ColorFilter.tint(Secondary)
+            colorFilter = ColorFilter.tint(itemsColor)
         )
         Text(
             text = text,
             fontSize = 10.sp,
-            color = Secondary,
+            color = itemsColor,
             textAlign = TextAlign.Center
         )
     }
@@ -133,7 +129,7 @@ fun NavBarItem(
 fun Preview() {
     MusicaphoneTheme {
         Surface {
-            MusicaNavBar( )
+            KoshaNavBar(homeOnClick = {}, isHome = true)
         }
     }
 }

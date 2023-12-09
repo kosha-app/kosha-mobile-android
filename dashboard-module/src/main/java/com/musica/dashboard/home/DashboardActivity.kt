@@ -3,14 +3,12 @@ package com.musica.dashboard.home
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
-import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.annotation.RequiresApi
 import androidx.compose.animation.core.tween
 import androidx.compose.material.BottomSheetValue
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.rememberBottomSheetState
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -23,6 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.musica.common.compose.MusicaComposeActivity
 import com.musica.common.settings.SettingsActivity
 import com.musica.dashboard.player.viewmodel.MusicPlayerViewModel.DashboardViewModel
@@ -98,7 +97,11 @@ class DashboardActivity : MusicaComposeActivity() {
                         println("Sage selected ${track.trackName} Nazo: $trackId track ${track.trackUrl}")
                     }
                 }
-            }
+            },
+            onHomeClick = {
+                //TODO still to refactor activity
+            },
+            isHome = true
         )
 
         LaunchedEffect(viewModel) {

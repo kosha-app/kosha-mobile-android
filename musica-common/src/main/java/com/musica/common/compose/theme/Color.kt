@@ -8,6 +8,8 @@ val Tertiary = Color(0xFF2F353A)
 
 val DarkGrey = Color(0xFF1C1F22)
 
+val White = Color.White
+
 val Negative = Color(0xFFA30000)
 val Positive = Color(0xFF00FA9A)
 

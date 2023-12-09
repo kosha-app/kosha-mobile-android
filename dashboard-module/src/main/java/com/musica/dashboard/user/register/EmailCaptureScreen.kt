@@ -18,12 +18,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.musica.common.compose.input.InputText
 import com.musica.common.compose.TopBar
 import com.musica.common.compose.button.PrimaryButton
+import com.musica.common.compose.input.InputText
 import com.musica.common.compose.theme.BackgroundGradientColors
+import com.musica.common.compose.theme.KoshaTheme
 import com.musica.common.compose.theme.MusicaBlueColor
-import com.musica.common.compose.theme.MusicaphoneTheme
 import com.musica.common.compose.theme.Negative
 import com.musica.common.compose.theme.Secondary
 
@@ -96,7 +96,7 @@ fun EmailCaptureScreen(
 @Composable
 @Preview
 private fun EmailCapturePreview() {
-    MusicaphoneTheme {
+    KoshaTheme {
         EmailCaptureScreen(
             emailInput = "email",
             onEmailInputChanged = {},

@@ -6,6 +6,8 @@ val Primary = Color(0xFF282C30)
 val Secondary = Color(0xFF7F8489)
 val Tertiary = Color(0xFF2F353A)
 
+val Tertiary25 = Color(0xFF353A40)
+
 val DarkGrey = Color(0xFF1C1F22)
 
 val White = Color.White

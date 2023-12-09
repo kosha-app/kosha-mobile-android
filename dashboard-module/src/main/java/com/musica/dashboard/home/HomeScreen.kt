@@ -43,11 +43,11 @@ import androidx.core.content.ContextCompat.startActivity
 import com.musica.common.compose.theme.BackgroundGradientColors
 import com.musica.common.compose.theme.Tertiary
 import com.musica.common.settings.SettingsActivity
+import com.musica.dashboard.home.viewmodel.DashboardViewModel
 import com.musica.dashboard.player.DashboardTopBar
 import com.musica.dashboard.player.MusicPlayer
 import com.musica.dashboard.player.MusicaPlayerBar
 import com.musica.dashboard.player.RecentlyPlayedCard
-import com.musica.dashboard.player.viewmodel.DashboardViewModel
 import kotlinx.coroutines.launch
 import java.util.Timer
 import java.util.TimerTask

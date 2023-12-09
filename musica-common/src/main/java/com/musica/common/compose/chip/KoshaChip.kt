@@ -12,8 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.musica.common.compose.theme.MusicaphoneTheme
-import com.musica.common.compose.theme.Primary
+import com.musica.common.compose.theme.KoshaTheme
 import com.musica.common.compose.theme.Secondary
 import com.musica.common.compose.theme.Tertiary
 
@@ -41,7 +40,7 @@ fun KoshaChip(
 @Composable
 @Preview
 private fun KoshaChipPreviewNotSelected(){
-    MusicaphoneTheme {
+    KoshaTheme {
         KoshaChip(text = "Nazo", isSelected = false, onGenderSelected = {})
     }
 }
@@ -49,7 +48,7 @@ private fun KoshaChipPreviewNotSelected(){
 @Composable
 @Preview
 private fun KoshaChipPreviewSelected(){
-    MusicaphoneTheme {
+    KoshaTheme {
         KoshaChip(text = "Nazo", isSelected = true, onGenderSelected = {})
     }
 }

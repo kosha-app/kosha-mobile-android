@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.musica.common.installs.DeviceInfo
 import com.musica.common.service.models.response.ResponseType
 import com.musica.common.user.repository.UserRepository
-import com.musica.dashboard.home.DashboardActivity
+import com.musica.dashboard.DashboardActivity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow

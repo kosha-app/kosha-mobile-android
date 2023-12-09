@@ -23,11 +23,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -41,11 +37,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.musica.dashboard.R.string
 import com.musica.common.R
 import com.musica.common.compose.RoundImage
 import com.musica.common.compose.theme.BackgroundGradientColors
 import com.musica.common.compose.theme.Secondary
+import com.musica.common.compose.theme.Tertiary25
+import com.musica.dashboard.R.string
 import com.musica.dashboard.home.options.OptionsSheet
 import com.musica.dashboard.player.lyrics.LyricsCard
 import com.musica.dashboard.player.songinfo.InfoCard
@@ -92,11 +89,13 @@ fun MusicPlayer(
                 .padding(),
             topBar = {
                 MusicPlayerTopBar(
-                    modifier = Modifier.background(color = Color(0xFF353A40)),
+                    modifier = Modifier.background(color = Tertiary25),
                     backOnClick = onBackClick,
-                    optionsOnClick ={scope.launch {
-                        sheetState.expand()
-                    }}
+                    optionsOnClick = {
+                        scope.launch {
+                            sheetState.expand()
+                        }
+                    }
                 )
             }
         ) { padding ->

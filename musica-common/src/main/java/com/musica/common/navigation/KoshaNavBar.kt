@@ -31,7 +31,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.musica.common.R
-import com.musica.common.compose.theme.MusicaphoneTheme
+import com.musica.common.compose.theme.KoshaTheme
 import com.musica.common.compose.theme.Secondary
 import com.musica.common.compose.theme.Tertiary
 
@@ -110,7 +110,7 @@ sealed class BottomNavItem(val route: String, val iconId: Int, val label: String
 @Preview(showBackground = true)
 @Composable
 fun Preview() {
-    MusicaphoneTheme {
+    KoshaTheme {
         Surface {
             KoshaBottomNav(navController = rememberNavController())
 //            KoshaNavBar(homeOnClick = {}, isHome = true)

@@ -1,4 +1,4 @@
-package com.musica.dashboard.home
+package com.musica.dashboard
 
 
 import androidx.compose.foundation.background
@@ -17,7 +17,10 @@ import com.musica.common.compose.KoshaComposeActivity
 import com.musica.common.compose.theme.BackgroundGradientColors
 import com.musica.common.navigation.BottomNavItem
 import com.musica.common.navigation.KoshaBottomNav
-import com.musica.dashboard.player.viewmodel.DashboardViewModel
+import com.musica.dashboard.home.HomeScreen
+import com.musica.dashboard.home.viewmodel.DashboardViewModel
+import com.musica.dashboard.search.ui.SearchScreen
+import com.musica.dashboard.search.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -28,6 +31,7 @@ class DashboardActivity : KoshaComposeActivity() {
     override fun ActivityContent() {
         val navController = rememberNavController()
         val viewModel: DashboardViewModel = viewModel()
+        val searchViewModel: SearchViewModel = viewModel()
 
         Scaffold(
             bottomBar = {
@@ -48,7 +52,7 @@ class DashboardActivity : KoshaComposeActivity() {
                         )
                     }
                     composable(BottomNavItem.Search.route) {
-                        //TODO to implement Search Screen
+                        SearchScreen(searchViewModel)
                     }
                     composable(BottomNavItem.Premium.route) {
                         //TODO to implement Premium Screen

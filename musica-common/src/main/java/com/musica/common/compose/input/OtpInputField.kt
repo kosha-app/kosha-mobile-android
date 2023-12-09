@@ -20,8 +20,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.musica.common.compose.theme.MusicaphoneTheme
-import com.musica.common.compose.theme.Primary
+import com.musica.common.compose.theme.KoshaTheme
 import com.musica.common.compose.theme.Secondary
 import com.musica.common.compose.theme.Tertiary
 
@@ -96,9 +95,8 @@ private fun CharView(
 @Composable
 @Preview
 private fun OTP(){
-    MusicaphoneTheme {
-        OtpInputField(otpText = "2345678", onOtpTextChange = {
-            _, _ ->
+    KoshaTheme {
+        OtpInputField(otpText = "2345678", onOtpTextChange = { _, _ ->
         })
     }
 }

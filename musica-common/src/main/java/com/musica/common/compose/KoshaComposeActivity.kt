@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.CallSuper
 import androidx.compose.runtime.Composable
-import com.musica.common.compose.theme.MusicaphoneTheme
+import com.musica.common.compose.theme.KoshaTheme
 
 
 /**
@@ -30,7 +30,7 @@ abstract class KoshaComposeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MusicaphoneTheme {
+            KoshaTheme {
                 ActivityContent()
             }
         }

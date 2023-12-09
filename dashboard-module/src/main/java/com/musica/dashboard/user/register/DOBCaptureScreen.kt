@@ -31,8 +31,8 @@ import com.commandiron.wheel_picker_compose.core.WheelPickerDefaults
 import com.musica.common.compose.TopBar
 import com.musica.common.compose.button.PrimaryButton
 import com.musica.common.compose.theme.BackgroundGradientColors
+import com.musica.common.compose.theme.KoshaTheme
 import com.musica.common.compose.theme.MusicaBlueColor
-import com.musica.common.compose.theme.MusicaphoneTheme
 import com.musica.common.compose.theme.Negative
 import com.musica.common.compose.theme.Secondary
 import java.time.LocalDate
@@ -107,7 +107,7 @@ fun DOBCaptureScreen(
 @Composable
 @Preview
 private fun DOBPreview(){
-    MusicaphoneTheme {
+    KoshaTheme {
         DOBCaptureScreen(
             dateOfBirth = LocalDate.now(),
             scaffoldState = rememberScaffoldState(),

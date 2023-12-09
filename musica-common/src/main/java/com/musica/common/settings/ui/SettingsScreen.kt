@@ -38,8 +38,8 @@ import com.musica.common.compose.TopBar
 import com.musica.common.compose.button.PrimaryButton
 import com.musica.common.compose.theme.BackgroundGradientColors
 import com.musica.common.compose.theme.GreysColorMix_2_Reverse
+import com.musica.common.compose.theme.KoshaTheme
 import com.musica.common.compose.theme.MusicaBlueColor
-import com.musica.common.compose.theme.MusicaphoneTheme
 import com.musica.common.compose.theme.Negative
 import com.musica.common.compose.theme.Primary
 import com.musica.common.compose.theme.ProfileLetterBackGroundColors
@@ -242,7 +242,7 @@ fun ProfileClickView(
 @Composable
 @Preview
 fun SettingsScreenPreview() {
-    MusicaphoneTheme {
+    KoshaTheme {
         SettingsScreen(
             name = "Sageem",
             scaffoldState = rememberScaffoldState(),

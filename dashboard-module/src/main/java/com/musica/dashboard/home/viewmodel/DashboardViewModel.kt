@@ -1,4 +1,4 @@
-package com.musica.dashboard.player.viewmodel
+package com.musica.dashboard.home.viewmodel
 
 import android.app.Application
 import android.media.MediaPlayer

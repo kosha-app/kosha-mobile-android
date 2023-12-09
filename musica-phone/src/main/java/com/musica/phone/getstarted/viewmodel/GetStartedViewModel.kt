@@ -9,7 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.musica.common.device.repository.DeviceRepository
 import com.musica.common.installs.DeviceInfo
 import com.musica.common.service.models.response.ResponseType
-import com.musica.dashboard.home.DashboardActivity
+import com.musica.dashboard.DashboardActivity
 import com.musica.phone.getstarted.ErrorActivity
 import com.musica.phone.getstarted.LandingActivity
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -31,7 +31,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            buildConfigField("String", "BASE_MCA_URL", "\"https://kosha-microservices-app.azurewebsites.net/%s\"")
+            buildConfigField("String", "BASE_MCA_URL", "\"https://kosha-app.azurewebsites.net/%s\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -40,7 +40,8 @@ android {
 
         debug {
             isMinifyEnabled = false
-            buildConfigField("String", "BASE_MCA_URL", "\"http://10.0.2.2:8080/%s\"")
+            buildConfigField("String", "BASE_MCA_URL", "\"https://kosha-app.azurewebsites.net/%s\"")
+//            buildConfigField("String", "BASE_MCA_URL", "\"http://10.0.2.2:8080/%s\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -91,11 +92,11 @@ dependencies {
 
     implementation("com.google.code.gson:gson:2.10.1")
 
-    implementation("androidx.compose.ui:ui:1.6.0-alpha02")
-    implementation("androidx.navigation:navigation-compose:2.7.0-rc01")
-
     implementation("com.google.dagger:hilt-android:2.47")
     kapt("com.google.dagger:hilt-compiler:2.47")
+
+    implementation("androidx.compose.ui:ui:1.6.0-alpha02")
+    implementation("androidx.navigation:navigation-compose:2.7.0-rc01")
 
     implementation(project(":musica-common"))
     implementation(project(":dashboard-module"))

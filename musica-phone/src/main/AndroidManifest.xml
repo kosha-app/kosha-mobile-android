@@ -34,7 +34,7 @@
         </activity>
 
         <activity
-            android:name="com.musica.dashboard.home.DashboardActivity"
+            android:name="com.musica.dashboard.DashboardActivity"
             android:exported="false" />
 
         <activity

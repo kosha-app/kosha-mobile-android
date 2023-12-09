@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.sp
 import com.musica.common.compose.TopBar
 import com.musica.common.compose.chip.KoshaChip
 import com.musica.common.compose.theme.BackgroundGradientColors
-import com.musica.common.compose.theme.MusicaphoneTheme
+import com.musica.common.compose.theme.KoshaTheme
 import com.musica.common.compose.theme.Negative
 import com.musica.common.compose.theme.Secondary
 
@@ -88,7 +88,7 @@ fun GenderCaptureScreen(
 @Composable
 @Preview
 fun GenderCapturePreview() {
-    MusicaphoneTheme {
+    KoshaTheme {
         GenderCaptureScreen(
             rememberScaffoldState(),
             "Male",

@@ -2,6 +2,7 @@ package com.musica.common.compose
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
@@ -14,43 +15,59 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.musica.common.R
-import com.musica.common.compose.theme.MusicaphoneTheme
+import com.musica.common.compose.theme.KoshaTheme
 import com.musica.common.compose.theme.Secondary
+import com.musica.common.compose.theme.White
 
 @Composable
 fun TopBar(
     modifier: Modifier = Modifier,
     title: String,
     onBackPressed: (() -> Unit)? = null,
-    actions: @Composable RowScope.() -> Unit = {}
+    actions: @Composable RowScope.() -> Unit = {},
+    circleBackButton: Boolean = false
 ) {
     TopAppBar(
         modifier = modifier,
-        title = { Text(
-            text = title,
-            color = Secondary
-        ) },
-        navigationIcon = {
-            if (onBackPressed != null){
-                Image(
-                    modifier = Modifier
-                        .padding(start = 8.dp)
-                        .clickable(onClick = onBackPressed),
-                    painter = painterResource(id = R.drawable.arrow_left),
-                    contentDescription = "TopBar Navigation Icon",
-                    colorFilter = ColorFilter.tint(Secondary)
+        title = {
+            Column() {
+                Text(
+                    text = title,
+                    color = White
                 )
             }
         },
+        navigationIcon = {
+            if (onBackPressed != null) {
+                if (circleBackButton) {
+                    RoundImage(
+                        painter = painterResource(id = R.drawable.arrow_left),
+                        imageSize = 20.dp,
+                        circleSize = 44.dp
+                    )
+                } else {
+                    Image(
+                        modifier = Modifier
+                            .padding(start = 8.dp)
+                            .clickable(onClick = onBackPressed),
+                        painter = painterResource(id = R.drawable.arrow_left),
+                        contentDescription = "TopBar Navigation Icon",
+                        colorFilter = ColorFilter.tint(Secondary)
+                    )
+                }
+            }
+        },
         backgroundColor = Color(0xFF353A40),
-        actions = actions
+        actions = actions,
+        elevation = 0.dp
     )
 }
+
 
 @Composable
 @Preview
 fun PreviewTopBar() {
-    MusicaphoneTheme {
+    KoshaTheme {
         TopBar(title = "Something", onBackPressed = {})
     }
 }
@@ -58,7 +75,23 @@ fun PreviewTopBar() {
 @Composable
 @Preview
 fun PreviewTopBarWithActions() {
-    MusicaphoneTheme {
-        TopBar(title = "Something", onBackPressed = {}, actions = { Text(text = "hdfgjshyd", color = Color.White)})
+    KoshaTheme {
+        TopBar(
+            title = "Something",
+            onBackPressed = {},
+            actions = { Text(text = "hdfgjshyd", color = Color.White) })
+    }
+}
+
+@Composable
+@Preview
+fun PreviewTopBarWithCircleButton() {
+    KoshaTheme {
+        TopBar(
+            title = "Something",
+            onBackPressed = {},
+            actions = { Text(text = "hdfgjshyd", color = Color.White) },
+            circleBackButton = true
+        )
     }
 }

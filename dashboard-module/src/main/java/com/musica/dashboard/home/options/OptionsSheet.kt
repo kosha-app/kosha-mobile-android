@@ -32,8 +32,8 @@ import com.musica.common.R
 import com.musica.common.compose.RoundImage
 import com.musica.common.compose.theme.DarkGrey
 import com.musica.common.compose.theme.GreysColorMix_2
+import com.musica.common.compose.theme.KoshaTheme
 import com.musica.common.compose.theme.MusicaBlueColor
-import com.musica.common.compose.theme.MusicaphoneTheme
 import com.musica.common.compose.theme.Primary
 import com.musica.common.compose.theme.Secondary
 
@@ -168,7 +168,7 @@ class Option(@DrawableRes val icon: Int, val mainText: String, val trailingText:
 @Preview(showSystemUi = true)
 @Composable
 private fun OptionsUIPreview() {
-    MusicaphoneTheme {
+    KoshaTheme {
         OptionsSheet("", "Gazzet (Kazet)", trackArtist = "SageEM")
 
     }

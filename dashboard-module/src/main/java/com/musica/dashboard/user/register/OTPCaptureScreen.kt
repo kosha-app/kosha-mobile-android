@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.sp
 import com.musica.common.compose.TopBar
 import com.musica.common.compose.input.OtpInputField
 import com.musica.common.compose.theme.BackgroundGradientColors
-import com.musica.common.compose.theme.MusicaphoneTheme
+import com.musica.common.compose.theme.KoshaTheme
 import com.musica.common.compose.theme.Negative
 import com.musica.common.compose.theme.Secondary
 import kotlinx.coroutines.android.awaitFrame
@@ -99,7 +99,7 @@ fun OTPCaptureScreen(
 @Preview
 @Composable
 private fun OTPPreview() {
-    MusicaphoneTheme {
+    KoshaTheme {
         OTPCaptureScreen(
             scaffoldState = rememberScaffoldState(),
             onBackClick = { /*TODO*/ },

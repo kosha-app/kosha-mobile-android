@@ -25,13 +25,15 @@ class DashboardViewModel @Inject constructor(
 
     private val _albumName = MutableStateFlow("")
     private val _albumCoverUrl = MutableStateFlow("")
-    private val _albumTracks = MutableStateFlow(listOf(TrackResponse("","","","")))
-    private val _isPlaying= MutableStateFlow(false)
+    private val _albumTracks = MutableStateFlow(listOf(TrackResponse("", "", "", "", "")))
+    private val _isPlaying = MutableStateFlow(false)
+    private val _duration = MutableStateFlow(0)
 
     val albumName: StateFlow<String> = _albumName.asStateFlow()
     val albumTracks: StateFlow<List<TrackResponse>> =_albumTracks.asStateFlow()
     val albumCoverUrl: StateFlow<String> = _albumCoverUrl.asStateFlow()
     val isPlaying: StateFlow<Boolean> = _isPlaying.asStateFlow()
+    val duration: StateFlow<Int> = _duration.asStateFlow()
 
 
     init {
@@ -57,6 +59,8 @@ class DashboardViewModel @Inject constructor(
                 mediaPlayer.setOnPreparedListener { mediaPlayer ->
                     mediaPlayer.start()
                     _isPlaying.value = true
+                    _duration.value = mediaPlayer.duration
+                    println("Sage Duration: ${mediaPlayer.duration}")
                 }
             }else {
                 mediaPlayer.stop()
@@ -66,6 +70,8 @@ class DashboardViewModel @Inject constructor(
                 mediaPlayer.setOnPreparedListener { mediaPlayer ->
                     mediaPlayer.start()
                     _isPlaying.value = true
+                    _duration.value = mediaPlayer.duration
+                    println("Sage Duration: ${mediaPlayer.duration}")
                 }
             }
         } catch (_: Exception) {
@@ -73,11 +79,7 @@ class DashboardViewModel @Inject constructor(
         }
     }
 
-    fun isPlaying() = mediaPlayer.isPlaying
-
     fun getCurrentPosition() = mediaPlayer.currentPosition
-
-    fun getDuration() = mediaPlayer.duration
 
     fun playPauseTrack(){
         if (mediaPlayer.isPlaying){

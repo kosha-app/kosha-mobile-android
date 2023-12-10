@@ -7,10 +7,12 @@ import com.musica.common.service.models.response.ResponseType
 import com.musica.dashboard.player.repository.TrackRepository
 import com.musica.dashboard.player.service.Album
 import com.musica.dashboard.player.service.AlbumResponse.Companion.toAlbum
+import com.musica.dashboard.player.service.Track
+import com.musica.dashboard.player.service.TrackResponse.Companion.toTrack
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,19 +22,33 @@ class SearchViewModel @Inject constructor(
     private val trackRepository: TrackRepository
 ) : AndroidViewModel(application) {
 
-    private val _albums = MutableSharedFlow<List<Album>?>()
+    private val _albums = MutableStateFlow<List<Album>>(listOf())
+    private val _tracks = MutableStateFlow<List<Track>>(listOf())
 
-    val albums: SharedFlow<List<Album>?> = _albums.asSharedFlow()
+    val albums: StateFlow<List<Album>> = _albums.asStateFlow()
+    val tracks: StateFlow<List<Track>> = _tracks.asStateFlow()
 
     fun searchAlbum(query: String) {
         viewModelScope.launch {
-            val response = trackRepository.searchAlbum(query)
+            val albumSearchResponse = trackRepository.searchAlbum(query)
+            val trackSearchResponse = trackRepository.searchTracks(query)
 
-            if (response.serviceResponse.responseType == ResponseType.SUCCESS) {
-                val albums = response.data?.albums?.map {
+            if (albumSearchResponse.serviceResponse.responseType == ResponseType.SUCCESS) {
+                val albums = albumSearchResponse.data?.albums?.map {
                     it.toAlbum()
                 }
-                _albums.emit(albums)
+                if (albums != null) {
+                    _albums.value = albums
+                }
+            }
+
+            if (trackSearchResponse.serviceResponse.responseType == ResponseType.SUCCESS) {
+                val tracks = trackSearchResponse.data?.tracks?.map {
+                    it.toTrack()
+                }
+                if (tracks != null) {
+                    _tracks.value = tracks
+                }
             }
         }
     }

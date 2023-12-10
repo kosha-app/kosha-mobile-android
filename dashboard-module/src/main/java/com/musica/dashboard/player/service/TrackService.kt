@@ -11,13 +11,16 @@ interface TrackService {
 
     suspend fun getAlbum(albumId: String): ServiceResult<AlbumResponse>
 
-    suspend fun searchAlbum(query: String): ServiceResult<SearchResponse>
+    suspend fun searchAlbum(query: String): ServiceResult<SearchAlbumsResponse>
+
+    suspend fun searchTracks(query: String): ServiceResult<SearchTracksResponse>
 
 }
 
 const val GET_TRACK_URL = "music/track/%s"
 const val GET_ALBUM_URL = "music/album/%s"
 const val SEARCH_ALBUM_URL = "music/album/search/%s"
+const val SEARCH_TRACKS_URL = "music/track/search/%s"
 
 class TrackServiceImpl @Inject constructor(private val service: IService): TrackService {
 
@@ -29,8 +32,12 @@ class TrackServiceImpl @Inject constructor(private val service: IService): Track
         return service.GET(GET_ALBUM_URL.format(albumId), AlbumResponse::class.java)
     }
 
-    override suspend fun searchAlbum(query: String): ServiceResult<SearchResponse> {
-        return service.GET(SEARCH_ALBUM_URL.format(query), SearchResponse::class.java)
+    override suspend fun searchAlbum(query: String): ServiceResult<SearchAlbumsResponse> {
+        return service.GET(SEARCH_ALBUM_URL.format(query), SearchAlbumsResponse::class.java)
+    }
+
+    override suspend fun searchTracks(query: String): ServiceResult<SearchTracksResponse> {
+        return service.GET(SEARCH_TRACKS_URL.format(query), SearchTracksResponse::class.java)
     }
 
 }

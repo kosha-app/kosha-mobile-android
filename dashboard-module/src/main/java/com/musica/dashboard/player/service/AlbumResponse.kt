@@ -22,7 +22,7 @@ class AlbumResponse(
     }
 }
 
-class SearchResponse(val albums: List<AlbumResponse>?)
+class SearchAlbumsResponse(val albums: List<AlbumResponse>?)
 
 
 class Album(

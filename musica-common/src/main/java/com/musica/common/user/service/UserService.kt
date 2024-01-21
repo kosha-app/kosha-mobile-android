@@ -25,7 +25,7 @@ interface UserService {
     suspend fun verifyOtp(
         id: String,
         request: UserVerificationRequest
-    ): ServiceResult<DefaultResponse>
+    ): ServiceResult<Void>
 
     suspend fun getUserProfile(userId: String): ServiceResult<GetUserInfoResponse>
 }
@@ -59,8 +59,8 @@ class UserServiceImpl @Inject constructor(
     override suspend fun verifyOtp(
         id: String,
         request: UserVerificationRequest
-    ): ServiceResult<DefaultResponse> {
-        return service.POST(VERIFY_OTP_URL.format(id), request, DefaultResponse::class.java)
+    ): ServiceResult<Void> {
+        return service.POST(VERIFY_OTP_URL.format(id), request, Void::class.java)
     }
 
     override suspend fun getUserProfile(userId: String): ServiceResult<GetUserInfoResponse> {

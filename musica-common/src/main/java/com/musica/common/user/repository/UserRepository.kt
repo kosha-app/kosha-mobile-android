@@ -35,7 +35,7 @@ interface UserRepository {
 
     suspend fun checkEmail(email: String): ServiceResult<CheckEmailResponse>
 
-    suspend fun verifyOtp(id: String, otp: String): ServiceResult<DefaultResponse>
+    suspend fun verifyOtp(id: String, otp: String): ServiceResult<Void>
 
     suspend fun getUserProfile(userId: String): ServiceResult<GetUserInfoResponse>
 }

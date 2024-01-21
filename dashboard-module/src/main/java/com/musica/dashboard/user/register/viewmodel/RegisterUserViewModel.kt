@@ -61,7 +61,7 @@ class RegisterUserViewModel @Inject constructor(
             if (response.serviceResponse.responseType == ResponseType.SUCCESS) {
                 _verifyOtpSuccessNav.emit(RegisterUserActivity.PASSWORD_CAPTURE_SCREEN)
             } else {
-                _errorMessage.emit(response.data?.message.toString())
+                _errorMessage.emit(response.serviceResponse.message)
             }
             _isLoading.value = false
         }

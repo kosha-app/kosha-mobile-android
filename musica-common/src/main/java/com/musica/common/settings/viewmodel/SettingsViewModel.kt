@@ -48,7 +48,7 @@ class SettingsViewModel @Inject constructor(
             if (response?.serviceResponse?.responseType == ResponseType.SUCCESS) {
                 _logoutSuccessEvent.emit {}
             } else {
-                _errorMessage.emit(response?.data?.message.toString())
+                response?.serviceResponse?.let { _errorMessage.emit(it.message) }
             }
             _isLoading.value = false
         }
@@ -68,11 +68,7 @@ class SettingsViewModel @Inject constructor(
 
                 if (userResponse?.serviceResponse?.responseType == ResponseType.SUCCESS) {
                     _name.value = userResponse.data?.name.toString()
-                } else {
-                    userResponse?.serviceResponse?.message?.let { _errorMessage.emit(it) }
                 }
-            } else {
-                deviceResponse?.serviceResponse?.message?.let { _errorMessage.emit(it) }
             }
         }
     }

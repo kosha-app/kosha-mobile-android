@@ -29,7 +29,7 @@ class GetStartedViewModel @Inject constructor(
     application: Application,
     private val deviceRepository: DeviceRepository,
     private val deviceInfo: DeviceInfo
-): AndroidViewModel(application) {
+) : AndroidViewModel(application) {
 
     private val _isLoading = MutableStateFlow(false)
     private val _returnIntent = MutableSharedFlow<Intent>()
@@ -64,16 +64,13 @@ class GetStartedViewModel @Inject constructor(
                 }
 
                 else -> {
-                    if (response?.data?.loggedIn != null) {
-                        _returnIntent.emit(
-                            Intent(
-                                application.applicationContext,
-                                LandingActivity::class.java
-                            )
+                    _returnIntent.emit(
+                        Intent(
+                            application.applicationContext,
+                            LandingActivity::class.java
                         )
-                    } else {
-                        _errorMessage.emit(response?.data?.message.toString())
-                    }
+                    )
+
                 }
             }
 

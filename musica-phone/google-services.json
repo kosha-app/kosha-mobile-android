@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "161051292014",
+    "project_id": "kosha-871a8",
+    "storage_bucket": "kosha-871a8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:161051292014:android:a0c6f5daf68bd348d9d17f",
+        "android_client_info": {
+          "package_name": "com.musica.phone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1Je2VpLRnE2aMNemHRsh8-8t_I_AsrFQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

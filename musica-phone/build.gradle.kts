@@ -2,6 +2,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.appdistribution")
     id("com.google.dagger.hilt.android")
 }
 
@@ -40,8 +42,8 @@ android {
 
         debug {
             isMinifyEnabled = false
-//            buildConfigField("String", "BASE_MCA_URL", "\"https://kosha-app.azurewebsites.net/%s\"")
-            buildConfigField("String", "BASE_MCA_URL", "\"http://10.0.2.2:8080/%s\"")
+            buildConfigField("String", "BASE_MCA_URL", "\"https://kosha-app.azurewebsites.net/%s\"")
+//            buildConfigField("String", "BASE_MCA_URL", "\"http://10.0.2.2:8080/%s\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -85,6 +87,8 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
 
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
 

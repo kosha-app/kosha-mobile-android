@@ -125,8 +125,14 @@ koverReport {
                 "*Activity",
                 "*Activity\$*",
                 "*.databinding.*",
-                "*.BuildConfig"
+                "*.BuildConfig",
+                // hilt
+                "*.di.*",
+                "dagger.hilt.**",
+                "hilt_aggregated_deps.*",
+                "*_Factory"
             )
+            annotatedBy("import androidx.compose.runtime.Composable")
         }
     }
 

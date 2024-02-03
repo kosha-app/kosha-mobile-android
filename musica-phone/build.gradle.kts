@@ -1,3 +1,5 @@
+import kotlinx.kover.gradle.plugin.dsl.koverAndroidHtmlReportName
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -5,6 +7,7 @@ plugins {
     id("com.google.gms.google-services")
     id("com.google.firebase.appdistribution")
     id("com.google.dagger.hilt.android")
+    id("org.jetbrains.kotlinx.kover")
 }
 
 val appCenterSdkVersion = "4.4.5"
@@ -32,22 +35,33 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             buildConfigField("String", "BASE_MCA_URL", "\"https://kosha-app.azurewebsites.net/%s\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            tasks {
+                named("build") {
+                    dependsOn(koverAndroidHtmlReportName("release"))
+                    dependsOn("test")
+                }
+            }
         }
 
         debug {
             isMinifyEnabled = false
-            buildConfigField("String", "BASE_MCA_URL", "\"https://kosha-app.azurewebsites.net/%s\"")
-//            buildConfigField("String", "BASE_MCA_URL", "\"http://10.0.2.2:8080/%s\"")
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+            buildConfigField(
+                "String",
+                "BASE_MCA_URL",
+                "\"https://kosha-app-developer.azurewebsites.net/%s\""
             )
+            tasks {
+                named("build") {
+                    dependsOn(koverAndroidHtmlReportName("debug"))
+                    dependsOn("test")
+                }
+            }
         }
     }
 
@@ -116,4 +130,56 @@ dependencies {
 
 kapt {
     correctErrorTypes = true
+}
+
+koverReport {
+    // filters for all report types of all build variants
+    filters {
+        excludes {
+            classes(
+                "*Fragment",
+                "*Fragment\$*",
+                "*Activity",
+                "*Activity\$*",
+                "*.databinding.*",
+                "*.BuildConfig"
+            )
+            annotatedBy(
+                "androidx.compose.runtime.Composable"
+            )
+        }
+    }
+
+    verify {
+        rule("Basic Line Coverage") {
+            isEnabled = true
+            bound {
+                minValue = 80 // Minimum coverage percentage
+                maxValue = 100 // Maximum coverage percentage (optional)
+                metric = kotlinx.kover.gradle.plugin.dsl.MetricType.LINE
+                aggregation = kotlinx.kover.gradle.plugin.dsl.AggregationType.COVERED_PERCENTAGE
+            }
+        }
+    }
+
+
+//    androidReports("release") {
+//        // filters for all report types only of 'release' build type
+//        filters {
+//            excludes {
+//                classes(
+//                    "*Fragment",
+//                    "*Fragment\$*",
+//                    "*Activity",
+//                    "*Activity\$*",
+//                    "*.databinding.*",
+//                    "*.BuildConfig",
+//
+//                    // excludes debug classes
+//                    "*.DebugUtil"
+//                )
+//            }
+//        }
+//    }
+
 }

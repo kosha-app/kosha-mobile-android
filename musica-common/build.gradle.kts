@@ -1,8 +1,11 @@
+import kotlinx.kover.gradle.plugin.dsl.koverAndroidHtmlReportName
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("org.jetbrains.kotlinx.kover")
 }
 
 android {
@@ -18,19 +21,27 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            tasks {
+                named("build") {
+                    dependsOn(koverAndroidHtmlReportName("release"))
+                    dependsOn("test")
+                }
+            }
         }
 
         debug {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            tasks {
+                named("build") {
+                    dependsOn(koverAndroidHtmlReportName("debug"))
+                    dependsOn("test")
+                }
+            }
         }
     }
 
@@ -101,4 +112,39 @@ dependencies {
 
 kapt {
     correctErrorTypes = true
+}
+
+koverReport {
+    // filters for all report types of all build variants
+    filters {
+        excludes {
+            classes(
+                "*Fragment",
+                "*Fragment\$*",
+                "*Activity",
+                "*Activity\$*",
+                "*.databinding.*",
+                "*.BuildConfig"
+            )
+        }
+    }
+
+    verify {
+        rule("Basic Line Coverage") {
+            isEnabled = true
+            bound {
+                minValue = 80 // Minimum coverage percentage
+                maxValue = 100 // Maximum coverage percentage (optional)
+                metric = kotlinx.kover.gradle.plugin.dsl.MetricType.LINE
+                aggregation = kotlinx.kover.gradle.plugin.dsl.AggregationType.COVERED_PERCENTAGE
+            }
+        }
+    }
+}
+
+tasks {
+    named("build") {
+        dependsOn(koverAndroidHtmlReportName("debug"))
+//        dependsOn()
+    }
 }

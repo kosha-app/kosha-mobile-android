@@ -1,55 +1,65 @@
+import kotlinx.kover.gradle.plugin.dsl.koverAndroidHtmlReportName
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
-
+    id("org.jetbrains.kotlinx.kover")
 }
 
 val url =
 
-android {
-    namespace = "com.musica.dashboard"
-    compileSdk = 34
+    android {
+        namespace = "com.musica.dashboard"
+        compileSdk = 34
 
-    defaultConfig {
-        minSdk = 24
+        defaultConfig {
+            minSdk = 24
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+            consumerProguardFiles("consumer-rules.pro")
         }
 
-        debug {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
+        buildTypes {
+            release {
+                isMinifyEnabled = true
+                proguardFiles(
+                    getDefaultProguardFile("proguard-android-optimize.txt"),
+                    "proguard-rules.pro"
+                )
+                tasks {
+                    named("build") {
+                        dependsOn(koverAndroidHtmlReportName("release"))
+                        dependsOn("test")
+                    }
+                }
+            }
 
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    kotlinOptions {
-        jvmTarget = "17"
-    }
+            debug {
+                isMinifyEnabled = false
+                tasks {
+                    named("build") {
+                        dependsOn(koverAndroidHtmlReportName("debug"))
+                        dependsOn("test")
+                    }
+                }
+            }
+        }
+
+        buildFeatures {
+            compose = true
+        }
+        composeOptions {
+            kotlinCompilerExtensionVersion = "1.4.3"
+        }
+        compileOptions {
+            sourceCompatibility = JavaVersion.VERSION_17
+            targetCompatibility = JavaVersion.VERSION_17
+        }
+        kotlinOptions {
+            jvmTarget = "17"
+        }
 }
 
 dependencies {
@@ -84,4 +94,38 @@ dependencies {
 
 kapt {
     correctErrorTypes = true
+}
+
+koverReport {
+    // filters for all report types of all build variants
+    filters {
+        excludes {
+            classes(
+                "*Fragment",
+                "*Fragment\$*",
+                "*Activity",
+                "*Activity\$*",
+                "*.databinding.*",
+                "*.BuildConfig"
+            )
+        }
+    }
+
+    verify {
+        rule("Basic Line Coverage") {
+            isEnabled = true
+            bound {
+                minValue = 80 // Minimum coverage percentage
+                maxValue = 100 // Maximum coverage percentage (optional)
+                metric = kotlinx.kover.gradle.plugin.dsl.MetricType.LINE
+                aggregation = kotlinx.kover.gradle.plugin.dsl.AggregationType.COVERED_PERCENTAGE
+            }
+        }
+    }
+}
+
+tasks {
+    named("build") {
+        dependsOn(koverAndroidHtmlReportName("debug"))
+    }
 }

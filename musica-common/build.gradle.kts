@@ -1,4 +1,5 @@
 import kotlinx.kover.gradle.plugin.dsl.koverAndroidHtmlReportName
+import kotlinx.kover.gradle.plugin.dsl.koverAndroidXmlReportName
 
 plugins {
     id("com.android.library")
@@ -144,7 +145,7 @@ koverReport {
 
 tasks {
     named("build") {
-        dependsOn(koverAndroidHtmlReportName("debug"))
+        dependsOn(koverAndroidXmlReportName("debug"))
 //        dependsOn()
     }
 }

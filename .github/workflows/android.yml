@@ -1,10 +1,14 @@
 name: Android CI
 
-on:
-  push:
-    branches: [ "master" ]
+#on:
+#  push:
+#    branches: [ "master" ]
 #  pull_request:
 #    branches: [ "main" ]
+
+on:
+  pull_request:
+    types: [ opened, reopened, synchronize ]
 
 jobs:
   build:
@@ -21,23 +25,29 @@ jobs:
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
+      #
+      #      - name: build debug
+      #        run: ./gradlew assembleDebug
 
-      - name: build debug
-        run: ./gradlew assembleDebug
-
-      - name: build debug
+      - name: build Build
         run: ./gradlew build
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
+        with:
+          fail_ci_if_error: true # optional (default = false)
+          files: ./musica-phone/build/reports/kover/reportDebug.xml # optional
+        #          flags: unittests # optional
+        #          name: codecov-umbrella # optional
+        #          verbose: true # optional (default = false)
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
-      - name: upload artifact to Firebase App Distribution
-        uses: wzieba/Firebase-Distribution-Github-Action@v1.5.1
-        with:
-          appId: ${{secrets.FIREBASE_APP_ID}}
-          token: ${{secrets.FIREBASE_TOKEN}}
-          #          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
-          groups: testers
-          file: musica-phone/build/outputs/apk/debug/musica-phone-debug.apk
+#      - name: upload artifact to Firebase App Distribution
+#        uses: wzieba/Firebase-Distribution-Github-Action@v1.5.1
+#        with:
+#          appId: ${{secrets.FIREBASE_APP_ID}}
+#          token: ${{secrets.FIREBASE_TOKEN}}
+#          #          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+#          groups: testers
+#          file: musica-phone/build/outputs/apk/debug/musica-phone-debug.apk

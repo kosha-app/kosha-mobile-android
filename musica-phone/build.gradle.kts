@@ -142,11 +142,14 @@ koverReport {
                 "*Activity",
                 "*Activity\$*",
                 "*.databinding.*",
-                "*.BuildConfig"
+                "*.BuildConfig",
+                // hilt
+                "*.di.*",
+                "dagger.hilt.**",
+                "hilt_aggregated_deps.*",
+                "*_Factory"
             )
-            annotatedBy(
-                "androidx.compose.runtime.Composable"
-            )
+            annotatedBy("import androidx.compose.runtime.Composable")
         }
     }
 
@@ -161,25 +164,4 @@ koverReport {
             }
         }
     }
-
-
-//    androidReports("release") {
-//        // filters for all report types only of 'release' build type
-//        filters {
-//            excludes {
-//                classes(
-//                    "*Fragment",
-//                    "*Fragment\$*",
-//                    "*Activity",
-//                    "*Activity\$*",
-//                    "*.databinding.*",
-//                    "*.BuildConfig",
-//
-//                    // excludes debug classes
-//                    "*.DebugUtil"
-//                )
-//            }
-//        }
-//    }
-
 }

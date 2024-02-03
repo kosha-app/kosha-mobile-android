@@ -36,7 +36,7 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           fail_ci_if_error: true # optional (default = false)
-          files: ./musica-phone/build/reports/kover/reportDebug.xml # optional
+          files: ./musica-phone/build/reports/kover/reportDebug.xml,./musica-common/build/reports/kover/reportDebug.xml,./dashboard-module/build/reports/kover/reportDebug.xml
         #          flags: unittests # optional
         #          name: codecov-umbrella # optional
         #          verbose: true # optional (default = false)

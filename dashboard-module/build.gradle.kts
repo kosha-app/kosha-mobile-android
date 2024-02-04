@@ -8,9 +8,6 @@ plugins {
     id("com.google.dagger.hilt.android")
     id("org.jetbrains.kotlinx.kover")
 }
-
-val url =
-
     android {
         namespace = "com.musica.dashboard"
         compileSdk = 34

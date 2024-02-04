@@ -17,6 +17,7 @@ class StarterApplication : Application() {
         }
 
         if (isDebugMode) {
+
             registerActivityLifecycleCallbacks(ScreenLoggingLifecycleCallbacks)
         }
     }

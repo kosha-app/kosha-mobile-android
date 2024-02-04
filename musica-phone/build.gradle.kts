@@ -1,4 +1,6 @@
 import kotlinx.kover.gradle.plugin.dsl.koverAndroidXmlReportName
+import java.io.FileInputStream
+import java.util.Properties
 
 plugins {
     id("com.android.application")
@@ -9,6 +11,25 @@ plugins {
     id("com.google.dagger.hilt.android")
     id("org.jetbrains.kotlinx.kover")
 }
+
+val props = Properties()
+props.load(FileInputStream("${project.rootDir}/version.properties"))
+
+props.forEach { (key, value) ->
+    project.ext.set(key.toString(), value)
+}
+
+fun versionCode(): Int {
+    val major = project.ext.get("majorVersion") as Int
+    val minor = project.ext.get("minorVersion") as Int
+    val patch = project.ext.get("patchVersion") as Int
+
+    return major * 10000 + minor * 100 + patch
+}
+
+val versionName =
+    "${project.ext.get("majorVersion")}.${project.ext.get("minorVersion")}.${project.ext.get("patchVersion")}"
+
 
 val appCenterSdkVersion = "4.4.5"
 
@@ -24,8 +45,8 @@ android {
         applicationId = "com.musica.phone"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = versionCode()
+        versionName = versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

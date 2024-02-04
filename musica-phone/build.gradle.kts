@@ -20,9 +20,9 @@ props.forEach { (key, value) ->
 }
 
 fun versionCode(): Int {
-    val major = project.ext.get("majorVersion") as Int
-    val minor = project.ext.get("minorVersion") as Int
-    val patch = project.ext.get("patchVersion") as Int
+    val major = project.ext.get("majorVersion").toString().toInt()
+    val minor = project.ext.get("minorVersion").toString().toInt()
+    val patch = project.ext.get("patchVersion").toString().toInt()
 
     return major * 10000 + minor * 100 + patch
 }

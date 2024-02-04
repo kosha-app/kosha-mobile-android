@@ -20,9 +20,9 @@ props.forEach { (key, value) ->
 }
 
 fun versionCode(): Int {
-    val major = project.ext.get("majorVersion") as Int
-    val minor = project.ext.get("minorVersion") as Int
-    val patch = project.ext.get("patchVersion") as Int
+    val major = project.ext.get("majorVersion").toString().toInt()
+    val minor = project.ext.get("minorVersion").toString().toInt()
+    val patch = project.ext.get("patchVersion").toString().toInt()
 
     return major * 10000 + minor * 100 + patch
 }
@@ -90,6 +90,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+    }
+
     kotlinOptions {
         jvmTarget = "17"
     }
@@ -114,6 +118,7 @@ dependencies {
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.mockito:mockito-core:5.7.0")
+    testImplementation("io.mockk:mockk:1.13.9")
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
 
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

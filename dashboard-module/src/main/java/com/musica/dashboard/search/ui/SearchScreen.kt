@@ -88,7 +88,7 @@ fun SearchScreen(
                 placeholder = "What do you want to listen to?",
                 onValueChange = {
                     searchQueryInput = it
-                    searchViewModel.searchAlbum(it)
+                    searchViewModel.search(it)
                 },
                 leadingIcon = {
                     Image(

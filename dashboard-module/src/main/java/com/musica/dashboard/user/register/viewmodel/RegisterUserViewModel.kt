@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import org.jetbrains.annotations.VisibleForTesting
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,14 +29,17 @@ class RegisterUserViewModel @Inject constructor(
 
     private val _errorMessage = MutableSharedFlow<String>()
     private val _isLoading = MutableStateFlow(false)
-    private var id = ""
+
+    @VisibleForTesting
+    var id = ""
     private val _resultRegisterSuccessIntent = MutableSharedFlow<Intent>()
     private val _emailCheckSuccessNav = MutableSharedFlow<String>()
     private val _verifyOtpSuccessNav = MutableSharedFlow<String>()
 
     val errorMessage: SharedFlow<String> = _errorMessage.asSharedFlow()
     val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
-    val resultRegisterSuccessIntent: SharedFlow<Intent> = _resultRegisterSuccessIntent.asSharedFlow()
+    val resultRegisterSuccessIntent: SharedFlow<Intent> =
+        _resultRegisterSuccessIntent.asSharedFlow()
     val emailCheckSuccessNav: SharedFlow<String> = _emailCheckSuccessNav.asSharedFlow()
     val verifyOtpSuccessNav: SharedFlow<String> = _verifyOtpSuccessNav.asSharedFlow()
 
@@ -48,7 +52,7 @@ class RegisterUserViewModel @Inject constructor(
                 id = response.data?.id.toString()
                 _emailCheckSuccessNav.emit(RegisterUserActivity.OTP_CAPTURE_SCREEN)
             } else {
-                _errorMessage.emit(response.data?.message.toString())
+                _errorMessage.emit(response.serviceResponse.message)
             }
             _isLoading.value = false
         }
@@ -95,7 +99,7 @@ class RegisterUserViewModel @Inject constructor(
                     )
                 )
             } else {
-                _errorMessage.emit(response?.data?.message.toString())
+                _errorMessage.emit(response?.serviceResponse?.message.toString())
             }
             _isLoading.value = false
         }

@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.musica.common.R
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.button.PrimaryButton
 import com.musica.common.compose.theme.BackgroundGradientColors
 import com.musica.common.compose.theme.KoshaTheme
@@ -26,6 +27,7 @@ import com.musica.common.compose.theme.MusicaBlueColor
 import com.musica.common.compose.theme.Secondary
 
 @Composable
+@Exclude
 fun LandingScreen(
     onSignInClick: () -> Unit,
     onRegisterClick: () -> Unit
@@ -74,6 +76,7 @@ fun LandingScreen(
 }
 
 @Composable
+@Exclude
 @Preview
 fun LandingScreenPreview(){
     KoshaTheme {

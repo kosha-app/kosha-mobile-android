@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.unit.dp
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.KoshaComposeActivity
 import com.musica.common.compose.button.PrimaryButton
 import com.musica.common.compose.theme.BackgroundGradientColors
@@ -17,12 +18,14 @@ import com.musica.common.compose.theme.MusicaBlueColor
 
 class ErrorActivity : KoshaComposeActivity() {
     @Composable
+    @Exclude
     override fun ActivityContent() {
         ErrorScreen(onRetryClick = { startActivity(Intent(this, GetStartedActivity::class.java)) })
     }
 }
 
 @Composable
+@Exclude
 fun ErrorScreen(
     onRetryClick: () -> Unit,
 ){

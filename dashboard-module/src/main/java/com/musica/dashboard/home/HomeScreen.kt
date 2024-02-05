@@ -11,7 +11,6 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -28,14 +27,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.startActivity
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.theme.BackgroundGradientColors
 import com.musica.common.settings.SettingsActivity
 import com.musica.dashboard.home.viewmodel.DashboardViewModel
 import com.musica.dashboard.player.DashboardTopBar
 import com.musica.dashboard.player.RecentlyPlayedCard
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
+@Exclude
 fun HomeScreen(
     viewModel: DashboardViewModel,
 ) {

@@ -1,10 +1,11 @@
 package com.musica.common.settings.ui
 
 import androidx.compose.runtime.Composable
+import com.musica.common.compose.Exclude
 
 data class SettingsItems(
     val heading: String,
-    val content: @Composable () -> Unit,
+    val content: @Composable @Exclude () -> Unit,
 )
 
 fun settingsItems(logOutItems: List<SettingsItemsOptions>) = listOf(
@@ -26,7 +27,7 @@ data class SettingsItemsOptions(
     val heading: String,
     val description: String,
     val onClick: () -> Unit,
-    val trailing: @Composable () -> Unit = {}
+    val trailing: @Composable @Exclude () -> Unit = {}
 )
 
 //private val logOutItems = listOf(

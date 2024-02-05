@@ -27,6 +27,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.button.PrimaryButton
 import com.musica.common.compose.dialog.ProgressDialog
 import com.musica.common.compose.input.InputText
@@ -36,6 +37,7 @@ import com.musica.common.compose.theme.Negative
 import com.musica.common.compose.theme.Secondary
 
 @Composable
+@Exclude
 fun SignInScreen(
     scaffoldState: ScaffoldState,
     isLoading: Boolean,

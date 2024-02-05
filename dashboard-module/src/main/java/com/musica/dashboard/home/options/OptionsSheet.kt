@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.sp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.musica.common.R
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.RoundImage
 import com.musica.common.compose.theme.DarkGrey
 import com.musica.common.compose.theme.GreysColorMix_2
@@ -39,6 +40,7 @@ import com.musica.common.compose.theme.Secondary
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
+@Exclude
 fun OptionsSheet(
     coverUrl: String, trackName: String, trackArtist: String
 ) {
@@ -104,6 +106,7 @@ fun OptionsSheet(
 }
 
 @Composable
+@Exclude
 fun OptionsItem(
     @DrawableRes icon: Int, itemClick: () -> Unit, mainText: String, trailingText: String? = null
 ) {
@@ -167,6 +170,7 @@ class Option(@DrawableRes val icon: Int, val mainText: String, val trailingText:
 
 @Preview(showSystemUi = true)
 @Composable
+@Exclude
 private fun OptionsUIPreview() {
     KoshaTheme {
         OptionsSheet("", "Gazzet (Kazet)", trackArtist = "SageEM")

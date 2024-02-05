@@ -7,6 +7,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.KoshaComposeActivity
 import com.musica.common.compose.dialog.ProgressDialog
 import com.musica.common.settings.ui.SettingsItemsOptions
@@ -19,6 +20,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class SettingsActivity : KoshaComposeActivity() {
     @Composable
+    @Exclude
     override fun ActivityContent() {
         val viewModel: SettingsViewModel = viewModel()
 

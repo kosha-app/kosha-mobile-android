@@ -20,11 +20,13 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.theme.KoshaTheme
 import com.musica.common.compose.theme.Secondary
 import com.musica.common.compose.theme.Tertiary
 
 @Composable
+@Exclude
 fun OtpInputField(
     modifier: Modifier = Modifier,
     otpText: String,
@@ -61,6 +63,7 @@ fun OtpInputField(
 }
 
 @Composable
+@Exclude
 private fun CharView(
     index: Int,
     text: String
@@ -93,6 +96,7 @@ private fun CharView(
 }
 
 @Composable
+@Exclude
 @Preview
 private fun OTP(){
     KoshaTheme {

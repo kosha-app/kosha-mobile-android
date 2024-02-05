@@ -38,6 +38,7 @@ import androidx.compose.ui.unit.sp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.musica.common.R
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.RoundImage
 import com.musica.common.compose.theme.BackgroundGradientColors
 import com.musica.common.compose.theme.Secondary
@@ -48,10 +49,12 @@ import com.musica.dashboard.player.lyrics.LyricsCard
 import com.musica.dashboard.player.songinfo.InfoCard
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalGlideComposeApi::class,
+@OptIn(
+    ExperimentalMaterial3Api::class, ExperimentalGlideComposeApi::class,
     ExperimentalMaterialApi::class
 )
 @Composable
+@Exclude
 fun MusicPlayer(
     trackName: String,
     trackArtist: String,
@@ -191,6 +194,7 @@ fun MusicPlayer(
 }
 
 @Composable
+@Exclude
 fun MusicPlayerTrackInfo(
     trackName: String,
     trackArtist: String,
@@ -253,6 +257,7 @@ fun MusicPlayerTrackInfo(
 }
 
 @Composable
+@Exclude
 fun MusicPlayControls(
     isPlaying: Boolean,
     onShuffleOnClick: () -> Unit,
@@ -344,6 +349,7 @@ fun MusicPlayControls(
 }
 
 @Composable
+@Exclude
 fun MusicPlayerFooter(){
     Row(
         Modifier.padding(horizontal = 16.dp),

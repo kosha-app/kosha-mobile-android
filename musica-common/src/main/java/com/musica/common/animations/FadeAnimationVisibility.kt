@@ -6,12 +6,14 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.runtime.Composable
+import com.musica.common.compose.Exclude
 
 @Composable
+@Exclude
 fun SlideInAnimationVisibility(
     showContent: Boolean,
     sheetProgress: Float,
-    content: @Composable() AnimatedVisibilityScope.() -> Unit
+    content: @Composable @Exclude() AnimatedVisibilityScope.() -> Unit
 ) {
     AnimatedVisibility(
         visible = showContent,

@@ -33,6 +33,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.musica.common.R
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.RoundImage
 import com.musica.common.compose.TopBar
 import com.musica.common.compose.button.PrimaryButton
@@ -46,6 +47,7 @@ import com.musica.common.compose.theme.ProfileLetterBackGroundColors
 import com.musica.common.compose.theme.Secondary
 
 @Composable
+@Exclude
 fun SettingsScreen(
     name: String,
     scaffoldState: ScaffoldState,
@@ -108,6 +110,7 @@ fun SettingsScreen(
 }
 
 @Composable
+@Exclude
 fun SettingsOptions(
     logOutItems: List<SettingsItemsOptions>
 ) {
@@ -129,11 +132,12 @@ fun SettingsOptions(
 }
 
 @Composable
+@Exclude
 fun SettingsItemView(
     header: String,
     description: String,
     onOptionClick: () -> Unit,
-    settingsTrailing: @Composable () -> Unit = {}
+    settingsTrailing: @Composable @Exclude () -> Unit = {}
 ) {
     Row(
         modifier = Modifier
@@ -162,6 +166,7 @@ fun SettingsItemView(
 
 
 @Composable
+@Exclude
 fun ProfileClickView(
     modifier: Modifier = Modifier,
     name: String
@@ -240,6 +245,7 @@ fun ProfileClickView(
 }
 
 @Composable
+@Exclude
 @Preview
 fun SettingsScreenPreview() {
     KoshaTheme {

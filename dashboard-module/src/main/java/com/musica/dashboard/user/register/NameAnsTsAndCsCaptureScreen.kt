@@ -23,6 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.TopBar
 import com.musica.common.compose.button.PrimaryButton
 import com.musica.common.compose.input.InputText
@@ -33,6 +34,7 @@ import com.musica.common.compose.theme.Negative
 import com.musica.common.compose.theme.Secondary
 
 @Composable
+@Exclude
 fun NameAnsTsAndCsCaptureScreen(
     name: String,
     scaffoldState: ScaffoldState,
@@ -110,6 +112,7 @@ fun NameAnsTsAndCsCaptureScreen(
 }
 
 @Composable
+@Exclude
 @Preview
 private fun NameAnsTsAndCsCapturePreview() {
     KoshaTheme {

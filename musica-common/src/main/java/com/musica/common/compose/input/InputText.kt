@@ -16,11 +16,13 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.theme.KoshaTheme
 import com.musica.common.compose.theme.Primary
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+@Exclude
 fun InputText(
     modifier: Modifier = Modifier,
     value: String,
@@ -28,8 +30,8 @@ fun InputText(
     keyboardOptions: KeyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
     visualTransformation: VisualTransformation = VisualTransformation.None,
     onValueChange: (String) -> Unit,
-    trailingIcon: @Composable (() -> Unit)? = null,
-    leadingIcon: @Composable (() -> Unit)? = null,
+    trailingIcon: @Composable @Exclude (() -> Unit)? = null,
+    leadingIcon: @Composable @Exclude (() -> Unit)? = null,
 ) {
 
     Column(modifier = modifier) {
@@ -63,6 +65,7 @@ fun InputText(
 
 @Preview(showBackground = true)
 @Composable
+@Exclude
 fun Preview() {
     KoshaTheme {
         InputText(

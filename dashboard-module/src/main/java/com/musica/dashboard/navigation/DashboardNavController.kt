@@ -1,9 +1,5 @@
 package com.musica.dashboard.navigation
 
-import androidx.compose.runtime.Composable
-import com.musica.common.animations.SlideInAnimationVisibility
-import com.musica.dashboard.player.MusicPlayer
-
 //package com.musica.dashboard.navigation
 //
 //import androidx.compose.animation.AnimatedContent
@@ -24,7 +20,7 @@ import com.musica.dashboard.player.MusicPlayer
 //import com.musica.dashboard.home.DashboardScreen
 //import com.musica.dashboard.player.MusicPlayer
 //
-//@Composable
+//@Composable @Exclude
 //fun com.musica.dashboard.navigation.DashboardNavController() {
 //
 //    val navController = rememberNavController()
@@ -64,7 +60,7 @@ import com.musica.dashboard.player.MusicPlayer
 
 
 //object DashboardNavController {
-//    @Composable
+//    @Composable @Exclude
 //    fun navController(showMusicPlayer: Boolean) = SlideInAnimationVisibility(showMusicPlayer) {
 //        MusicPlayer()
 //    }

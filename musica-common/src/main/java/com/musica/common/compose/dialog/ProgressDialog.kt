@@ -18,12 +18,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.theme.KoshaTheme
 import com.musica.common.compose.theme.MusicaBlueColor
 import com.musica.common.compose.theme.Secondary
 import com.musica.common.compose.theme.Tertiary
 
 @Composable
+@Exclude
 fun ProgressDialog(
     title: String? = null,
     description: String? = null,
@@ -68,6 +70,7 @@ fun ProgressDialog(
 }
 
 @Composable
+@Exclude
 @Preview(showSystemUi = true)
 fun PreviewDialog() {
     KoshaTheme {

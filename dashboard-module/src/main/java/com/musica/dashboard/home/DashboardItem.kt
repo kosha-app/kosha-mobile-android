@@ -17,12 +17,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.theme.Primary
 import com.musica.common.compose.theme.Secondary
 
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
+@Exclude
 fun DashboardItem(
     modifier: Modifier, imageUrl: String, header: String? = null, description: String, onItemClick: () -> Unit
 ) {

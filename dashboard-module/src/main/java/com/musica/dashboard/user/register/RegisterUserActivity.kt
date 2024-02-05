@@ -14,6 +14,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.KoshaComposeActivity
 import com.musica.common.compose.dialog.ProgressDialog
 import com.musica.dashboard.user.register.viewmodel.RegisterUserViewModel
@@ -26,6 +27,7 @@ import java.time.LocalDate
 class RegisterUserActivity : KoshaComposeActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     @Composable
+    @Exclude
     override fun ActivityContent() {
         val viewModel: RegisterUserViewModel = viewModel()
 

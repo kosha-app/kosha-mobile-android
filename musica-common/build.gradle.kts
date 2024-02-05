@@ -131,6 +131,7 @@ koverReport {
                 "*.databinding.*",
                 "*.BuildConfig",
                 "*HiltModules*",
+                "*Factory",
                 // hilt
                 "*.di.*",
                 "dagger.hilt.**",

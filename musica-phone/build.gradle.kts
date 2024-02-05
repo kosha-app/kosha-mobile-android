@@ -164,6 +164,7 @@ koverReport {
         excludes {
             classes(
                 "*Fragment",
+                "*Factory",
                 "*Fragment\$*",
                 "*Activity",
                 "*Activity\$*",
@@ -178,7 +179,8 @@ koverReport {
                 "*.di.*",
                 "dagger.hilt.**",
                 "hilt_aggregated_deps.*",
-                "*_Factory"
+                "*_Factory",
+                "com.musica.phone.servicelayer.Service"
             )
             annotatedBy("com.musica.common.compose.Exclude")
         }

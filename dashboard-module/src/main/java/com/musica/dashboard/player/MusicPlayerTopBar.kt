@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.musica.common.R
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.RoundImage
 import com.musica.common.compose.theme.KoshaTheme
 import com.musica.common.compose.theme.Secondary
@@ -28,6 +29,7 @@ import com.musica.common.compose.theme.Tertiary25
 import com.musica.common.compose.theme.White
 
 @Composable
+@Exclude
 fun MusicPlayerTopBar(
     backOnClick: () -> Unit,
     optionsOnClick: () -> Unit,
@@ -89,10 +91,11 @@ fun MusicPlayerTopBar(
 }
 
 @Composable
+@Exclude
 fun KoshaTopBar(
     backOnClick: (() -> Unit)? = null,
     label: String,
-    actions: @Composable (() -> Unit)? = null,
+    actions: @Composable @Exclude (() -> Unit)? = null,
     modifier: Modifier = Modifier
 ) {
 
@@ -141,6 +144,7 @@ fun KoshaTopBar(
 @ExperimentalMaterial3Api
 @Preview(showBackground = true)
 @Composable
+@Exclude
 fun TopBarPreview() {
     KoshaTheme {
         KoshaTopBar(label = "Sage", backOnClick = {})

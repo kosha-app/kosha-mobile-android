@@ -7,11 +7,13 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.musica.common.compose.Exclude
 
 @Composable
+@Exclude
 fun SheetContent(
     heightFraction: Float = 0.8f,
-    content: @Composable BoxScope.() -> Unit
+    content: @Composable @Exclude BoxScope.() -> Unit
 ) {
     Box(
         modifier = Modifier

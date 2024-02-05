@@ -17,10 +17,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.theme.MusicaBlueColor
 import com.musica.dashboard.home.ui.SliderInactive
 
 @Composable
+@Exclude
 fun MusicSlider(
     currentPosition: Float,
     duration: Float,

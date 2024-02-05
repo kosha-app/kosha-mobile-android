@@ -33,6 +33,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.KoshaComposeActivity
 import com.musica.common.compose.theme.BackgroundGradientColors
 import com.musica.common.compose.theme.Tertiary
@@ -55,6 +56,7 @@ class DashboardActivity : KoshaComposeActivity() {
 
     @OptIn(ExperimentalMaterialApi::class)
     @Composable
+    @Exclude
     override fun ActivityContent() {
         val navController = rememberNavController()
 

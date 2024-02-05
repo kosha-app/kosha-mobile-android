@@ -14,14 +14,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
+import com.musica.common.compose.Exclude
 import com.musica.dashboard.home.bottomsheet.extension.noRippleClickable
 
 @Composable
+@Exclude
 fun SheetCollapsed(
     isCollapsed: Boolean,
     currentFraction: Float,
     onSheetClick: () -> Unit,
-    content: @Composable RowScope.() -> Unit
+    content: @Composable @Exclude RowScope.() -> Unit
 ) {
     Row(
         modifier = Modifier
@@ -40,8 +42,9 @@ fun SheetCollapsed(
 }
 
 @Composable
+@Exclude
 fun SheetExpanded(
-    content: @Composable BoxScope.() -> Unit
+    content: @Composable @Exclude BoxScope.() -> Unit
 ) {
     Box(
         modifier = Modifier

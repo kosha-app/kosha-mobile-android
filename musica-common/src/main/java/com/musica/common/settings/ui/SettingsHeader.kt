@@ -14,10 +14,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.theme.DarkGrey
 import com.musica.common.compose.theme.Secondary
 
 @Composable
+@Exclude
 fun SettingsHeader(
     modifier: Modifier = Modifier,
     heading: String
@@ -46,6 +48,7 @@ fun SettingsHeader(
 }
 
 @Composable
+@Exclude
 @Preview
 private fun SettingsHeaderPreview() {
     SettingsHeader(heading = "Other")

@@ -17,6 +17,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.RoundImage
 import com.musica.common.compose.theme.Secondary
 import com.musica.dashboard.home.ui.LyricsCardBackgroundColor
@@ -24,6 +25,7 @@ import com.musica.dashboard.home.ui.LyricsReaderCardBackgroundColor
 
 
 @Composable
+@Exclude
 fun LyricsCard(modifier: Modifier) {
     Box(modifier =  modifier) {
         Column(Modifier.background(
@@ -90,6 +92,7 @@ fun LyricsCard(modifier: Modifier) {
 @ExperimentalMaterial3Api
 @Preview(showBackground = true)
 @Composable
+@Exclude
 fun LyricsPreview() {
     LyricsCard(modifier = Modifier)
 }

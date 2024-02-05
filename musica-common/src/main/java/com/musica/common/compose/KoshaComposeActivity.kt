@@ -13,7 +13,7 @@ import com.musica.common.compose.theme.KoshaTheme
  * ```
  * class MyActivity : KoshaComposeActivity() {
  *
- *     @Composable
+ *     @Composable @Exclude
  *     override fun ActivityContent() {
  *         MyComposable()
  *     }
@@ -24,6 +24,7 @@ import com.musica.common.compose.theme.KoshaTheme
 abstract class KoshaComposeActivity : ComponentActivity() {
 
     @Composable
+    @Exclude
     abstract fun ActivityContent()
 
     @CallSuper

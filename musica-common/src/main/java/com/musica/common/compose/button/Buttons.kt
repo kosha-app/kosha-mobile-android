@@ -13,10 +13,12 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.theme.Primary
 import com.musica.common.compose.theme.Secondary
 
 @Composable
+@Exclude
 fun PrimaryButton(
     modifier: Modifier = Modifier,
     buttonText: String,

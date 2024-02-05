@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.commandiron.wheel_picker_compose.WheelDatePicker
 import com.commandiron.wheel_picker_compose.core.WheelPickerDefaults
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.TopBar
 import com.musica.common.compose.button.PrimaryButton
 import com.musica.common.compose.theme.BackgroundGradientColors
@@ -39,6 +40,7 @@ import java.time.LocalDate
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
+@Exclude
 fun DOBCaptureScreen(
     dateOfBirth: LocalDate,
     scaffoldState: ScaffoldState,
@@ -105,6 +107,7 @@ fun DOBCaptureScreen(
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
+@Exclude
 @Preview
 private fun DOBPreview(){
     KoshaTheme {

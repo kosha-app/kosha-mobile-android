@@ -19,11 +19,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.theme.Secondary
 import com.musica.dashboard.home.ui.RecentPlayedBackground
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
+@Exclude
 fun RecentlyPlayedCard(
     modifier: Modifier,
     cardImageUrl: String,
@@ -69,6 +71,7 @@ fun RecentlyPlayedCard(
 
 @Preview(showBackground = true)
 @Composable
+@Exclude
 fun Preview(){
     RecentlyPlayedCard(modifier = Modifier.padding(start = 16.dp, top = 20.dp, bottom = 40.dp),cardImageUrl = "", recentlyPlayText = "NAzo Mix")
 }

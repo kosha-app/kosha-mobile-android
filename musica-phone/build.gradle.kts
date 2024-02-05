@@ -166,10 +166,6 @@ koverReport {
                 "*Fragment",
                 "*Fragment\$*",
                 "*Activity",
-                "*Screen\$*",
-                "*Screen",
-                "*Item",
-                "*Item\$*",
                 "*Activity\$*",
                 "*Response",
                 "*Response\$*",
@@ -177,13 +173,14 @@ koverReport {
                 "*Request\$*",
                 "*.databinding.*",
                 "*.BuildConfig",
+                "*HiltModules*",
                 // hilt
                 "*.di.*",
                 "dagger.hilt.**",
                 "hilt_aggregated_deps.*",
                 "*_Factory"
             )
-            annotatedBy("import androidx.compose.runtime.Composable")
+            annotatedBy("com.musica.common.compose.Exclude")
         }
     }
 

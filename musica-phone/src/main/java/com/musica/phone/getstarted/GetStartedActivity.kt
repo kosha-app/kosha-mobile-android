@@ -22,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.KoshaComposeActivity
 import com.musica.common.compose.theme.BackgroundGradientColors
 import com.musica.common.compose.theme.MusicaBlueColor
@@ -35,6 +36,7 @@ import kotlinx.coroutines.launch
 class GetStartedActivity : KoshaComposeActivity() {
 
     @Composable
+    @Exclude
     override fun ActivityContent() {
         val viewModel: GetStartedViewModel = viewModel()
 
@@ -65,6 +67,7 @@ class GetStartedActivity : KoshaComposeActivity() {
 }
 
 @Composable
+@Exclude
 fun GetStartedScreen(
     scaffoldState: ScaffoldState,
     isLoading: Boolean

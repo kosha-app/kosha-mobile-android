@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import com.musica.common.compose.Exclude
 
 private val DarkColorScheme = darkColorScheme(
     primary = Primary,
@@ -38,11 +39,12 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
+@Exclude
 fun KoshaTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
-    content: @Composable () -> Unit
+    content: @Composable @Exclude () -> Unit
 ) {
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {

@@ -12,12 +12,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.theme.KoshaTheme
 import com.musica.common.compose.theme.Secondary
 import com.musica.common.compose.theme.Tertiary
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
+@Exclude
 fun KoshaChip(
     text: String,
     isSelected: Boolean,
@@ -38,6 +40,7 @@ fun KoshaChip(
 }
 
 @Composable
+@Exclude
 @Preview
 private fun KoshaChipPreviewNotSelected(){
     KoshaTheme {
@@ -46,6 +49,7 @@ private fun KoshaChipPreviewNotSelected(){
 }
 
 @Composable
+@Exclude
 @Preview
 private fun KoshaChipPreviewSelected(){
     KoshaTheme {

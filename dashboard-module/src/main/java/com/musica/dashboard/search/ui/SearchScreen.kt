@@ -40,6 +40,7 @@ import androidx.compose.ui.unit.sp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.musica.common.R
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.input.InputText
 import com.musica.common.compose.theme.BackgroundGradientColors
 import com.musica.common.compose.theme.DarkGrey
@@ -51,6 +52,7 @@ import com.musica.dashboard.player.KoshaTopBar
 import com.musica.dashboard.search.viewmodel.SearchViewModel
 
 @Composable
+@Exclude
 fun SearchScreen(
     searchViewModel: SearchViewModel,
     onTrackPlayClick: (String, String, String, String) -> Unit
@@ -183,6 +185,7 @@ fun SearchScreen(
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
+@Exclude
 private fun SearchItems(
     itemPictureUrl: String,
     label: String
@@ -232,6 +235,7 @@ private fun SearchItems(
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
+@Exclude
 private fun SearchedItems(
     itemPictureUrl: String,
     label: String,
@@ -296,6 +300,7 @@ private fun SearchedItems(
 }
 
 @Composable
+@Exclude
 @Preview
 private fun SearchScreenPreview() {
     KoshaTheme {

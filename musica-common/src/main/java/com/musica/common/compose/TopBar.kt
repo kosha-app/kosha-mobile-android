@@ -20,11 +20,12 @@ import com.musica.common.compose.theme.Secondary
 import com.musica.common.compose.theme.White
 
 @Composable
+@Exclude
 fun TopBar(
     modifier: Modifier = Modifier,
     title: String,
     onBackPressed: (() -> Unit)? = null,
-    actions: @Composable RowScope.() -> Unit = {},
+    actions: @Composable @Exclude RowScope.() -> Unit = {},
     circleBackButton: Boolean = false
 ) {
     TopAppBar(
@@ -65,6 +66,7 @@ fun TopBar(
 
 
 @Composable
+@Exclude
 @Preview
 fun PreviewTopBar() {
     KoshaTheme {
@@ -73,6 +75,7 @@ fun PreviewTopBar() {
 }
 
 @Composable
+@Exclude
 @Preview
 fun PreviewTopBarWithActions() {
     KoshaTheme {
@@ -84,6 +87,7 @@ fun PreviewTopBarWithActions() {
 }
 
 @Composable
+@Exclude
 @Preview
 fun PreviewTopBarWithCircleButton() {
     KoshaTheme {

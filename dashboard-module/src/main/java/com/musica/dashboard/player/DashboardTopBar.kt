@@ -19,10 +19,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.musica.common.R
-import com.musica.dashboard.R.string
+import com.musica.common.compose.Exclude
 import com.musica.common.compose.RoundImage
+import com.musica.dashboard.R.string
 
 @Composable
+@Exclude
 fun DashboardTopBar(
     omSettingsClick: () -> Unit
 ) {

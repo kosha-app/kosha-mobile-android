@@ -28,7 +28,7 @@ class SearchViewModel @Inject constructor(
     val albums: StateFlow<List<Album>> = _albums.asStateFlow()
     val tracks: StateFlow<List<Track>> = _tracks.asStateFlow()
 
-    fun searchAlbum(query: String) {
+    fun search(query: String) {
         viewModelScope.launch {
             val albumSearchResponse = trackRepository.searchAlbum(query)
             val trackSearchResponse = trackRepository.searchTracks(query)

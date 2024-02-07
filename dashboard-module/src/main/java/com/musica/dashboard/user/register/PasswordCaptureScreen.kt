@@ -82,6 +82,7 @@ fun PasswordCaptureScreen(
             )
 
             InputText(
+                modifier = Modifier.padding(horizontal = 24.dp),
                 value = emailInput.trim(),
                 placeholder = "Password",
                 onValueChange = {

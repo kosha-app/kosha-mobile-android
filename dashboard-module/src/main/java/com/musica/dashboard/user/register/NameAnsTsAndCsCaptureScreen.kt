@@ -80,6 +80,7 @@ fun NameAnsTsAndCsCaptureScreen(
                 )
 
                 InputText(
+                    modifier = Modifier.padding(horizontal = 24.dp),
                     value = nameInput.trim(),
                     placeholder = "Name",
                     onValueChange = {

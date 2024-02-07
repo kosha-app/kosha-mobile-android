@@ -10,6 +10,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Snackbar
 import androidx.compose.material.SnackbarHost
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -25,6 +26,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.musica.common.compose.Exclude
@@ -32,9 +34,11 @@ import com.musica.common.compose.button.PrimaryButton
 import com.musica.common.compose.dialog.ProgressDialog
 import com.musica.common.compose.input.InputText
 import com.musica.common.compose.theme.BackgroundGradientColors
+import com.musica.common.compose.theme.KoshaTheme
 import com.musica.common.compose.theme.MusicaBlueColor
 import com.musica.common.compose.theme.Negative
 import com.musica.common.compose.theme.Secondary
+import com.musica.dashboard.user.register.NameAnsTsAndCsCaptureScreen
 
 @Composable
 @Exclude
@@ -89,17 +93,21 @@ fun SignInScreen(
             )
 
             InputText(
-                modifier = Modifier.padding(bottom = 24.dp),
+                modifier = Modifier.padding(bottom = 24.dp, start = 24.dp, end = 24.dp),
                 value = emailInput.trim(),
                 onValueChange = { emailInput = it },
                 placeholder = "Username"
             )
 
-            InputText(modifier = Modifier.padding(bottom = 24.dp),
+            InputText(
+                modifier = Modifier.padding(bottom = 24.dp, start = 24.dp, end = 24.dp),
                 value = passwordInput.trim(),
                 onValueChange = { passwordInput = it },
                 placeholder = "Password",
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password, imeAction = ImeAction.Next),
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Password,
+                    imeAction = ImeAction.Next
+                ),
                 visualTransformation = if (showPasswordText) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
                     Text(
@@ -122,5 +130,18 @@ fun SignInScreen(
                 onClick = { onSignIbButtonClick(emailInput, passwordInput) })
         }
 
+    }
+}
+
+@Composable
+@Exclude
+@Preview
+private fun SignInScreenPreview() {
+    KoshaTheme {
+        SignInScreen(
+            rememberScaffoldState(),
+            false,
+            { _, _ -> }
+        )
     }
 }

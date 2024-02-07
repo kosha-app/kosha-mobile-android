@@ -9,6 +9,14 @@ plugins {
     id("org.jetbrains.kotlinx.kover")
 }
     android {
+        signingConfigs {
+            create("release") {
+                storeFile = file("${project.rootDir}/keystore/release-keystores.jks")
+                storePassword = "Bello@09"
+                keyAlias = "release"
+                keyPassword = "Bello@09"
+            }
+        }
         namespace = "com.musica.dashboard"
         compileSdk = 34
 
@@ -26,6 +34,7 @@ plugins {
                     getDefaultProguardFile("proguard-android-optimize.txt"),
                     "proguard-rules.pro"
                 )
+                signingConfig = signingConfigs.getByName("release")
                 tasks {
                     named("build") {
                         dependsOn(koverAndroidHtmlReportName("release"))
@@ -36,6 +45,7 @@ plugins {
 
             debug {
                 isMinifyEnabled = false
+                signingConfig = signingConfigs.getByName("debug")
                 tasks {
                     named("build") {
                         dependsOn(koverAndroidHtmlReportName("debug"))
@@ -51,6 +61,9 @@ plugins {
         composeOptions {
             kotlinCompilerExtensionVersion = "1.4.3"
         }
+
+        lint.disable += "Instantiatable"
+
         compileOptions {
             sourceCompatibility = JavaVersion.VERSION_17
             targetCompatibility = JavaVersion.VERSION_17
@@ -77,6 +90,9 @@ dependencies {
 
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.mockito:mockito-core:5.5.0")
+    testImplementation("org.jetbrains.kotlin:kotlin-reflect")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.0-RC2")
+    testImplementation("app.cash.turbine:turbine:1.0.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))

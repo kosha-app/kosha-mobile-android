@@ -34,6 +34,14 @@ val versionName =
 val appCenterSdkVersion = "4.4.5"
 
 android {
+    signingConfigs {
+        create("release") {
+            storeFile = file("${project.rootDir}/keystore/release-keystores.jks")
+            storePassword = "Bello@09"
+            keyAlias = "release"
+            keyPassword = "Bello@09"
+        }
+    }
     namespace = "com.musica.phone"
     compileSdk = 34
 
@@ -62,6 +70,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("release")
             tasks {
                 named("build") {
                     dependsOn(koverAndroidXmlReportName("release"))
@@ -77,6 +86,7 @@ android {
                 "BASE_MCA_URL",
                 "\"https://kosha-app-developer.azurewebsites.net/%s\""
             )
+            signingConfig = signingConfigs.getByName("debug")
             tasks {
                 named("build") {
                     dependsOn(koverAndroidXmlReportName("debug"))
@@ -86,6 +96,10 @@ android {
         }
     }
 
+    kapt {
+        correctErrorTypes = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -93,6 +107,8 @@ android {
     testOptions {
         unitTests.isReturnDefaultValues = true
     }
+
+    lint.disable += "Instantiatable"
 
     kotlinOptions {
         jvmTarget = "17"
@@ -112,7 +128,7 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.core:core-ktx:1.10.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
     implementation("androidx.activity:activity-compose:1.7.2")
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))

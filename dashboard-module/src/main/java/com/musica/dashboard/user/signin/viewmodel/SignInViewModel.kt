@@ -42,7 +42,7 @@ class SignInViewModel @Inject constructor(
             if (response?.serviceResponse?.responseType == ResponseType.SUCCESS) {
                 _isSuccessful.emit(Intent(application, DashboardActivity::class.java))
             } else {
-                _errorMessage.emit(response?.data?.message.toString())
+                _errorMessage.emit(response?.serviceResponse?.message.toString())
             }
             _isLoading.value = false
         }

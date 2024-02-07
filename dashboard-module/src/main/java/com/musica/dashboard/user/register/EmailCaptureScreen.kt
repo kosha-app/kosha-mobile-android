@@ -70,6 +70,7 @@ fun EmailCaptureScreen(
             )
 
             InputText(
+                modifier = Modifier.padding(horizontal = 24.dp),
                 value = emailInput.trim(),
                 placeholder = "Email",
                 onValueChange = {

@@ -1,16 +1,10 @@
 package com.musica.common.user.service
 
 import com.musica.common.service.models.response.DefaultResponse
-import com.musica.common.service.models.response.ResponseType
-import com.musica.common.service.models.response.ServiceResponse
+import com.musica.common.service.models.request.*
+import com.musica.common.service.models.response.*
 import com.musica.common.service.volley.IService
 import com.musica.common.service.volley.ServiceResult
-import com.musica.common.user.CheckEmailResponse
-import com.musica.common.user.GetUserInfoResponse
-import com.musica.common.user.SignInResponse
-import com.musica.common.user.UserRegistrationRequest
-import com.musica.common.user.UserSignInRequest
-import com.musica.common.user.UserVerificationRequest
 import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert

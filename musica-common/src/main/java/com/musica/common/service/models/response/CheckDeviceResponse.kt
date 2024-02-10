@@ -1,4 +1,4 @@
-package com.musica.common.device
+package com.musica.common.service.models.response
 
 class CheckDeviceResponse(
     val loggedIn: Boolean?,

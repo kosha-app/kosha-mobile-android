@@ -6,7 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.musica.common.service.models.response.ResponseType
 import com.musica.dashboard.player.repository.TrackRepository
-import com.musica.dashboard.player.service.TrackResponse
+import com.musica.common.service.models.response.TrackResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

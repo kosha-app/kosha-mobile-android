@@ -5,10 +5,10 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.musica.common.service.models.response.ResponseType
 import com.musica.dashboard.player.repository.TrackRepository
-import com.musica.dashboard.player.service.Album
-import com.musica.dashboard.player.service.AlbumResponse.Companion.toAlbum
-import com.musica.dashboard.player.service.Track
-import com.musica.dashboard.player.service.TrackResponse.Companion.toTrack
+import com.musica.common.service.models.response.Album
+import com.musica.common.service.models.response.AlbumResponse.Companion.toAlbum
+import com.musica.common.service.models.response.Track
+import com.musica.common.service.models.response.TrackResponse.Companion.toTrack
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

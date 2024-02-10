@@ -1,6 +1,6 @@
 package com.musica.common.device.service
 
-import com.musica.common.device.GetDeviceResponse
+import com.musica.common.service.models.response.GetDeviceResponse
 import com.musica.common.service.models.response.ResponseType
 import com.musica.common.service.models.response.ServiceResponse
 import com.musica.common.service.volley.IService

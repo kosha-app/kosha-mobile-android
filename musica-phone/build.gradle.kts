@@ -81,11 +81,12 @@ android {
 
         debug {
             isMinifyEnabled = false
-            buildConfigField(
-                "String",
-                "BASE_MCA_URL",
-                "\"https://kosha-app-developer.azurewebsites.net/%s\""
-            )
+//            buildConfigField(
+//                "String",
+//                "BASE_MCA_URL",
+//                "\"https://kosha-app-developer.azurewebsites.net/%s\""
+//            )
+            buildConfigField("String", "BASE_MCA_URL", "\"https://kosha-app.azurewebsites.net/%s\"")
             signingConfig = signingConfigs.getByName("debug")
             tasks {
                 named("build") {

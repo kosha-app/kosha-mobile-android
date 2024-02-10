@@ -1,6 +1,6 @@
 package com.musica.common.device.repository
 
-import com.musica.common.device.GetDeviceResponse
+import com.musica.common.service.models.response.GetDeviceResponse
 import com.musica.common.device.service.DeviceService
 import com.musica.common.service.volley.ServiceResult
 import kotlinx.coroutines.Dispatchers

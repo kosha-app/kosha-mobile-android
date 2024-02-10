@@ -3,10 +3,10 @@ package com.musica.dashboard.player.repository
 import com.musica.common.service.models.response.ResponseType
 import com.musica.common.service.models.response.ServiceResponse
 import com.musica.common.service.volley.ServiceResult
-import com.musica.dashboard.player.service.AlbumResponse
-import com.musica.dashboard.player.service.SearchAlbumsResponse
-import com.musica.dashboard.player.service.SearchTracksResponse
-import com.musica.dashboard.player.service.TrackResponse
+import com.musica.common.service.models.response.AlbumResponse
+import com.musica.common.service.models.response.SearchAlbumsResponse
+import com.musica.common.service.models.response.SearchTracksResponse
+import com.musica.common.service.models.response.TrackResponse
 import com.musica.dashboard.player.service.TrackService
 import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.test.runTest

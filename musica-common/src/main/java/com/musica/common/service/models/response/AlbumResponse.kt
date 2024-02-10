@@ -1,4 +1,4 @@
-package com.musica.dashboard.player.service
+package com.musica.common.service.models.response
 
 class AlbumResponse(
     val id: String?,

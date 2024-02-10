@@ -1,6 +1,6 @@
 package com.musica.common.device.service
 
-import com.musica.common.device.GetDeviceResponse
+import com.musica.common.service.models.response.GetDeviceResponse
 import com.musica.common.service.volley.IService
 import com.musica.common.service.volley.ServiceResult
 import javax.inject.Inject

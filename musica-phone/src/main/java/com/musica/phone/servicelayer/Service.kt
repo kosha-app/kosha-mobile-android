@@ -11,6 +11,7 @@ import com.android.volley.VolleyError
 import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.JsonObjectRequest
 import com.google.gson.Gson
+import com.musica.common.service.models.response.ExceptionResponse
 import com.musica.common.service.models.response.ResponseType
 import com.musica.common.service.models.response.ServiceResponse
 import com.musica.common.service.volley.IService
@@ -77,7 +78,6 @@ class Service @Inject constructor(
         val jsonObjectRequest = createJsonObjectRequest(
             url = url,
             method = method,
-            responseType = responseType,
             continuation = continuation
         ) { response ->
             handleResponse(url, response, responseType, continuation)
@@ -96,7 +96,6 @@ class Service @Inject constructor(
             url = url,
             method = method,
             requestBody = parseDataModelToJson(request),
-            responseType = responseType,
             continuation = continuation
         ) { response ->
             handleResponse(url, response, responseType, continuation)
@@ -123,7 +122,6 @@ class Service @Inject constructor(
         url: String,
         method: Int,
         requestBody: JSONObject? = null,
-        responseType: Class<T>,
         continuation: CancellableContinuation<ServiceResult<T>>,
         onResponse: (JSONObject?) -> Unit
     ): JsonObjectRequest {
@@ -133,7 +131,6 @@ class Service @Inject constructor(
                 handleError(
                     url,
                     error,
-                    responseType,
                     continuation
                 )
             }) {
@@ -165,7 +162,6 @@ class Service @Inject constructor(
     private fun <T : Any> handleError(
         url: String,
         error: VolleyError,
-        responseType: Class<T>,
         continuation: CancellableContinuation<ServiceResult<T>>
     ) {
         val byteBody = String(
@@ -173,7 +169,6 @@ class Service @Inject constructor(
             Charset.forName(HttpHeaderParser.parseCharset(error.networkResponse?.headers, "UTF-8"))
         )
 
-        val nullData = parseJsonToDataModel(JSONObject(byteBody), responseType)
         try {
             val data = parseJsonToDataModel(
                 JSONObject(byteBody),
@@ -188,20 +183,20 @@ class Service @Inject constructor(
                 "Response",
                 "url:${BASE_URL.format(url)} \ncode: ${data?.status} \nmessage: ${data?.message} \ntrace: ${error.stackTraceToString()}"
             )
-            val apiResult = ServiceResult(serviceResponse = response, nullData)
+            val apiResult = ServiceResult<T>(serviceResponse = response)
             continuation.resume(apiResult)
         } catch (e: Exception) {
             Log.e("Service Exception", e.stackTraceToString())
             val apiResponse = ServiceResponse(
                 responseType = ResponseType.CONNECTION_ERROR,
                 code = "Connection Error",
-                message = byteBody
+                message = "Something went wrong"
             )
             Log.e(
                 "Response",
-                "url:${BASE_URL.format(url)} \ncode: ${error.networkResponse.statusCode} \nmessage: $byteBody \ntrace: ${error.stackTraceToString()}"
+                "url:${BASE_URL.format(url)} \ncode: \nmessage: $byteBody \ntrace: ${error.stackTraceToString()}"
             )
-            val apiResult = ServiceResult(serviceResponse = apiResponse, nullData)
+            val apiResult = ServiceResult<T>(serviceResponse = apiResponse)
             continuation.resume(apiResult)
         }
         // Handle error and log accordingly
@@ -224,7 +219,7 @@ class Service @Inject constructor(
     }
 
     private fun <T : Any> parseJsonToDataModel(jsonObject: JSONObject?, modelClass: Class<T>): T? {
-        return if (modelClass == Void::class.java && jsonObject == null) {
+        return if (modelClass == Void::class.java) {
             null
         } else {
             Gson().fromJson(jsonObject.toString(), modelClass)

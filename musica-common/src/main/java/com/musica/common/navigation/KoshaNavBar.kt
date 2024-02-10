@@ -116,7 +116,6 @@ fun Preview() {
     KoshaTheme {
         Surface {
             KoshaBottomNav(navController = rememberNavController())
-//            KoshaNavBar(homeOnClick = {}, isHome = true)
         }
     }
 }

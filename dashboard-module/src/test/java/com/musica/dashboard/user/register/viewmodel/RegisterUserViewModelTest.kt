@@ -5,9 +5,8 @@ import app.cash.turbine.test
 import com.musica.common.installs.DeviceInfo
 import com.musica.common.service.models.response.DefaultResponse
 import com.musica.common.service.models.response.ResponseType
-import com.musica.common.service.models.response.ServiceResponse
+import com.musica.common.service.models.response.*
 import com.musica.common.service.volley.ServiceResult
-import com.musica.common.user.CheckEmailResponse
 import com.musica.common.user.repository.UserRepository
 import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.Dispatchers

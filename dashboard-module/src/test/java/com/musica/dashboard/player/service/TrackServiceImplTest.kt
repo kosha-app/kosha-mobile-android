@@ -1,7 +1,11 @@
 package com.musica.dashboard.player.service
 
+import com.musica.common.service.models.response.AlbumResponse
 import com.musica.common.service.models.response.ResponseType
+import com.musica.common.service.models.response.SearchAlbumsResponse
+import com.musica.common.service.models.response.SearchTracksResponse
 import com.musica.common.service.models.response.ServiceResponse
+import com.musica.common.service.models.response.TrackResponse
 import com.musica.common.service.volley.IService
 import com.musica.common.service.volley.ServiceResult
 import com.nhaarman.mockitokotlin2.whenever

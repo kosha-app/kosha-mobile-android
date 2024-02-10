@@ -1,4 +1,4 @@
-package com.musica.dashboard.player.service
+package com.musica.common.service.models.response
 
 class TrackResponse(
     val id: String?,

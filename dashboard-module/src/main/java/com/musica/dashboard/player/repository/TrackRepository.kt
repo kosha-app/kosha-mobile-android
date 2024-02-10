@@ -1,10 +1,10 @@
 package com.musica.dashboard.player.repository
 
 import com.musica.common.service.volley.ServiceResult
-import com.musica.dashboard.player.service.AlbumResponse
-import com.musica.dashboard.player.service.SearchAlbumsResponse
-import com.musica.dashboard.player.service.SearchTracksResponse
-import com.musica.dashboard.player.service.TrackResponse
+import com.musica.common.service.models.response.AlbumResponse
+import com.musica.common.service.models.response.SearchAlbumsResponse
+import com.musica.common.service.models.response.SearchTracksResponse
+import com.musica.common.service.models.response.TrackResponse
 import com.musica.dashboard.player.service.TrackService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
@@ -50,7 +51,8 @@ fun TopBar(
                     Image(
                         modifier = Modifier
                             .padding(start = 8.dp)
-                            .clickable(onClick = onBackPressed),
+                            .clickable(onClick = onBackPressed)
+                            .size(30.dp),
                         painter = painterResource(id = R.drawable.arrow_left),
                         contentDescription = "TopBar Navigation Icon",
                         colorFilter = ColorFilter.tint(Secondary)

@@ -47,7 +47,7 @@ fun KoshaBottomNav(navController: NavController) {
         BottomNavigation(
             Modifier
                 .fillMaxWidth()
-                .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
+                .padding(16.dp)
                 .border(
                     width = 2.dp,
                     brush = Brush.linearGradient(
@@ -105,7 +105,7 @@ sealed class BottomNavItem(val route: String, val iconId: Int, val label: String
     object Home : BottomNavItem("homeScreen", R.drawable.home_nav_icon, "Home")
     object Search : BottomNavItem("searchScreen", R.drawable.search_nav_icon, "Search")
     object YourLibrary : BottomNavItem("yourLibraryScreen", R.drawable.library_nav_icon, "Library")
-    object Premium : BottomNavItem("premiumScreen", R.drawable.premium_nav_icon, "Premium")
+//    object Premium : BottomNavItem("premiumScreen", R.drawable.premium_nav_icon, "Premium")
 }
 
 

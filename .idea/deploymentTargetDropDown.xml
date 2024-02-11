@@ -2,6 +2,15 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="AlbumScreenPreview">
+        <State />
+      </entry>
+      <entry key="ArtistScreenPreview">
+        <State />
+      </entry>
+      <entry key="ListViewPreview">
+        <State />
+      </entry>
       <entry key="musica-phone">
         <State />
       </entry>

@@ -42,38 +42,23 @@ import com.musica.common.compose.theme.Secondary
 @Composable
 @Exclude
 fun OptionsSheet(
-    coverUrl: String, trackName: String, trackArtist: String
+    trackName: String, trackArtist: String
 ) {
     Column(
         modifier = Modifier
+            .shadow(20.dp)
             .background(
                 brush = Brush.linearGradient(GreysColorMix_2),
-                shape = RoundedCornerShape(topEnd = 26.dp, topStart = 26.dp)
             )
-            .height(714.dp)
-            .shadow(20.dp)
+//            .height(500.dp)
     ) {
         Row(
             modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-
-            GlideImage(
-                model = coverUrl,
-                contentDescription = stringResource(id = R.string.music_nav_bar_navigation_icon_description_text),
-                modifier = Modifier
-                    .shadow(
-                        elevation = 5.dp, shape = RoundedCornerShape(28.dp)
-                    )
-                    .height(42.dp)
-                    .width(42.dp)
-                    .background(
-                        color = Primary, shape = RoundedCornerShape(28.dp)
-                    )
-            )
             Column(
                 modifier = Modifier
-                    .padding(start = 8.dp)
+                    .padding(start = 8.dp, bottom = 16.dp)
                     .weight(1f)
             ) {
                 Text(
@@ -84,12 +69,6 @@ fun OptionsSheet(
                 )
             }
 
-            RoundImage(
-                modifier = Modifier.shadow(elevation = 24.dp, shape = RoundedCornerShape(32.dp)),
-                painter = painterResource(id = R.drawable.arrow_down_icon),
-                imageSize = 20.dp,
-                circleSize = 44.dp
-            )
         }
 
         LazyColumn(Modifier.fillMaxWidth()) {
@@ -126,7 +105,8 @@ fun OptionsItem(
             modifier = Modifier
                 .shadow(elevation = 24.dp, shape = RoundedCornerShape(26.dp))
                 .background(color = DarkGrey, shape = RoundedCornerShape(26.dp))
-                .padding(14.dp), verticalAlignment = Alignment.CenterVertically
+                .padding(14.dp)
+            , verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 modifier = Modifier.weight(1f),
@@ -137,8 +117,8 @@ fun OptionsItem(
 
             Image(
                 modifier = Modifier.size(12.dp),
-                painter = painterResource(id = R.drawable.premium_nav_icon),
-                contentDescription = "Premium Nav Icon",
+                painter = painterResource(id = icon),
+                contentDescription = "Trailing Nav Icon",
                 colorFilter = ColorFilter.tint(MusicaBlueColor)
             )
             if (trailingText != null) {
@@ -152,28 +132,28 @@ fun OptionsItem(
 }
 
 val OPTIONS_ITEMS = listOf(
-    Option(icon =  R.drawable.premium_nav_icon, "Listen to music ad-free", "Premium"),
-    Option(icon =  R.drawable.premium_nav_icon, "Like"),
-    Option(icon =  R.drawable.premium_nav_icon, "Hide this song"),
-    Option(icon =  R.drawable.premium_nav_icon, "Add to playlist"),
-    Option(icon =  R.drawable.premium_nav_icon, "Add to queue"),
-    Option(icon =  R.drawable.premium_nav_icon, "View album"),
-    Option(icon =  R.drawable.premium_nav_icon, "View artist"),
-    Option(icon =  R.drawable.share_icon, "Share"),
-    Option(icon =  R.drawable.premium_nav_icon, "Show credits"),
-    Option(icon =  R.drawable.premium_nav_icon, "Show spotify code"),
+//    Option(icon =  R.drawable.premium_nav_icon, "Listen to music ad-free", "Premium"),
+    Option(icon =  R.drawable.heart_icon, "Like"),
+//    Option(icon =  R.drawable.premium_nav_icon, "Hide this song"),
+    Option(icon =  R.drawable.playlist_add_icon, "Add to playlist"),
+//    Option(icon =  R.drawable.premium_nav_icon, "Add to queue"),
+    Option(icon =  R.drawable.album_icon, "View album"),
+    Option(icon =  R.drawable.artist_icon, "View artist"),
+//    Option(icon =  R.drawable.share_icon, "Share"),
+    Option(icon =  R.drawable.credits_icon, "Show credits"),
+//    Option(icon =  R.drawable.premium_nav_icon, "Show spotify code"),
 
 
 )
 
 class Option(@DrawableRes val icon: Int, val mainText: String, val trailingText: String? = null)
 
-@Preview(showSystemUi = true)
+@Preview()
 @Composable
 @Exclude
 private fun OptionsUIPreview() {
     KoshaTheme {
-        OptionsSheet("", "Gazzet (Kazet)", trackArtist = "SageEM")
+        OptionsSheet("Gazzet (Kazet)", trackArtist = "SageEM")
 
     }
 }

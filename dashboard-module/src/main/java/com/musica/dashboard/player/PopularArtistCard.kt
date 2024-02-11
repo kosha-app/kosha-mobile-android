@@ -1,6 +1,7 @@
 package com.musica.dashboard.player
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
@@ -26,12 +27,13 @@ import com.musica.dashboard.home.ui.RecentPlayedBackground
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 @Exclude
-fun RecentlyPlayedCard(
+fun PopularArtistCard(
     modifier: Modifier,
     cardImageUrl: String,
-    recentlyPlayText: String
+    artistName: String,
+    onClick: () -> Unit
 ) {
-    Column(modifier = modifier) {
+    Column(modifier = modifier.clickable(onClick = onClick)) {
         Column(modifier = Modifier
             .shadow(
                 elevation = 20.dp,
@@ -55,12 +57,12 @@ fun RecentlyPlayedCard(
                     )
                     .size(76.dp),
                 model = cardImageUrl,
-                contentDescription = "Recently Player Card Image"
+                contentDescription = "Artist Card Image"
             )
             Text(
                 modifier = Modifier
                     .padding(top = 12.dp),
-                text = recentlyPlayText,
+                text = artistName,
                 fontSize = 11.sp,
                 color = Secondary
             )
@@ -73,5 +75,5 @@ fun RecentlyPlayedCard(
 @Composable
 @Exclude
 fun Preview(){
-    RecentlyPlayedCard(modifier = Modifier.padding(start = 16.dp, top = 20.dp, bottom = 40.dp),cardImageUrl = "", recentlyPlayText = "NAzo Mix")
+    PopularArtistCard(modifier = Modifier.padding(start = 16.dp, top = 20.dp, bottom = 40.dp),cardImageUrl = "", artistName = "NAzo Mix", {})
 }

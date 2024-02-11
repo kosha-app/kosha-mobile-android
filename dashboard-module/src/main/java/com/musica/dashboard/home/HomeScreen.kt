@@ -27,26 +27,26 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.startActivity
+import androidx.navigation.NavController
 import com.musica.common.compose.Exclude
 import com.musica.common.compose.theme.BackgroundGradientColors
 import com.musica.common.settings.SettingsActivity
+import com.musica.dashboard.DashboardActivity.Companion.ARTIST_SCREEN
 import com.musica.dashboard.home.viewmodel.DashboardViewModel
 import com.musica.dashboard.player.DashboardTopBar
-import com.musica.dashboard.player.RecentlyPlayedCard
+import com.musica.dashboard.player.PopularArtistCard
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @Exclude
 fun HomeScreen(
     viewModel: DashboardViewModel,
+    navController: NavController
 ) {
     val context = LocalContext.current
 
-    val trackName = remember { mutableStateOf("") }
-    val trackArtist = remember { mutableStateOf("") }
+    val popularArtists by viewModel.popularArtists.collectAsState()
 
-    val albumTracks by viewModel.albumTracks.collectAsState()
-    val coverUrl by viewModel.albumCoverUrl.collectAsState()
     val albumName = ""
 
     val recentlyPlayedCardImageUrl = ""
@@ -71,13 +71,6 @@ fun HomeScreen(
                     .verticalScroll(rememberScrollState())
                     .background(brush = Brush.verticalGradient(BackgroundGradientColors)),
             ) {
-                val list = listOf(
-                    Pair(recentlyPlayedCardImageUrl, recentlyPlayedText),
-                    Pair(recentlyPlayedCardImageUrl, recentlyPlayedText),
-                    Pair(recentlyPlayedCardImageUrl, recentlyPlayedText),
-                    Pair(recentlyPlayedCardImageUrl, recentlyPlayedText),
-                    Pair(recentlyPlayedCardImageUrl, recentlyPlayedText)
-                )
                 Text(
                     modifier = Modifier.padding(start = 16.dp),
                     text = "Recently Played $albumName",
@@ -85,12 +78,72 @@ fun HomeScreen(
                     color = Color.White,
                     fontWeight = FontWeight.Bold
                 )
+
+//                LazyRow(Modifier.fillMaxWidth()) {
+//                    items(items = albumTracks, itemContent = { item ->
+//                        DashboardItem(modifier = Modifier.padding(
+//                            start = 16.dp,
+//                            top = 20.dp,
+//                            bottom = 40.dp
+//                        ),
+//                            imageUrl = coverUrl,
+//                            header = item.trackArtist,
+//                            description = item.trackName ?: "",
+//                            onItemClick = {
+//                                trackName.value = item.trackName.toString()
+//                                trackArtist.value = item.trackArtist.toString()
+//                                for (track in albumTracks) {
+//                                    println("Sage selected Nazo: $item.id.toString()")
+//                                    if (item.id.toString() == track.id) {
+//                                        viewModel.prepareTrack(track.trackUrl.toString())
+//                                        println("Sage selected ${track.trackName} Nazo: ${item.id.toString()} track ${track.trackUrl}")
+//                                    }
+//                                }
+//                            })
+//                    })
+//                }
+
+                Text(
+                    modifier = Modifier.padding(start = 16.dp),
+                    text = "Recently Played $albumName",
+                    fontSize = 16.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold
+                )
+
+//                LazyRow(Modifier.fillMaxWidth()) {
+//                    items(items = albumTracks, itemContent = { item ->
+//                        DashboardItem(
+//                            modifier = Modifier.padding(
+//                                start = 16.dp,
+//                                top = 20.dp,
+//                                bottom = 40.dp
+//                            ),
+//                            imageUrl = coverUrl,
+//                            header = item.trackArtist,
+//                            description = item.trackName ?: "",
+//                        ) {}
+//                    })
+//                }
+
+                Text(
+                    modifier = Modifier.padding(start = 16.dp),
+                    text = "Popular Atists",
+                    fontSize = 16.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold
+                )
                 LazyRow(Modifier.fillMaxWidth()) {
-                    items(items = list, itemContent = { item ->
-                        RecentlyPlayedCard(
+                    items(items = popularArtists, itemContent = { item ->
+                        PopularArtistCard(
                             modifier = Modifier.padding(
                                 start = 16.dp, top = 20.dp, bottom = 40.dp
-                            ), cardImageUrl = item.first, recentlyPlayText = item.second
+                            ),
+                            cardImageUrl = "https://firebasestorage.googleapis.com/v0/b/music-app-49e44.appspot.com/o/1200x1200bf-60.jpg?alt=media&token=49a7f7cd-150c-41d8-938b-200b5e9e4cad",
+                            artistName = item.artistName,
+                            onClick = {
+                                navController.navigate("$ARTIST_SCREEN/${item.artistName}")
+                            }
                         )
                     })
                 }
@@ -103,75 +156,20 @@ fun HomeScreen(
                     fontWeight = FontWeight.Bold
                 )
 
-                LazyRow(Modifier.fillMaxWidth()) {
-                    items(items = albumTracks, itemContent = { item ->
-                        DashboardItem(modifier = Modifier.padding(
-                            start = 16.dp,
-                            top = 20.dp,
-                            bottom = 40.dp
-                        ),
-                            imageUrl = coverUrl,
-                            header = item.trackArtist,
-                            description = item.trackName ?: "",
-                            onItemClick = {
-                                trackName.value = item.trackName.toString()
-                                trackArtist.value = item.trackArtist.toString()
-                                for (track in albumTracks) {
-                                    println("Sage selected Nazo: $item.id.toString()")
-                                    if (item.id.toString() == track.id) {
-                                        viewModel.prepareTrack(track.trackUrl.toString())
-                                        println("Sage selected ${track.trackName} Nazo: ${item.id.toString()} track ${track.trackUrl}")
-                                    }
-                                }
-                            })
-                    })
-                }
-
-                Text(
-                    modifier = Modifier.padding(start = 16.dp),
-                    text = "Recently Played $albumName",
-                    fontSize = 16.sp,
-                    color = Color.White,
-                    fontWeight = FontWeight.Bold
-                )
-
-                LazyRow(Modifier.fillMaxWidth()) {
-                    items(items = albumTracks, itemContent = { item ->
-                        DashboardItem(
-                            modifier = Modifier.padding(
-                                start = 16.dp,
-                                top = 20.dp,
-                                bottom = 40.dp
-                            ),
-                            imageUrl = coverUrl,
-                            header = item.trackArtist,
-                            description = item.trackName ?: "",
-                        ) {}
-                    })
-                }
-
-                Text(
-                    modifier = Modifier.padding(start = 16.dp),
-                    text = "Recently Played $albumName",
-                    fontSize = 16.sp,
-                    color = Color.White,
-                    fontWeight = FontWeight.Bold
-                )
-
-                LazyRow(Modifier.fillMaxWidth()) {
-                    items(items = albumTracks, itemContent = { item ->
-                        DashboardItem(
-                            modifier = Modifier.padding(
-                                start = 16.dp,
-                                top = 20.dp,
-                                bottom = 40.dp
-                            ),
-                            imageUrl = coverUrl,
-                            header = item.trackArtist,
-                            description = item.trackName ?: "",
-                        ) {}
-                    })
-                }
+//                LazyRow(Modifier.fillMaxWidth()) {
+//                    items(items = albumTracks, itemContent = { item ->
+//                        DashboardItem(
+//                            modifier = Modifier.padding(
+//                                start = 16.dp,
+//                                top = 20.dp,
+//                                bottom = 40.dp
+//                            ),
+//                            imageUrl = coverUrl,
+//                            header = item.trackArtist,
+//                            description = item.trackName ?: "",
+//                        ) {}
+//                    })
+//                }
             }
 
         }

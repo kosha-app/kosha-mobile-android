@@ -1,5 +1,7 @@
 package com.musica.common.service.models.response
 
+import com.musica.common.service.models.response.TrackResponse.Companion.toTrack
+
 class AlbumResponse(
     val id: String?,
     val albumName: String?,
@@ -16,7 +18,8 @@ class AlbumResponse(
                 albumName = albumName,
                 artistName = albumArtist,
                 coverUrl = coverUrl,
-                releaseData = releaseDate
+                releaseDate = releaseDate,
+                tracks = tracks.map { track -> track.toTrack() }
             )
         }
     }
@@ -30,5 +33,6 @@ class Album(
     val albumName: String?,
     val artistName: String?,
     val coverUrl: String?,
-    val releaseData: String?
+    val releaseDate: String?,
+    val tracks: List<Track>
 )

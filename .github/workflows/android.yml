@@ -17,11 +17,11 @@ permissions:
 
 jobs:
   version-bump:
-#    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     permissions: {actions: write}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
       - name: Bump version
         id: bump_version
         uses: oflynned/Android-Semantic-Release@master

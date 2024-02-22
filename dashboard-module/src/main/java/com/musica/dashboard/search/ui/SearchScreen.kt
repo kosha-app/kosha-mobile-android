@@ -37,6 +37,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.musica.common.R
@@ -48,6 +49,7 @@ import com.musica.common.compose.theme.KoshaTheme
 import com.musica.common.compose.theme.Secondary
 import com.musica.common.compose.theme.Tertiary25
 import com.musica.common.compose.theme.White
+import com.musica.dashboard.DashboardActivity.Companion.ALBUM_SCREEN
 import com.musica.dashboard.player.KoshaTopBar
 import com.musica.dashboard.search.viewmodel.SearchViewModel
 
@@ -55,7 +57,9 @@ import com.musica.dashboard.search.viewmodel.SearchViewModel
 @Exclude
 fun SearchScreen(
     searchViewModel: SearchViewModel,
-    onTrackPlayClick: (String, String, String, String) -> Unit
+    onTrackPlayClick: (String, String, String, String, String) -> Unit,
+    navController: NavController,
+    onBackPressed: () -> Unit
 ) {
 
     var searchQueryInput by remember { mutableStateOf("") }
@@ -67,7 +71,7 @@ fun SearchScreen(
         topBar = {
             KoshaTopBar(
                 label = "Search",
-                backOnClick = { /*TODO*/ },
+                backOnClick = onBackPressed,
                 modifier = Modifier
                     .background(color = Tertiary25)
             )
@@ -115,7 +119,8 @@ fun SearchScreen(
                                         item.trackName.toString(),
                                         item.trackArtist.toString(),
                                         item.trackUrl.toString(),
-                                        item.coverUrl.toString()
+                                        item.coverUrl.toString(),
+                                        item.trackId.toString()
                                     )
                                 }
                             )
@@ -123,13 +128,13 @@ fun SearchScreen(
                     })
 
                     LazyColumn(content = {
-                        items(items = albums) { items ->
+                        items(items = albums) { album ->
                             SearchedItems(
-                                itemPictureUrl = items.coverUrl.toString(),
-                                label = items.albumName.toString(),
-                                subLabel = "Album - ${items.artistName}",
+                                itemPictureUrl = album.coverUrl.toString(),
+                                label = album.albumName.toString(),
+                                subLabel = "Album - ${album.artistName}",
                                 onClick = {
-                                    //TODO to implement album onClick
+                                    navController.navigate("$ALBUM_SCREEN/${album.albumId}")
                                 }
                             )
                         }

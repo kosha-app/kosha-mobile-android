@@ -13,11 +13,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.musica.common.compose.Exclude
+import com.musica.common.compose.theme.KoshaTheme
 import com.musica.common.compose.theme.Primary
 import com.musica.common.compose.theme.Secondary
 
@@ -26,7 +28,7 @@ import com.musica.common.compose.theme.Secondary
 @Composable
 @Exclude
 fun DashboardItem(
-    modifier: Modifier, imageUrl: String, header: String? = null, description: String, onItemClick: () -> Unit
+    modifier: Modifier = Modifier, imageUrl: String, header: String? = null, description: String, onItemClick: () -> Unit
 ) {
     Column(modifier = modifier) {
         Column(
@@ -47,7 +49,7 @@ fun DashboardItem(
                     .width(131.55209.dp)
                     .height(131.55209.dp),
                 model = imageUrl,
-                contentDescription = "Pic Nje"
+                contentDescription = "Item Picture"
             )
             if (header != null) {
                 Text(
@@ -67,5 +69,14 @@ fun DashboardItem(
             )
         }
     }
-
 }
+
+@Composable
+@Preview
+@Exclude
+private fun DashboardItemPreview(){
+    KoshaTheme {
+        DashboardItem(imageUrl = "" , description = "hdfhdfg", onItemClick = {})
+    }
+}
+

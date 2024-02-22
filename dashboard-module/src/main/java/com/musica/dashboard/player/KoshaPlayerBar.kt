@@ -32,7 +32,7 @@ import com.musica.dashboard.R.string
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 @Exclude
-fun MusicaPlayerBar(
+fun KoshaPlayerBar(
     modifier: Modifier,
     currentPosition: Float,
     duration: Float,

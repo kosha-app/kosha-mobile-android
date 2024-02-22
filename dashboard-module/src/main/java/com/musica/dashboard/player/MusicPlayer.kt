@@ -82,7 +82,7 @@ fun MusicPlayer(
     val scope = rememberCoroutineScope()
 
     BottomSheetScaffold(
-        sheetContent ={ OptionsSheet("", "Gazzet (Kazet)", trackArtist = "SageEM") },
+        sheetContent ={ OptionsSheet( "Gazzet (Kazet)", trackArtist = "SageEM") },
         scaffoldState = scaffoldState,
         sheetPeekHeight = 0.dp
     )
@@ -158,36 +158,38 @@ fun MusicPlayer(
                     onNextOnClick = onNextOnClick,
                     onRepeatOnClick = onRepeatOnClick
                 )
-                MusicPlayerFooter()
-                LyricsCard(
-                    modifier = Modifier
-                        .padding(
-                            top = 40.dp,
-                            start = 16.dp,
-                            end = 16.dp
-                        )
-                        .shadow(24.dp))
+                if (false){ //TODO to implement with backend and toggle
+                    MusicPlayerFooter()
+                    LyricsCard(
+                        modifier = Modifier
+                            .padding(
+                                top = 40.dp,
+                                start = 16.dp,
+                                end = 16.dp
+                            )
+                            .shadow(24.dp))
 
-                InfoCard(
-                    modifier = Modifier
-                        .padding(horizontal = 16.dp, vertical = 40.dp)
-                        .shadow(24.dp),
-                    headingText = "About The Artist",
-                    descriptionHeader = "SagEM",
-                    descriptionSubText = "23,545,456 monthly listeners",
-                    buttonText = "Follow",
-                    description = "An internet based vocalist, producer, writer, director and performance artist, Oliver Tree..."
-                )
+                    InfoCard(
+                        modifier = Modifier
+                            .padding(horizontal = 16.dp, vertical = 40.dp)
+                            .shadow(24.dp),
+                        headingText = "About The Artist",
+                        descriptionHeader = "SagEM",
+                        descriptionSubText = "23,545,456 monthly listeners",
+                        buttonText = "Follow",
+                        description = "An internet based vocalist, producer, writer, director and performance artist, Oliver Tree..."
+                    )
 
-                InfoCard(
-                    modifier = Modifier
-                        .padding(start = 16.dp, end = 16.dp, bottom = 30.dp)
-                        .shadow(24.dp),
-                    headingText = "Live Events",
-                    descriptionHeader = "jun 9 - aug 25",
-                    buttonText = "Find tickets",
-                    descriptionSubText = "4 events on tour"
-                )
+                    InfoCard(
+                        modifier = Modifier
+                            .padding(start = 16.dp, end = 16.dp, bottom = 30.dp)
+                            .shadow(24.dp),
+                        headingText = "Live Events",
+                        descriptionHeader = "jun 9 - aug 25",
+                        buttonText = "Find tickets",
+                        descriptionSubText = "4 events on tour"
+                    )
+                }
             }
         }
     }

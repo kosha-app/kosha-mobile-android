@@ -45,31 +45,31 @@ fun DashboardTopBar(
             color = Color.White,
             modifier = Modifier.weight(1f)
         )
-        RoundImage(
-            modifier = Modifier
-                .shadow(
-                    elevation = 8.dp,
-                    spotColor = Color.Black,
-                    ambientColor = Color.Black,
-                    shape = RoundedCornerShape(32.dp)
-                ),
-            circleSize = 44.dp,
-            painter = painterResource(id = R.drawable.flash),
-            imageSize = 24.dp,
-        )
-        RoundImage(
-            modifier = Modifier
-                .padding(start = 26.dp)
-                .shadow(
-                    elevation = 8.dp,
-                    spotColor = Color.Black,
-                    ambientColor = Color.Black,
-                    shape = RoundedCornerShape(32.dp)
-                ),
-            circleSize = 44.dp,
-            painter = painterResource(id = R.drawable.catagory_icon),
-            imageSize = 24.dp,
-        )
+//        RoundImage(
+//            modifier = Modifier
+//                .shadow(
+//                    elevation = 8.dp,
+//                    spotColor = Color.Black,
+//                    ambientColor = Color.Black,
+//                    shape = RoundedCornerShape(32.dp)
+//                ),
+//            circleSize = 44.dp,
+//            painter = painterResource(id = R.drawable.flash),
+//            imageSize = 24.dp,
+//        )
+//        RoundImage(
+//            modifier = Modifier
+//                .padding(start = 26.dp)
+//                .shadow(
+//                    elevation = 8.dp,
+//                    spotColor = Color.Black,
+//                    ambientColor = Color.Black,
+//                    shape = RoundedCornerShape(32.dp)
+//                ),
+//            circleSize = 44.dp,
+//            painter = painterResource(id = R.drawable.catagory_icon),
+//            imageSize = 24.dp,
+//        )
 
         RoundImage(
             modifier = Modifier

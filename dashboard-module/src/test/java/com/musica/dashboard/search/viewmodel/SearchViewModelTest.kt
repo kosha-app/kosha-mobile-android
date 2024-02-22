@@ -66,6 +66,8 @@ class SearchViewModelTest {
                                 "track-id",
                                 "trackName",
                                 "trackArtist",
+                                "trackFeatures",
+                                200,
                                 "trackUrl",
                                 "coverUrl"
                             ),
@@ -73,6 +75,8 @@ class SearchViewModelTest {
                                 "track-id2",
                                 "trackName2",
                                 "trackArtist2",
+                                "trackFeatures",
+                                200,
                                 "trackUrl2",
                                 "coverUrl2"
                             )
@@ -91,6 +95,8 @@ class SearchViewModelTest {
                         "track-id",
                         "trackName",
                         "trackArtist",
+                        "trackFeatures",
+                        200,
                         "trackUrl",
                         "coverUrl"
                     ),
@@ -98,6 +104,8 @@ class SearchViewModelTest {
                         "track-id2",
                         "trackName2",
                         "trackArtist2",
+                        "trackFeatures",
+                        200,
                         "trackUrl2",
                         "coverUrl2"
                     )

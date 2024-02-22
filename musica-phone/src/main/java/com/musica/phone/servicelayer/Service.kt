@@ -1,6 +1,5 @@
 package com.musica.phone.servicelayer
 
-import android.util.Log
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.NetworkResponse
 import com.android.volley.ParseError
@@ -80,7 +79,7 @@ class Service @Inject constructor(
             method = method,
             continuation = continuation
         ) { response ->
-            handleResponse(url, response, responseType, continuation)
+            handleResponse(response, responseType, continuation)
         }
 
         sendRequest(jsonObjectRequest, continuation)
@@ -98,14 +97,13 @@ class Service @Inject constructor(
             requestBody = parseDataModelToJson(request),
             continuation = continuation
         ) { response ->
-            handleResponse(url, response, responseType, continuation)
+            handleResponse(response, responseType, continuation)
         }
 
         sendRequest(jsonObjectRequest, continuation)
     }
 
     private fun <T : Any> handleResponse(
-        url: String,
         response: JSONObject?,
         responseType: Class<T>,
         continuation: CancellableContinuation<ServiceResult<T>>
@@ -115,7 +113,6 @@ class Service @Inject constructor(
         val apiResponse = ServiceResponse(ResponseType.SUCCESS, "Success: 200")
         val apiResult = ServiceResult(apiResponse, data)
         continuation.resume(apiResult)
-        Log.i("Response", "url:$url \n${apiResult.serviceResponse.code} \n$data")
     }
 
     private fun <T : Any> createJsonObjectRequest(
@@ -129,7 +126,6 @@ class Service @Inject constructor(
             Response.Listener { response -> onResponse(response) },
             Response.ErrorListener { error ->
                 handleError(
-                    url,
                     error,
                     continuation
                 )
@@ -160,7 +156,6 @@ class Service @Inject constructor(
     }
 
     private fun <T : Any> handleError(
-        url: String,
         error: VolleyError,
         continuation: CancellableContinuation<ServiceResult<T>>
     ) {
@@ -179,28 +174,17 @@ class Service @Inject constructor(
                 code = data?.status.toString(),
                 message = data?.message.toString()
             )
-            Log.e(
-                "Response",
-                "url:${BASE_URL.format(url)} \ncode: ${data?.status} \nmessage: ${data?.message} \ntrace: ${error.stackTraceToString()}"
-            )
             val apiResult = ServiceResult<T>(serviceResponse = response)
             continuation.resume(apiResult)
         } catch (e: Exception) {
-            Log.e("Service Exception", e.stackTraceToString())
             val apiResponse = ServiceResponse(
                 responseType = ResponseType.CONNECTION_ERROR,
                 code = "Connection Error",
                 message = "Something went wrong"
             )
-            Log.e(
-                "Response",
-                "url:${BASE_URL.format(url)} \ncode: \nmessage: $byteBody \ntrace: ${error.stackTraceToString()}"
-            )
             val apiResult = ServiceResult<T>(serviceResponse = apiResponse)
             continuation.resume(apiResult)
         }
-        // Handle error and log accordingly
-        Log.e("Response", "url:$url  \nmessage: $byteBody \ntrace: ${error.stackTraceToString()}")
     }
 
     private fun <T : Any> sendRequest(
@@ -213,7 +197,6 @@ class Service @Inject constructor(
         requestQueue.add(jsonObjectRequest)
 
         continuation.invokeOnCancellation {
-            Log.i("Response Cancel", "url ${jsonObjectRequest.url}")
             jsonObjectRequest.cancel()
         }
     }

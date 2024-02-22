@@ -178,7 +178,7 @@ fun ArtistScreen(
     }
 
     LaunchedEffect(viewModel) {
-        viewModel.getPopularArtistsTracks(artistName)
+        viewModel.getPopularArtistsTracks(artistName.trim())
     }
 }
 

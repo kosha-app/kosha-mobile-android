@@ -12,9 +12,6 @@ on:
   pull_request:
     types: [ opened, reopened, synchronize ]
 
-permissions:
-  actions: write
-
 jobs:
   version-bump:
     if: github.ref == 'refs/heads/master'

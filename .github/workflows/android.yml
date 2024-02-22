@@ -17,8 +17,9 @@ permissions:
 
 jobs:
   version-bump:
-    if: github.ref == 'refs/heads/master'
+#    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
+    permissions: {actions: write}
     steps:
       - uses: actions/checkout@v3
       - name: Bump version

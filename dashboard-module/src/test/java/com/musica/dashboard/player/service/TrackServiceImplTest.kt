@@ -25,7 +25,7 @@ class TrackServiceImplTest {
         val trackId = "123"
         val response = ServiceResult(
             ServiceResponse(ResponseType.SUCCESS),
-            TrackResponse(trackId, "trackName", "trackArtist", "trackUrl", "coverUrl")
+            TrackResponse(trackId, "trackName", "trackArtist", "trackFeatures",200,"trackUrl", "coverUrl")
         )
         whenever(mockService.GET("music/track/123", TrackResponse::class.java)).thenReturn(response)
 

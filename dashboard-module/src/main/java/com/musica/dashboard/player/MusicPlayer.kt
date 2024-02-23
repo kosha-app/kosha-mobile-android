@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -118,7 +119,7 @@ fun MusicPlayer(
 
                 Column(
                     Modifier
-                        .padding(vertical = 80.dp)
+                        .padding(vertical = 60.dp)
                 ) {
 
                     GlideImage(
@@ -158,8 +159,10 @@ fun MusicPlayer(
                     onNextOnClick = onNextOnClick,
                     onRepeatOnClick = onRepeatOnClick
                 )
+
+                MusicPlayerFooter()
+
                 if (false){ //TODO to implement with backend and toggle
-                    MusicPlayerFooter()
                     LyricsCard(
                         modifier = Modifier
                             .padding(
@@ -354,38 +357,43 @@ fun MusicPlayControls(
 @Exclude
 fun MusicPlayerFooter(){
     Row(
-        Modifier.padding(horizontal = 16.dp),
+        Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.device_icon ),
-            contentDescription = stringResource(id = string.music_player_device_icon_description)
-        )
+        Spacer(modifier = Modifier.padding(0.dp).weight(1f))
+//        Image(
+//            painter = painterResource(id = R.drawable.device_icon ),
+//            contentDescription = stringResource(id = string.music_player_device_icon_description)
+//        )
+//
+//        Column(
+//            Modifier
+//                .weight(1f)
+//                .padding(start = 12.dp)
+//        ) {
+//            Text(
+//                text = stringResource(id = string.music_player_current_device_playing_header_text),
+//                fontSize = 14.sp,
+//                color = Color.White
+//            )
+//            Text(
+//                text = stringResource(id = string.music_player_current_device_playing_text),
+//                fontSize = 14.sp,
+//                color = Secondary
+//            )
+//        }
 
-        Column(
-            Modifier
-                .weight(1f)
-                .padding(start = 12.dp)
-        ) {
-            Text(
-                text = stringResource(id = string.music_player_current_device_playing_header_text),
-                fontSize = 14.sp,
-                color = Color.White
-            )
-            Text(
-                text = stringResource(id = string.music_player_current_device_playing_text),
-                fontSize = 14.sp,
-                color = Secondary
-            )
-        }
-
+//        Image(
+//            painter = painterResource(id = R.drawable.share_icon ),
+//            contentDescription = stringResource(id = string.music_player_share_icon_description))
         Image(
-            painter = painterResource(id = R.drawable.share_icon ),
-            contentDescription = stringResource(id = string.music_player_share_icon_description))
-        Image(
+            modifier = Modifier
+                .padding(end = 24.dp),
             painter = painterResource(id = R.drawable.sort_icon ),
             contentDescription = stringResource(id = string.music_player_more_device_icon_description),
-            Modifier.padding(start = 24.dp)
+
         )
     }
 }

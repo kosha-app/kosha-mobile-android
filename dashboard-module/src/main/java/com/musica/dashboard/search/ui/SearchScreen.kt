@@ -50,6 +50,7 @@ import com.musica.common.compose.theme.Secondary
 import com.musica.common.compose.theme.Tertiary25
 import com.musica.common.compose.theme.White
 import com.musica.dashboard.DashboardActivity.Companion.ALBUM_SCREEN
+import com.musica.dashboard.player.KoshaMusicPlayerViewModel
 import com.musica.dashboard.player.KoshaTopBar
 import com.musica.dashboard.search.viewmodel.SearchViewModel
 
@@ -57,7 +58,7 @@ import com.musica.dashboard.search.viewmodel.SearchViewModel
 @Exclude
 fun SearchScreen(
     searchViewModel: SearchViewModel,
-    onTrackPlayClick: (String, String, String, String, String) -> Unit,
+    playerViewModel: KoshaMusicPlayerViewModel,
     navController: NavController,
     onBackPressed: () -> Unit
 ) {
@@ -115,13 +116,7 @@ fun SearchScreen(
                                 label = item.trackName.toString(),
                                 subLabel = "Song - ${item.trackArtist}",
                                 onClick = {
-                                    onTrackPlayClick(
-                                        item.trackName.toString(),
-                                        item.trackArtist.toString(),
-                                        item.trackUrl.toString(),
-                                        item.coverUrl.toString(),
-                                        item.trackId.toString()
-                                    )
+                                    playerViewModel.preparePlaylist(listOf(item))
                                 }
                             )
                         }

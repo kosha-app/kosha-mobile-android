@@ -56,7 +56,7 @@ class PopularArtistResponse(val artists: List<Artist>)
 
 class Artist(
     val artistName: String,
-    val totalStreams: Int
+    val totalStreams: Int,
 )
 
 data class Track(

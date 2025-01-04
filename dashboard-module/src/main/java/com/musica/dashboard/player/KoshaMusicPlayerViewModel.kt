@@ -39,6 +39,7 @@ class KoshaMusicPlayerViewModel @Inject constructor(
 
     fun preparePlaylist(tracList: List<Track>) {
         _playList.value = tracList
+        println("SageTheMan - track played : url ${_playList.value[0].trackUrl.toString()}")
         playTrack(trackId = _playList.value[0].trackId.toString(), trackUrl = _playList.value[0].trackUrl.toString())
     }
 
@@ -70,7 +71,7 @@ class KoshaMusicPlayerViewModel @Inject constructor(
                             _duration.value = mediaPlayer.duration
                         }
                     } else {
-                        mediaPlayer.stop()
+//                        mediaPlayer.stop()
                         mediaPlayer.reset()
                         mediaPlayer.setDataSource(trackUrl)
                         mediaPlayer.prepareAsync()

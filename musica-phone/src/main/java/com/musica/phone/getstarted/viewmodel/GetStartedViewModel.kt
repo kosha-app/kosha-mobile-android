@@ -46,6 +46,7 @@ class GetStartedViewModel @Inject constructor(
 
             when (response?.serviceResponse?.responseType) {
                 ResponseType.SUCCESS -> {
+                    print("SageTheMan - success")
                     _returnIntent.emit(
                         Intent(
                             application.applicationContext,
@@ -55,6 +56,7 @@ class GetStartedViewModel @Inject constructor(
                 }
 
                 ResponseType.CONNECTION_ERROR -> {
+                    print("SageTheMan - connection error")
                     _returnIntent.emit(
                         Intent(
                             application.applicationContext,
@@ -64,6 +66,7 @@ class GetStartedViewModel @Inject constructor(
                 }
 
                 else -> {
+                    print("SageTheMan - just error")
                     _returnIntent.emit(
                         Intent(
                             application.applicationContext,

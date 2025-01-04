@@ -25,12 +25,12 @@ interface UserService {
     suspend fun getUserProfile(userId: String): ServiceResult<GetUserInfoResponse>
 }
 
-const val USER_SIGN_IN_URL = "user/signin"
-const val REGISTER_USER_URL = "user/register"
-const val RESEND_OTP_URL = "user/resendOtp/%s"
-const val CHECK_EMAIL_URL = "user/checkemail/%s"
-const val VERIFY_OTP_URL = "user/verification/%s"
-const val GET_USER_PROFILE_URL = "user/profile/%s"
+const val USER_SIGN_IN_URL = "user/v2/signin"
+const val REGISTER_USER_URL = "user/v2/register"
+const val RESEND_OTP_URL = "user/v2/resendOtp/%s"
+const val CHECK_EMAIL_URL = "user/v2/checkemail/%s"
+const val VERIFY_OTP_URL = "user/v2/verification/%s"
+const val GET_USER_PROFILE_URL = "user/v2/profile/%s"
 
 class UserServiceImpl @Inject constructor(
     private val service: IService

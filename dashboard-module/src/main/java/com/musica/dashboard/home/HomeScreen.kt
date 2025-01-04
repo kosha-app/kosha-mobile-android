@@ -71,13 +71,13 @@ fun HomeScreen(
                     .verticalScroll(rememberScrollState())
                     .background(brush = Brush.verticalGradient(BackgroundGradientColors)),
             ) {
-                Text(
-                    modifier = Modifier.padding(start = 16.dp),
-                    text = "Recently Played $albumName",
-                    fontSize = 16.sp,
-                    color = Color.White,
-                    fontWeight = FontWeight.Bold
-                )
+//                Text(
+//                    modifier = Modifier.padding(start = 16.dp),
+//                    text = "Recently Played $albumName",
+//                    fontSize = 16.sp,
+//                    color = Color.White,
+//                    fontWeight = FontWeight.Bold
+//                )
 
 //                LazyRow(Modifier.fillMaxWidth()) {
 //                    items(items = albumTracks, itemContent = { item ->
@@ -103,13 +103,13 @@ fun HomeScreen(
 //                    })
 //                }
 
-                Text(
-                    modifier = Modifier.padding(start = 16.dp),
-                    text = "Recently Played $albumName",
-                    fontSize = 16.sp,
-                    color = Color.White,
-                    fontWeight = FontWeight.Bold
-                )
+//                Text(
+//                    modifier = Modifier.padding(start = 16.dp),
+//                    text = "Recently Played $albumName",
+//                    fontSize = 16.sp,
+//                    color = Color.White,
+//                    fontWeight = FontWeight.Bold
+//                )
 
 //                LazyRow(Modifier.fillMaxWidth()) {
 //                    items(items = albumTracks, itemContent = { item ->

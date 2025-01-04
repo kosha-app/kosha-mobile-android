@@ -64,7 +64,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = "1.5.14"
     }
 
     lint.disable += "Instantiatable"
@@ -107,7 +107,8 @@ dependencies {
     api("androidx.compose.material3:material3")
     api("androidx.compose.material:material")
 
-    api("com.github.bumptech.glide:compose:1.0.0-alpha.1")
+    api("com.github.bumptech.glide:compose:1.0.0-beta01")
+    api("io.coil-kt.coil3:coil-compose:3.0.4")
     api("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
     api("com.android.volley:volley:1.2.1")
     api("com.google.code.gson:gson:2.10.1")

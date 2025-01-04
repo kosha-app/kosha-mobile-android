@@ -16,6 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil3.compose.AsyncImage
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.musica.common.compose.Exclude
@@ -44,13 +45,22 @@ fun DashboardItem(
                 )
                 .clickable(onClick = onItemClick)
         ) {
-            GlideImage(
+//            GlideImage(
+//                modifier = Modifier
+//                    .width(131.55209.dp)
+//                    .height(131.55209.dp),
+//                model = imageUrl,
+//                contentDescription = "Item Picture"
+//            )
+
+            AsyncImage(
                 modifier = Modifier
                     .width(131.55209.dp)
                     .height(131.55209.dp),
                 model = imageUrl,
-                contentDescription = "Item Picture"
+                contentDescription = null,
             )
+
             if (header != null) {
                 Text(
                     modifier = Modifier.padding(top = 12.dp, start = 10.dp, end = 10.dp),

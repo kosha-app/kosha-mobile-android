@@ -28,30 +28,33 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import coil3.compose.AsyncImage
+import coil3.request.ImageRequest
+import coil3.request.crossfade
+import com.bumptech.glide.Glide
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.musica.common.compose.Exclude
 import com.musica.common.compose.RoundImage
 import com.musica.common.compose.TopBar
 import com.musica.common.compose.TrackItem
-import com.musica.common.compose.dialog.ProgressDialog
 import com.musica.common.compose.dialog.ProgressScreen
 import com.musica.common.compose.theme.BackgroundGradientColors
 import com.musica.common.compose.theme.KoshaTheme
 import com.musica.common.compose.theme.MusicaBlueColor
-import com.musica.common.compose.theme.Primary
 import com.musica.common.compose.theme.Secondary
 import com.musica.common.compose.theme.White
-import com.musica.dashboard.DashboardActivity
 import com.musica.dashboard.DashboardActivity.Companion.ARTIST_SCREEN
 import com.musica.dashboard.home.viewmodel.DashboardViewModel
 import com.musica.dashboard.player.KoshaMusicPlayerViewModel
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable

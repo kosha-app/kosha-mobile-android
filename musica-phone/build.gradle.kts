@@ -86,7 +86,7 @@ android {
 //                "BASE_MCA_URL",
 //                "\"https://kosha-app-developer.azurewebsites.net/%s\""
 //            )
-            buildConfigField("String", "BASE_MCA_URL", "\"https://kosha-app.azurewebsites.net/%s\"")
+            buildConfigField("String", "BASE_MCA_URL", "\"http://10.0.2.2:8080/%s\"")
             signingConfig = signingConfigs.getByName("debug")
             tasks {
                 named("build") {
@@ -118,7 +118,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = "1.5.14"
     }
     packaging {
         resources {
@@ -160,6 +160,8 @@ dependencies {
 
     implementation(project(":musica-common"))
     implementation(project(":dashboard-module"))
+
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
     // App Centre
 

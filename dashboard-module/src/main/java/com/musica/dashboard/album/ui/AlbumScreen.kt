@@ -54,13 +54,14 @@ import com.musica.common.compose.theme.Secondary
 import com.musica.common.compose.theme.White
 import com.musica.dashboard.DashboardActivity.Companion.ARTIST_SCREEN
 import com.musica.dashboard.home.viewmodel.DashboardViewModel
-import com.musica.dashboard.player.KoshaMusicPlayerViewModel
+import com.musica.dashboard.player.viewmodel.PlayerViewModel
+
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 @Exclude
 fun AlbumScreen(
-    playerViewModel: KoshaMusicPlayerViewModel,
+    playerV2ViewModel: PlayerViewModel,
     albumId: String?,
     dashboardViewModel: DashboardViewModel,
     onBackPressed: () -> Unit,
@@ -135,7 +136,8 @@ fun AlbumScreen(
                         imageSize = 24.dp,
                         circleSize = 45.dp,
                         onClick = {
-                            album?.let { safeAlbum -> playerViewModel.preparePlaylist(safeAlbum.tracks) }
+//                            album?.let { safeAlbum -> playerViewModel.preparePlaylist(safeAlbum.tracks) }
+                            album?.let { album -> playerV2ViewModel.playPlaylist(album.tracks) }
                         }
                     )
                 }
@@ -145,7 +147,8 @@ fun AlbumScreen(
                         trackName = track.trackName.toString(),
                         trackArtist = track.trackArtist.toString(),
                         onTrackClick = {
-                            playerViewModel.preparePlaylist(listOf(track))
+//                            playerViewModel.preparePlaylist(listOf(track))
+                            playerV2ViewModel.playPlaylist(listOf(track))
                         }
                     )
                 }

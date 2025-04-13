@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.musica.common.compose.theme.Primary
+import com.musica.common.compose.theme.Secondary
 
 @Composable
 @Exclude
@@ -25,7 +26,8 @@ fun RoundImage(
     painter: Painter,
     imageSize: Dp,
     circleSize: Dp,
-    onClick: () -> Unit = {}
+    onClick: () -> Unit = {},
+    iconColor: Color = Color.White
 ) {
     Column(modifier = modifier) {
         Column(
@@ -46,7 +48,7 @@ fun RoundImage(
                 modifier = Modifier
                     .width(imageSize)
                     .height(imageSize),
-                colorFilter = ColorFilter.tint(Color.White)
+                colorFilter = ColorFilter.tint(iconColor)
             )
         }
     }

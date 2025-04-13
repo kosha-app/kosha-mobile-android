@@ -24,11 +24,10 @@ import com.musica.dashboard.home.ui.SliderInactive
 @Composable
 @Exclude
 fun MusicSlider(
-    currentPosition: Float,
+    position: Float,
     duration: Float,
     seekTo: (milliSec: Float) -> Unit
 ) {
-    var sliderPosition by remember { mutableFloatStateOf(0f) }
     Slider(
         modifier = Modifier
             .padding(top = 14.dp, bottom = 22.dp, start = 16.dp, end = 16.dp)
@@ -39,10 +38,9 @@ fun MusicSlider(
                 color = Color(0x08FFFFFF),
                 shape = RoundedCornerShape(size = 30.dp)
             ),
-        value = sliderPosition,
+        value = position,
         onValueChange = {
-            sliderPosition = it
-            seekTo(sliderPosition)
+            seekTo(it)
         },
         valueRange = 0f..duration,
         colors = SliderDefaults.colors(
@@ -51,8 +49,4 @@ fun MusicSlider(
             inactiveTrackColor = SliderInactive,
         )
     )
-
-    LaunchedEffect(currentPosition){
-        sliderPosition = currentPosition
-    }
 }

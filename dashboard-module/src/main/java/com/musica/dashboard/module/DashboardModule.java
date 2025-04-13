@@ -1,6 +1,9 @@
 package com.musica.dashboard.module;
 
+import android.content.Context;
 import android.media.MediaPlayer;
+
+import androidx.media3.exoplayer.ExoPlayer;
 
 import com.musica.dashboard.player.repository.TrackRepository;
 import com.musica.dashboard.player.repository.TrackRepositoryImpl;
@@ -15,6 +18,7 @@ import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
+import dagger.hilt.android.qualifiers.ApplicationContext;
 import dagger.hilt.components.SingletonComponent;
 
 @Module
@@ -34,6 +38,8 @@ public interface DashboardModule {
     UserRepository bindUserRepository(UserRepositoryImpl impl);
 
     @Provides
-    static MediaPlayer providesService(){return new MediaPlayer();}
+    static MediaPlayer providesMediaPlayer(){
+        return new MediaPlayer();
+    }
 }
 

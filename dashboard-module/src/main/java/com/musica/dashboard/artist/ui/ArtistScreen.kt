@@ -46,12 +46,12 @@ import com.musica.common.compose.theme.White
 import com.musica.common.service.models.response.ArtistPopularTracksResponse.Companion.toTrack
 import com.musica.dashboard.R
 import com.musica.dashboard.home.viewmodel.DashboardViewModel
-import com.musica.dashboard.player.KoshaMusicPlayerViewModel
+import com.musica.dashboard.player.viewmodel.PlayerViewModel
 
 @Composable
 @Exclude
 fun ArtistScreen(
-    playerViewModel: KoshaMusicPlayerViewModel,
+    playerV2ViewModel: PlayerViewModel,
     viewModel: DashboardViewModel,
     artistName: String,
     navController: NavController
@@ -109,7 +109,9 @@ fun ArtistScreen(
                         imageSize = 24.dp,
                         circleSize = 45.dp,
                         onClick = {
-                            popularArtistsTracks?.let { tracks -> playerViewModel.preparePlaylist(tracks) }
+                            popularArtistsTracks?.let { tracks ->
+                                playerV2ViewModel.playPlaylist(tracks)
+                            }
                         }
                     )
                 }
@@ -132,7 +134,7 @@ fun ArtistScreen(
                             trackName = track.trackName.toString(),
                             trackArtist = track.trackArtist.toString(),
                             onTrackClick = {
-                                playerViewModel.preparePlaylist(listOf(track))
+                                playerV2ViewModel.playPlaylist(listOf(track))
                             },
                             trailing = {
                                 Text(

@@ -24,7 +24,12 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -42,12 +47,16 @@ import com.musica.common.R
 import com.musica.common.compose.Exclude
 import com.musica.common.compose.RoundImage
 import com.musica.common.compose.theme.BackgroundGradientColors
+import com.musica.common.compose.theme.MusicaBlueColor
+import com.musica.common.compose.theme.Primary
 import com.musica.common.compose.theme.Secondary
 import com.musica.common.compose.theme.Tertiary25
+import com.musica.common.compose.theme.White
 import com.musica.dashboard.R.string
 import com.musica.dashboard.home.options.OptionsSheet
 import com.musica.dashboard.player.lyrics.LyricsCard
 import com.musica.dashboard.player.songinfo.InfoCard
+import com.musica.dashboard.player.viewmodel.PlayerUiState
 import kotlinx.coroutines.launch
 
 @OptIn(
@@ -57,20 +66,34 @@ import kotlinx.coroutines.launch
 @Composable
 @Exclude
 fun MusicPlayer(
-    trackName: String,
-    trackArtist: String,
-    coverUrl: String,
-    isPlaying: Boolean,
+    playUiState: PlayerUiState,
     onShuffleOnClick: () -> Unit,
     onPreviousOnClick: () -> Unit,
     onPlayPauseOnClick: () -> Unit,
     onNextOnClick: () -> Unit,
     onRepeatOnClick: () -> Unit,
     onBackClick: () -> Unit,
-    currentPosition: Float,
-    duration: Float,
     seekTo: (millieSec: Float) -> Unit
 ) {
+
+    var isPlaying by remember { mutableStateOf(false) }
+    var duration by remember { mutableLongStateOf(0L) }
+    var position by remember { mutableLongStateOf(0L) }
+    var title by remember { mutableStateOf("") }
+    var coverUrl by remember { mutableStateOf("") }
+    var artist by remember { mutableStateOf("") }
+
+    when(playUiState) {
+        is PlayerUiState.Playing -> {
+            isPlaying = playUiState.isPlaying
+            duration = playUiState.duration
+            position = playUiState.position
+            title = playUiState.title
+            coverUrl = playUiState.coverUrl
+            artist = playUiState.trackArtist
+        }
+        else -> {}
+    }
 
     val sheetState = rememberBottomSheetState(
         initialValue = BottomSheetValue.Collapsed, animationSpec = tween(durationMillis = 500)
@@ -143,10 +166,10 @@ fun MusicPlayer(
                     )
                 }
                 MusicPlayerTrackInfo(
-                    trackName = trackName,
-                    trackArtist = trackArtist,
-                    currentPosition = currentPosition,
-                    duration = duration,
+                    trackName = title,
+                    trackArtist = artist,
+                    position = position.toFloat(),
+                    duration = duration.toFloat(),
                     seekTo = {
                         seekTo(it)
                     }
@@ -203,7 +226,7 @@ fun MusicPlayer(
 fun MusicPlayerTrackInfo(
     trackName: String,
     trackArtist: String,
-    currentPosition: Float,
+    position: Float,
     duration: Float,
     seekTo: (millieSec: Float) -> Unit
 ) {
@@ -237,7 +260,7 @@ fun MusicPlayerTrackInfo(
     }
 
     MusicSlider(
-        currentPosition = currentPosition,
+        position = position,
         duration = duration,
         seekTo = {seekTo(it)}
     )
@@ -249,7 +272,7 @@ fun MusicPlayerTrackInfo(
     ) {
         Text(
             modifier = Modifier.weight(1f),
-            text = PlayerUtil.formatTime(currentPosition),
+            text = PlayerUtil.formatTime(position),
             fontSize = 14.sp,
             color = Color.White,
         )
@@ -272,6 +295,8 @@ fun MusicPlayControls(
     onRepeatOnClick: () -> Unit
 ) {
 
+    val isPlaylistShuffled = false
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -290,7 +315,8 @@ fun MusicPlayControls(
             painter = painterResource(id = R.drawable.shuffle_icon),
             circleSize = 42.dp,
             imageSize = 18.dp,
-            onClick =  onShuffleOnClick
+            onClick = onShuffleOnClick,
+            iconColor = if (isPlaylistShuffled) MusicaBlueColor else White
         )
         RoundImage(
             modifier = Modifier

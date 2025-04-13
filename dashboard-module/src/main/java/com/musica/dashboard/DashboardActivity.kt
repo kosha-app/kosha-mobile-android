@@ -43,9 +43,9 @@ import com.musica.dashboard.album.ui.AlbumScreen
 import com.musica.dashboard.artist.ui.ArtistScreen
 import com.musica.dashboard.home.HomeScreen
 import com.musica.dashboard.home.viewmodel.DashboardViewModel
-import com.musica.dashboard.player.KoshaMusicPlayerViewModel
 import com.musica.dashboard.player.MusicPlayer
 import com.musica.dashboard.player.KoshaPlayerBar
+import com.musica.dashboard.player.viewmodel.PlayerViewModel
 import com.musica.dashboard.search.ui.SearchScreen
 import com.musica.dashboard.search.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -89,37 +89,36 @@ class DashboardActivity : KoshaComposeActivity() {
 
         val dashboardViewModel: DashboardViewModel = viewModel()
         val searchViewModel: SearchViewModel = viewModel()
-        val playerViewModel: KoshaMusicPlayerViewModel = viewModel()
+        val playerV2ViewModel: PlayerViewModel = viewModel()
 
-
-        val isPlaying by playerViewModel.isPlaying.collectAsState()
-        val isPaused by playerViewModel.isPaused.collectAsState()
-        var currentPosition by remember { mutableIntStateOf(0) }
-        val duration by playerViewModel.duration.collectAsState()
-
-        println("Sage Duration: $duration")
-
-        val currentPlayingTrack by playerViewModel.currentPlayingTrack.collectAsState()
+        val playUiState by playerV2ViewModel.uiState.collectAsState()
 
         BottomSheetScaffold(
             sheetContent = {
                 MusicPlayer(
-                    trackName = currentPlayingTrack.trackName.toString(),
-                    trackArtist = currentPlayingTrack.trackArtist.toString(),
-                    coverUrl = currentPlayingTrack.coverUrl.toString(),
-                    isPlaying = isPlaying,
-                    onShuffleOnClick = { /*TODO*/ },
-                    onPreviousOnClick = { /*TODO*/ },
-                    onPlayPauseOnClick = { playerViewModel.playPauseTrack() },
-                    onNextOnClick = { playerViewModel.playNextTrack() },
+                    playUiState = playUiState,
+                    onShuffleOnClick = {
+//                        playerViewModel.shufflePlaylist()
+                        playerV2ViewModel.toggleShuffle()
+                    },
+                    onPreviousOnClick = {
+//                        playerViewModel.playPreviousTrack()
+                        playerV2ViewModel.playPrevious()
+                    },
+                    onPlayPauseOnClick = {
+                        playerV2ViewModel.togglePlayPause()
+                    },
+                    onNextOnClick = {
+//                        playerViewModel.playNextTrack()
+                        playerV2ViewModel.playNext()
+                    },
                     onRepeatOnClick = { /*TODO*/ },
                     onBackClick = {
                         scope.launch { sheetState.collapse() }
                     },
-                    currentPosition = currentPosition.toFloat(),
-                    duration = duration.toFloat(),
                     seekTo = { seekToFloat ->
-                        playerViewModel.seekTo(seekToFloat.toInt())
+//                        playerViewModel.seekTo(seekToFloat.toInt())
+                        playerV2ViewModel.seekTo(seekToFloat.toLong())
                     })
 
             }, scaffoldState = scaffoldState,
@@ -131,33 +130,30 @@ class DashboardActivity : KoshaComposeActivity() {
                         modifier = Modifier.fillMaxWidth(),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        if (isPlaying || isPaused) {
-                            KoshaPlayerBar(
-                                modifier = Modifier
-                                    .shadow(
-                                        elevation = 100.dp,
-                                    )
-                                    .background(
-                                        color = Tertiary,
-                                    ),
-                                onPlayPauseClick = { playerViewModel.playPauseTrack() },
-                                currentPosition = currentPosition.toFloat(),
-                                duration = duration.toFloat(),
-                                trackName = currentPlayingTrack.trackName.toString(),
-                                trackArtist = currentPlayingTrack.trackArtist.toString(),
-                                coverUrl = currentPlayingTrack.coverUrl.toString(),
-                                isPlaying = isPlaying,
-                                onBottomBarClick = {
-                                    bottomBarShow = !bottomBarShow
-                                    scope.launch {
-                                        sheetState.expand()
-                                    }
-                                },
-                                seekTo = { seekFloat ->
-                                    playerViewModel.seekTo(seekFloat.toInt())
+                        KoshaPlayerBar(
+                            playUiState = playUiState,
+                            modifier = Modifier
+                                .shadow(
+                                    elevation = 100.dp,
+                                )
+                                .background(
+                                    color = Tertiary,
+                                ),
+                            onPlayPauseClick = {
+//                                playerViewModel.playPauseTrack()
+                                playerV2ViewModel.togglePlayPause()
+                            },
+                            onBottomBarClick = {
+                                bottomBarShow = !bottomBarShow
+                                scope.launch {
+                                    sheetState.expand()
                                 }
-                            )
-                        }
+                            },
+                            seekTo = { seekFloat ->
+//                                playerViewModel.seekTo(seekFloat.toInt())
+                                playerV2ViewModel.seekTo(seekFloat.toLong())
+                            }
+                        )
                         KoshaBottomNav(navController = navController)
                     }
                 }
@@ -177,7 +173,7 @@ class DashboardActivity : KoshaComposeActivity() {
                         }
                         composable(BottomNavItem.Search.route) {
                             SearchScreen(
-                                playerViewModel = playerViewModel,
+                                playerV2ViewModel = playerV2ViewModel,
                                 searchViewModel = searchViewModel,
                                 navController = navController,
                                 onBackPressed = { navController.popBackStack() }
@@ -193,7 +189,7 @@ class DashboardActivity : KoshaComposeActivity() {
                         composable("$ARTIST_SCREEN/{artistName}") {
                             val artist = it.arguments?.getString("artistName")
                             ArtistScreen(
-                                playerViewModel = playerViewModel,
+                                playerV2ViewModel = playerV2ViewModel,
                                 artistName = artist.toString(),
                                 viewModel = dashboardViewModel,
                                 navController = navController
@@ -203,11 +199,11 @@ class DashboardActivity : KoshaComposeActivity() {
                         composable("$ALBUM_SCREEN/{albumId}") {
                             val albumId = it.arguments?.getString("albumId")
                             AlbumScreen(
-                                playerViewModel = playerViewModel,
                                 albumId = albumId,
                                 dashboardViewModel = dashboardViewModel,
                                 onBackPressed = { navController.popBackStack() },
-                                navController = navController
+                                navController = navController,
+                                playerV2ViewModel = playerV2ViewModel
                             )
                         }
                     }
@@ -218,16 +214,6 @@ class DashboardActivity : KoshaComposeActivity() {
         LaunchedEffect(Unit) {
             launch {
                 isBottomSheetExpanded = sheetState.isExpanded
-            }
-            launch {
-                Timer().scheduleAtFixedRate(object : TimerTask() {
-                    override fun run() {
-                        try {
-                            currentPosition = playerViewModel.getCurrentPosition()
-                        } catch (_: Exception) {
-                        }
-                    }
-                }, 0, 1000)
             }
         }
 
@@ -243,7 +229,7 @@ class DashboardActivity : KoshaComposeActivity() {
     }
 
     companion object {
-         const val ALBUM_SCREEN = "ArtistScreen"
-         const val ARTIST_SCREEN = "AlbumScreen"
+        const val ALBUM_SCREEN = "ArtistScreen"
+        const val ARTIST_SCREEN = "AlbumScreen"
     }
 }

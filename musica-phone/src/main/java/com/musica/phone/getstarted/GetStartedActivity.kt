@@ -1,5 +1,6 @@
 package com.musica.phone.getstarted
 
+import android.content.Intent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,6 +19,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -28,6 +30,7 @@ import com.musica.common.compose.theme.BackgroundGradientColors
 import com.musica.common.compose.theme.MusicaBlueColor
 import com.musica.common.compose.theme.Secondary
 import com.musica.phone.getstarted.viewmodel.GetStartedViewModel
+import com.musica.phone.musicbackground.MusicService
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -49,8 +52,9 @@ class GetStartedActivity : KoshaComposeActivity() {
             scaffoldState,
             isLoading
         )
+        val context = LocalContext.current
 
-        LaunchedEffect(viewModel ){
+        LaunchedEffect(viewModel, Unit ){
             launch{
                 viewModel.errorMessage.collectLatest {
                     scaffoldState.snackbarHostState.showSnackbar(it, duration = SnackbarDuration.Long)
@@ -61,6 +65,11 @@ class GetStartedActivity : KoshaComposeActivity() {
                 viewModel.returnIntent.collectLatest {
                     startActivity(it)
                 }
+            }
+
+            launch {
+                val intent = Intent(context, MusicService::class.java)
+                context.startService(intent)
             }
         }
     }

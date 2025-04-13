@@ -43,7 +43,7 @@ android {
         }
     }
     namespace = "com.musica.phone"
-    compileSdk = 34
+    compileSdk = 35
 
     buildFeatures {
         buildConfig = true // Enable the buildConfig feature

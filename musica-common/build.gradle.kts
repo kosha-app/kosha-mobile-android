@@ -19,7 +19,7 @@ android {
         }
     }
     namespace = "com.musica.common"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24
@@ -113,6 +113,13 @@ dependencies {
     api("com.android.volley:volley:1.2.1")
     api("com.google.code.gson:gson:2.10.1")
     api("androidx.navigation:navigation-compose:2.7.6")
+
+    val media3_version = "1.1.0"
+    api("androidx.media3:media3-datasource-okhttp:$media3_version")
+    api("androidx.media3:media3-exoplayer:$media3_version")
+    api("androidx.media3:media3-ui:$media3_version")
+    api("androidx.media3:media3-session:$media3_version")
+    api("androidx.legacy:legacy-support-v4:1.0.0")
 
     api("com.github.commandiron:WheelPickerCompose:1.1.11")
 

@@ -12,6 +12,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -28,23 +33,39 @@ import com.musica.common.compose.Exclude
 import com.musica.common.compose.theme.Primary
 import com.musica.common.compose.theme.Secondary
 import com.musica.dashboard.R.string
+import com.musica.dashboard.player.viewmodel.PlayerUiState
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 @Exclude
 fun KoshaPlayerBar(
+    playUiState: PlayerUiState,
     modifier: Modifier,
-    currentPosition: Float,
-    duration: Float,
-    trackName: String,
-    trackArtist: String,
-    coverUrl: String,
-    isPlaying: Boolean,
     onPlayPauseClick: () -> Unit,
     seekTo: (milliSec: Float) -> Unit,
     onBottomBarClick: () -> Unit
 
 ) {
+
+    var isPlaying by remember { mutableStateOf(false) }
+    var duration by remember { mutableLongStateOf(0L) }
+    var position by remember { mutableLongStateOf(0L) }
+    var title by remember { mutableStateOf("") }
+    var coverUrl by remember { mutableStateOf("") }
+    var artist by remember { mutableStateOf("") }
+
+    when(playUiState) {
+        is PlayerUiState.Playing -> {
+            isPlaying = playUiState.isPlaying
+            duration = playUiState.duration
+            position = playUiState.position
+            title = playUiState.title
+            coverUrl = playUiState.coverUrl
+            artist = playUiState.trackArtist
+        }
+        else -> {}
+    }
+
     Column(modifier = modifier) {
         Column(
             modifier = Modifier
@@ -77,12 +98,12 @@ fun KoshaPlayerBar(
                         .weight(1f)
                 ) {
                     Text(
-                        text = trackName,
+                        text = title,
                         color = Color.White,
                         fontSize = 12.sp
                     )
                     Text(
-                        text = trackArtist,
+                        text = artist,
                         color = Secondary,
                         fontSize = 12.sp
                     )
@@ -95,12 +116,11 @@ fun KoshaPlayerBar(
                     pausePlayOnClick = onPlayPauseClick,
                     favouriteOnClick = { TODO() }
                 )
-
             }
 
             MusicSlider(
-                currentPosition = currentPosition,
-                duration = duration,
+                position = position.toFloat(),
+                duration = duration.toFloat(),
             ) {
                 seekTo(it)
             }

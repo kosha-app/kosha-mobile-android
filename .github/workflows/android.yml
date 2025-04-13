@@ -13,12 +13,12 @@ on:
     types: [ opened, reopened, synchronize ]
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
+      - uses: actions/checkout@v2
       - name: Bump version
         id: bump_version
         uses: oflynned/Android-Semantic-Release@master

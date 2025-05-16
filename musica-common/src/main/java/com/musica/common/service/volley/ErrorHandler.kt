@@ -41,12 +41,13 @@ class ErrorHandlerImpl @Inject constructor(
                     message = exceptionResponse?.message.orEmpty()
                 )
             )
-        } catch (_: Exception) {
+
+        } catch (e: Exception) {
             ServiceResult(
                 ServiceResponse(
                     responseType = ResponseType.CONNECTION_ERROR,
                     code = "Connection Error",
-                    message = "Something went wrong"
+                    message = e.message.toString()
                 )
             )
         }

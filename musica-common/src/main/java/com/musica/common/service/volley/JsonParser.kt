@@ -44,16 +44,12 @@ class JsonParserImpl @Inject constructor() : JsonParser {
      * @return An object of type [T] if parsing is successful, or null if parsing fails or input is invalid.
      */
     override fun <T> mapJsonToObject(json: String?, clazz: Class<T>): T? {
-        return try {
-            if (clazz == Void::class.java || json.isNullOrEmpty()) {
+        return if (clazz == Void::class.java) {
                 null
             } else {
                 mapper.fromJson(json, clazz)
             }
-        } catch (e: Exception) {
-            Log.e("JsonParserImpl", e.message.orEmpty())
-            null
-        }
+
     }
 
     override fun mapObjectToJson(obj: Any?): String {

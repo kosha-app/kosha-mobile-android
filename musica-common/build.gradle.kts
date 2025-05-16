@@ -132,6 +132,8 @@ dependencies {
     kapt("com.google.dagger:hilt-compiler:2.47")
     implementation(kotlin("reflect"))
 
+    implementation(project(":kosha-api"))
+
 }
 
 kapt {

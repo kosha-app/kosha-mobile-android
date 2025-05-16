@@ -65,7 +65,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = true
-            buildConfigField("String", "BASE_MCA_URL", "\"https://kosha-app.azurewebsites.net/%s\"")
+            buildConfigField("String", "BASE_MCA_URL", "\"https://kosha-app.azurewebsites.net\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -81,12 +81,7 @@ android {
 
         debug {
             isMinifyEnabled = false
-//            buildConfigField(
-//                "String",
-//                "BASE_MCA_URL",
-//                "\"https://kosha-app-developer.azurewebsites.net/%s\""
-//            )
-            buildConfigField("String", "BASE_MCA_URL", "\"http://156.155.253.224:8080/%s\"")
+            buildConfigField("String", "BASE_MCA_URL", "\"https://kosha-sit-h3dahzdcamh9h9bq.canadacentral-01.azurewebsites.net\"")
             signingConfig = signingConfigs.getByName("debug")
             tasks {
                 named("build") {
@@ -160,6 +155,7 @@ dependencies {
 
     implementation(project(":musica-common"))
     implementation(project(":dashboard-module"))
+    implementation(project(":kosha-api"))
 
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
 

@@ -49,8 +49,8 @@ fun HomeScreen(
 
     val albumName = ""
 
-    val recentlyPlayedCardImageUrl = ""
-    val recentlyPlayedText = ""
+//    val recentlyPlayedCardImageUrl = ""
+//    val recentlyPlayedText = ""
 
     Scaffold(modifier = Modifier.padding(), topBar = {
         DashboardTopBar(

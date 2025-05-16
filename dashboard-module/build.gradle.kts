@@ -103,6 +103,7 @@ dependencies {
     kapt("com.google.dagger:hilt-compiler:2.47")
 
     implementation(project(":musica-common"))
+    implementation(project(":kosha-api"))
 }
 
 kapt {

@@ -5,12 +5,14 @@ import com.android.volley.ParseError
 import com.android.volley.Request.Method
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.RequestFuture
+import com.kosha.kosha_api.phone.HostUrlRepo
 import javax.inject.Inject
 
 class ServiceImpl @Inject constructor(
     private val requestQueue: RequestQueue,
     private val jsonParser: JsonParser,
-    private val errorHandler: ErrorHandler
+    private val errorHandler: ErrorHandler,
+    private val hostUrlRepo: HostUrlRepo,
 ) : IService {
 
     override suspend fun <T : Any> GET(
@@ -119,7 +121,9 @@ class ServiceImpl @Inject constructor(
     ): ServiceResult<T> {
 
         //Request Path
-        val path = "$BASE_URL/$url"
+        val path = "${hostUrlRepo.getBaseHostUrl()}/$url"
+
+        println("SageTheMan --- URL  $path")
 
         // Create a future for the request result
         val future = createRequestFuture<T>()
@@ -150,10 +154,5 @@ class ServiceImpl @Inject constructor(
     @VisibleForTesting
     internal fun <T : Any?> createRequestFuture(): RequestFuture<ServiceResult<T>> {
         return RequestFuture.newFuture()
-    }
-
-    companion object {
-//        private const val BASE_URL = "http://156.155.253.224:8080"
-        private const val BASE_URL = "http://10.0.2.2:8080"
     }
 }

@@ -1,4 +1,4 @@
-package com.musica.phone.logging
+package com.musica.common.logging
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -13,7 +13,7 @@ private const val TAG = "current-screen"
 /**
  * Logs the activity or fragment's name when it is resumed.
  */
-internal object ScreenLoggingLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
+object ScreenLoggingLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
     override fun onActivityCreated(activity: Activity, p1: Bundle?) {
         if (activity is FragmentActivity) {
             activity.supportFragmentManager.registerFragmentLifecycleCallbacks(

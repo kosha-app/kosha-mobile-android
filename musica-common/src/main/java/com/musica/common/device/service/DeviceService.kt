@@ -23,15 +23,15 @@ class DeviceServiceImpl @Inject constructor(
 ) : DeviceService {
 
     override suspend fun checkDevice(deviceId: String): ServiceResult<Void> {
-        return service.GET(CHECK_DEVICE_URL.format(deviceId), Void::class.java)
+        return service.GET(url = CHECK_DEVICE_URL.format(deviceId), responseType = Void::class.java)
     }
 
     override suspend fun logoutDevice(deviceId: String): ServiceResult<Void> {
-        return service.PUT(LOGOUT_DEVICE_URL.format(deviceId), Void::class.java)
+        return service.PUT(url = LOGOUT_DEVICE_URL.format(deviceId), responseType = Void::class.java)
 
     }
 
     override suspend fun getCurrentDevice(deviceId: String): ServiceResult<GetDeviceResponse> {
-        return service.GET(GET_DEVICE_URL.format(deviceId), GetDeviceResponse::class.java)
+        return service.GET(url = GET_DEVICE_URL.format(deviceId), responseType = GetDeviceResponse::class.java)
     }
 }

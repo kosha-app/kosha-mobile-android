@@ -2,7 +2,7 @@ package com.musica.phone
 
 import android.app.Application
 import android.content.pm.ApplicationInfo
-import com.musica.phone.logging.ScreenLoggingLifecycleCallbacks
+import com.musica.common.logging.ScreenLoggingLifecycleCallbacks
 import dagger.hilt.android.HiltAndroidApp
 
 

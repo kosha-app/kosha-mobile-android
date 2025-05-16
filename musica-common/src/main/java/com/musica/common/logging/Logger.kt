@@ -1,4 +1,4 @@
-package com.musica.phone.logging
+package com.musica.common.logging
 
 import android.util.Log
 

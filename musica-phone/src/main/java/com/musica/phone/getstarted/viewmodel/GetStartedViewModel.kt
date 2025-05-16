@@ -44,9 +44,11 @@ class GetStartedViewModel @Inject constructor(
         viewModelScope.launch {
             val response = deviceInfo.deviceId()?.let { deviceRepository.checkDevice(it) }
 
+            println("SageTheMan --- response type ---- ${response?.serviceResponse?.responseType}")
+
             when (response?.serviceResponse?.responseType) {
                 ResponseType.SUCCESS -> {
-                    print("SageTheMan - success")
+                    println("SageTheMan - success")
                     _returnIntent.emit(
                         Intent(
                             application.applicationContext,
@@ -56,7 +58,7 @@ class GetStartedViewModel @Inject constructor(
                 }
 
                 ResponseType.CONNECTION_ERROR -> {
-                    print("SageTheMan - connection error")
+                    println("SageTheMan - connection error")
                     _returnIntent.emit(
                         Intent(
                             application.applicationContext,
@@ -66,7 +68,7 @@ class GetStartedViewModel @Inject constructor(
                 }
 
                 else -> {
-                    print("SageTheMan - just error")
+                    println("SageTheMan - just error")
                     _returnIntent.emit(
                         Intent(
                             application.applicationContext,

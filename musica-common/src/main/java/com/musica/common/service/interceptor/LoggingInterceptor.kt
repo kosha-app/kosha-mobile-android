@@ -1,6 +1,6 @@
-package com.musica.phone.interceptor
+package com.musica.common.service.interceptor
 
-import com.musica.phone.logging.Logger
+import com.musica.common.logging.Logger
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response

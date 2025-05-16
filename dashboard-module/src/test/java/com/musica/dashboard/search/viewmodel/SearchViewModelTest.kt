@@ -44,7 +44,6 @@ class SearchViewModelTest {
 
     @After
     fun tearDown() {
-        // Reset the main dispatcher after each test
         Dispatchers.resetMain()
     }
 

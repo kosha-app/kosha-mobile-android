@@ -86,7 +86,7 @@ android {
 //                "BASE_MCA_URL",
 //                "\"https://kosha-app-developer.azurewebsites.net/%s\""
 //            )
-            buildConfigField("String", "BASE_MCA_URL", "\"http://10.0.2.2:8080/%s\"")
+            buildConfigField("String", "BASE_MCA_URL", "\"http://156.155.253.224:8080/%s\"")
             signingConfig = signingConfigs.getByName("debug")
             tasks {
                 named("build") {

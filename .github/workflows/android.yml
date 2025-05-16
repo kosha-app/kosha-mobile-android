@@ -40,17 +40,6 @@ jobs:
       - name: build Build
         run: ./gradlew build
 
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
-        with:
-          fail_ci_if_error: true # optional (default = false)
-          files: ./musica-phone/build/reports/kover/reportDebug.xml,./musica-common/build/reports/kover/reportDebug.xml,./dashboard-module/build/reports/kover/reportDebug.xml
-        #          flags: unittests # optional
-        #          name: codecov-umbrella # optional
-        #          verbose: true # optional (default = false)
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-
       - name: upload artifact to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1.5.1
         with:

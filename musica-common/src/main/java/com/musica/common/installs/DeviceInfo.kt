@@ -1,11 +1,12 @@
 package com.musica.common.installs
 
 import android.content.Context
+import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.UUID
 import javax.inject.Inject
 
 
-class DeviceInfo @Inject constructor(private val context: Context) {
+class DeviceInfo @Inject constructor(@ApplicationContext private val context: Context) {
 
     private fun isFirstInstall(): Boolean {
         val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)

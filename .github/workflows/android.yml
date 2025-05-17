@@ -22,7 +22,7 @@ jobs:
           java-version: '17'  # Match your project's version
 
       - name: Set up Gradle
-        uses: gradle/gradle-build-action@v3
+        uses: gradle/actions/setup-gradle@v4
 
       - name: Create firebase-service-account.json file
         run: echo "$FIREBASE_SERVICE_ACCOUNT_JSON" > "$GITHUB_WORKSPACE/firebase-service-account.json"
@@ -30,7 +30,7 @@ jobs:
           FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
 
       - name: Run Gradle upload to Firebase App Distribution
-        run: ./gradlew appDistributionUploadDebug
+        run: ./gradlew assembleDebug ./gradlew appDistributionUploadDebug
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/firebase-service-account.json
 

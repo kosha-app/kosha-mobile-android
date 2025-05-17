@@ -75,7 +75,7 @@ jobs:
         uses: gradle/gradle-build-action@v3
 
       - name: Build APK
-        run: ./gradlew assembleRelease
+        run: ./gradlew assembleDebug
 
       - name: Upload to Firebase App Distribution
         run: |

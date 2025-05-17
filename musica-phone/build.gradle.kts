@@ -81,7 +81,6 @@ android {
 
         debug {
             isMinifyEnabled = false
-            buildConfigField("String", "BASE_MCA_URL", "\"https://kosha-sit-h3dahzdcamh9h9bq.canadacentral-01.azurewebsites.net\"")
             signingConfig = signingConfigs.getByName("debug")
             tasks {
                 named("build") {
@@ -155,7 +154,6 @@ dependencies {
 
     implementation(project(":musica-common"))
     implementation(project(":dashboard-module"))
-    implementation(project(":kosha-api"))
 
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
 

@@ -7,6 +7,7 @@ import com.musica.common.device.repository.DeviceRepository
 import com.musica.common.installs.DeviceInfo
 import com.musica.common.service.models.response.ResponseType
 import com.musica.common.user.repository.UserRepository
+import dagger.hilt.android.internal.lifecycle.HiltViewModelMap
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow

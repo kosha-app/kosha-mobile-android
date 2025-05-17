@@ -18,4 +18,3 @@ rootProject.name = "musica-phone"
 include(":musica-phone")
 include(":musica-common")
 include(":dashboard-module")
-include(":kosha-api")

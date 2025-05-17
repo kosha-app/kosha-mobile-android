@@ -2,7 +2,6 @@ package com.musica.common.service.volley
 
 import android.content.Context
 import com.android.volley.toolbox.Volley
-import com.kosha.kosha_api.phone.HostUrlRepo
 import com.musica.common.service.interceptor.LoggingInterceptor
 import dagger.Binds
 import dagger.Provides
@@ -29,7 +28,6 @@ interface ServiceModule {
             @ApplicationContext context: Context,
             jsonParser: JsonParser,
             errorHandler: ErrorHandler,
-            hostUrlRepo: HostUrlRepo
         ): IService {
             val interceptor = LoggingInterceptor()
             val client: okhttp3.OkHttpClient = okhttp3.OkHttpClient.Builder()
@@ -38,7 +36,7 @@ interface ServiceModule {
 
             val requestQue = Volley.newRequestQueue(context, OkHttpStack(client))
 
-            return ServiceImpl(requestQue, jsonParser, errorHandler, hostUrlRepo)
+            return ServiceImpl(requestQue, jsonParser, errorHandler)
         }
     }
 }

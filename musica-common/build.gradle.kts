@@ -46,6 +46,7 @@ android {
 
         debug {
             isMinifyEnabled = false
+            buildConfigField("String", "BASE_MCA_URL", "\"https://kosha-sit-h3dahzdcamh9h9bq.canadacentral-01.azurewebsites.net\"")
             signingConfig = signingConfigs.getByName("debug")
             tasks {
                 named("build") {
@@ -62,6 +63,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.14"
@@ -131,8 +133,6 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.47")
     kapt("com.google.dagger:hilt-compiler:2.47")
     implementation(kotlin("reflect"))
-
-    implementation(project(":kosha-api"))
 
 }
 

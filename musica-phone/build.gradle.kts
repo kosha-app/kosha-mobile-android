@@ -65,7 +65,7 @@ android {
     buildTypes {
         release {
             firebaseAppDistribution {
-                serviceCredentialsFile = rootProject.file("music-app-49e44-firebase-adminsdk-8ks97-4fdaefd43d.json").absolutePath
+                serviceCredentialsFile = System.getenv("GOOGLE_APPLICATION_CREDENTIALS")
                 artifactType = "APK"
             }
 
@@ -85,7 +85,7 @@ android {
 
         debug {
             firebaseAppDistribution {
-                serviceCredentialsFile = rootProject.file("music-app-49e44-firebase-adminsdk-8ks97-4fdaefd43d.json").absolutePath
+                serviceCredentialsFile = System.getenv("GOOGLE_APPLICATION_CREDENTIALS")
                 artifactType = "APK"
             }
             isMinifyEnabled = false

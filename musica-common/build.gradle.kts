@@ -35,6 +35,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "BASE_MCA_URL", "\"https://kosha-sit-h3dahzdcamh9h9bq.canadacentral-01.azurewebsites.net\"")
             signingConfig = signingConfigs.getByName("release")
             tasks {
                 named("build") {

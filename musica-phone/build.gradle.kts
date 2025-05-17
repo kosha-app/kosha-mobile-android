@@ -65,7 +65,6 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = true
-            buildConfigField("String", "BASE_MCA_URL", "\"https://kosha-app.azurewebsites.net\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

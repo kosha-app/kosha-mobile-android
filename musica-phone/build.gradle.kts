@@ -27,7 +27,7 @@ fun versionCode(): Int {
     return major * 10000 + minor * 100 + patch
 }
 
-val versionName =
+val versionString =
     "${project.ext.get("majorVersion")}.${project.ext.get("minorVersion")}.${project.ext.get("patchVersion")}"
 
 
@@ -54,7 +54,7 @@ android {
         minSdk = 24
         targetSdk = 34
         versionCode = versionCode()
-        versionName = versionName
+        versionName = versionString
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -64,6 +64,11 @@ android {
 
     buildTypes {
         release {
+            firebaseAppDistribution {
+                serviceCredentialsFile = rootProject.file("music-app-49e44-firebase-adminsdk-8ks97-4fdaefd43d.json").absolutePath
+                artifactType = "APK"
+            }
+
             isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -79,6 +84,10 @@ android {
         }
 
         debug {
+            firebaseAppDistribution {
+                serviceCredentialsFile = rootProject.file("music-app-49e44-firebase-adminsdk-8ks97-4fdaefd43d.json").absolutePath
+                artifactType = "APK"
+            }
             isMinifyEnabled = false
             signingConfig = signingConfigs.getByName("debug")
             tasks {

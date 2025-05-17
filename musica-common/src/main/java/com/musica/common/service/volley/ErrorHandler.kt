@@ -2,7 +2,6 @@ package com.musica.common.service.volley
 
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.HttpHeaderParser
-import com.google.gson.Gson
 import com.musica.common.service.models.response.ExceptionResponse
 import com.musica.common.service.models.response.ResponseType
 import com.musica.common.service.models.response.ServiceResponse
@@ -42,12 +41,12 @@ class ErrorHandlerImpl @Inject constructor(
                 )
             )
 
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             ServiceResult(
                 ServiceResponse(
                     responseType = ResponseType.CONNECTION_ERROR,
                     code = "Connection Error",
-                    message = e.message.toString()
+                    message = "Something went wrong"
                 )
             )
         }

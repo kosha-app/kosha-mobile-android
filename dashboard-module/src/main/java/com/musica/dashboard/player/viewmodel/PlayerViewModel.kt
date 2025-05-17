@@ -93,7 +93,6 @@ class PlayerViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     fun playNext() {
-        println("SageTheMan --- NExt clicked")
         if (currentIndex + 1 < playlist.size) {
             currentIndex++
             loadTrackAt(currentIndex)

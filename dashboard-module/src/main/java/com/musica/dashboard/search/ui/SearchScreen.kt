@@ -111,7 +111,6 @@ fun SearchScreen(
 
                     LazyColumn(content = {
                         items(items = tracks) { item ->
-                            println("SageTheMan url - ${item.coverUrl}")
                             SearchedItems(
                                 itemPictureUrl = item.coverUrl.toString(),
                                 label = item.trackName.toString(),

@@ -4,8 +4,10 @@ import androidx.annotation.VisibleForTesting
 import com.android.volley.ParseError
 import com.android.volley.Request.Method
 import com.android.volley.RequestQueue
+import com.android.volley.VolleyError
 import com.android.volley.toolbox.RequestFuture
 import com.musica.common.BuildConfig
+import java.util.concurrent.ExecutionException
 import javax.inject.Inject
 
 class ServiceImpl @Inject constructor(
@@ -142,10 +144,12 @@ class ServiceImpl @Inject constructor(
         return try {
             // Wait for the response to come back and return the result
             future.get()
-        } catch (e: Exception) {
+        } catch (e: ExecutionException) {
             // Handle any error during the request (e.g., network failure) and return the result
-            errorHandler.handle<T>(ParseError(e))
+            val cause = e.cause
+            errorHandler.handle<T>(cause as VolleyError)
         }
+
     }
 
     @VisibleForTesting

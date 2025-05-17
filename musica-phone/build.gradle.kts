@@ -87,6 +87,7 @@ android {
             firebaseAppDistribution {
                 serviceCredentialsFile = System.getenv("GOOGLE_APPLICATION_CREDENTIALS")
                 artifactType = "APK"
+                appId = "1:159476609332:android:02625c98c6cb6fd5eeb561"
             }
             isMinifyEnabled = false
             signingConfig = signingConfigs.getByName("debug")

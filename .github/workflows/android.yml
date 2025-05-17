@@ -27,6 +27,13 @@ jobs:
       - name: Build APK
         run: ./gradlew assembleDebug
 
-      - name: Upload to Firebase App Distribution
-        run: ./gradlew appDistributionUploadDebug --stacktrace
+      - name: Create Firebase service account JSON file
+        run: echo "$FIREBASE_SERVICE_ACCOUNT_JSON" > ${{ github.workspace }}/firebase-service-account.json
+        env:
+          FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
+
+      - name: Run Gradle app distribution upload
+        run: ./gradlew appDistributionUploadDebug
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/firebase-service-account.json
 

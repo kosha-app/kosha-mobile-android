@@ -33,7 +33,7 @@ jobs:
         run: ./gradlew assembleDebug
 
       - name: Run Gradle upload to Firebase App Distribution
-        run: ./gradlew assembleDebug ./gradlew appDistributionUploadDebug
+        run: ./gradlew appDistributionUploadDebug
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/firebase-service-account.json
 

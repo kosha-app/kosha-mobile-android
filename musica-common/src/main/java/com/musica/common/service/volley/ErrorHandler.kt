@@ -22,7 +22,7 @@ class ErrorHandlerImpl @Inject constructor(
     private val jsonParser: JsonParser
 ) : ErrorHandler {
     override fun <T : Any> handle(error: VolleyError): ServiceResult<T> {
-        return try {
+        return if (error.networkResponse != null) {
             val jsonString = String(
                 error.networkResponse?.data ?: ByteArray(0),
                 Charset.forName(
@@ -41,7 +41,7 @@ class ErrorHandlerImpl @Inject constructor(
                 )
             )
 
-        } catch (_: Exception) {
+        } else {
             ServiceResult(
                 ServiceResponse(
                     responseType = ResponseType.CONNECTION_ERROR,

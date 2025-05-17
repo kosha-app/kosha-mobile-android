@@ -146,8 +146,8 @@ class ServiceImpl @Inject constructor(
             future.get()
         } catch (e: ExecutionException) {
             // Handle any error during the request (e.g., network failure) and return the result
-            val cause = e.cause
-            errorHandler.handle<T>(cause as VolleyError)
+            val cause = e.cause as VolleyError
+            errorHandler.handle<T>(cause)
         }
 
     }

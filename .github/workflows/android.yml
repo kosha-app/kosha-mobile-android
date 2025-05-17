@@ -24,9 +24,6 @@ jobs:
       - name: Set up Gradle
         uses: gradle/gradle-build-action@v3
 
-      - name: Build APK
-        run: ./gradlew assembleDebug
-
       - name: Create firebase-service-account.json file
         run: echo "$FIREBASE_SERVICE_ACCOUNT_JSON" > "$GITHUB_WORKSPACE/firebase-service-account.json"
         env:

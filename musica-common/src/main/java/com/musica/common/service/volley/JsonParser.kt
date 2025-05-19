@@ -32,7 +32,6 @@ interface JsonParser {
  */
 class JsonParserImpl @Inject constructor() : JsonParser {
 
-
     private val mapper = GsonBuilder().create()
 
     /**
